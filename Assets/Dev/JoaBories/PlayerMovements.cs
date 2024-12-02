@@ -21,6 +21,8 @@ public class PlayerMovements : MonoBehaviour
     private InputAction _runAction;
     private InputAction _lieAction;
 
+    private Animator _animator;
+
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float crawlSpeed;
@@ -34,6 +36,8 @@ public class PlayerMovements : MonoBehaviour
         instance = this;
 
         _inputActions = new Controls();
+        
+        _animator = GetComponent<Animator>();
         
         State = MoveStates.idle;
     }
@@ -102,6 +106,32 @@ public class PlayerMovements : MonoBehaviour
 
     public void SwitchState(MoveStates nextState)
     {
+        switch (nextState)
+        {
+            case MoveStates.lieDown:
+                if (State == MoveStates.run) _animator.Play("dive");
+                else if (State != MoveStates.lieDown && State != MoveStates.crawl) _animator.Play("lyingDown");
+                SetMoveTreeFloats(1, 0);
+                break;
+
+            case MoveStates.idle:
+                if (State == MoveStates.lieDown || State == MoveStates.crawl) _animator.Play("gettingUp");
+                SetMoveTreeFloats(0, 0);
+                break;
+
+            case MoveStates.walk:
+                SetMoveTreeFloats(0, 1);
+                break;
+
+            case MoveStates.crawl:
+                SetMoveTreeFloats(1, 1);
+                break;
+
+            case MoveStates.run:
+                SetMoveTreeFloats(1, 2);
+                break;
+        }
+
         State = nextState;
     }
 
@@ -119,5 +149,11 @@ public class PlayerMovements : MonoBehaviour
     {
         if (State == MoveStates.idle || State == MoveStates.walk || State == MoveStates.run) SwitchState(MoveStates.lieDown);
         else if (State == MoveStates.lieDown || State == MoveStates.crawl) SwitchState(MoveStates.idle);
+    }
+
+    private void SetMoveTreeFloats(float type, float speed)
+    {
+        _animator.SetFloat("Speed", speed);
+        _animator.SetFloat("Type", type);
     }
 }
