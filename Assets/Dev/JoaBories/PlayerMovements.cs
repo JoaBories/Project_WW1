@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum PlayerMovementStates
+public enum MoveStates
 {
     idle,
     walk,
     run,
+    lieDown,
+    crawl,
     action,
     cinematic
 }
@@ -17,11 +19,13 @@ public class PlayerMovements : MonoBehaviour
     private Controls _inputActions;
     private InputAction _moveAction;
     private InputAction _runAction;
+    private InputAction _lieAction;
 
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
+    [SerializeField] private float crawlSpeed;
 
-    public PlayerMovementStates State;
+    public MoveStates State;
 
     private bool running;
 
@@ -31,7 +35,7 @@ public class PlayerMovements : MonoBehaviour
 
         _inputActions = new Controls();
         
-        State = PlayerMovementStates.idle;
+        State = MoveStates.idle;
     }
 
     private void OnEnable()
@@ -43,6 +47,10 @@ public class PlayerMovements : MonoBehaviour
         _runAction.Enable();
         _runAction.started += StartRun;
         _runAction.canceled += StopRun;
+
+        _lieAction = _inputActions.Movements.LieDown;
+        _lieAction.Enable();
+        _lieAction.performed += LieDown;
     }
 
     private void OnDisable()
@@ -57,61 +65,42 @@ public class PlayerMovements : MonoBehaviour
         float _moveDir = _moveAction.ReadValue<Vector2>().x;
         if (_moveDir != 0)
         {
-            if (_moveDir < 0)
-            {
-                _moveDir = _moveDir / -_moveDir;
-            }
-            else
-            {
-                _moveDir = _moveDir / _moveDir;
-            }
+            if (_moveDir < 0) _moveDir /= -_moveDir;
+            else _moveDir /= _moveDir;
         }
-
-        Debug.Log(_moveDir);
 
         if (Mathf.Abs(_moveDir) < 0.1f)
         {
-            SwitchState(PlayerMovementStates.idle);
+            if (State == MoveStates.crawl) SwitchState(MoveStates.lieDown);
+            else if (State == MoveStates.walk || State == MoveStates.run) SwitchState(MoveStates.idle);
         }
         else
         {
-            if(running)
+            if (State == MoveStates.lieDown) SwitchState(MoveStates.crawl);
+            else if (State == MoveStates.idle || State == MoveStates.walk || State == MoveStates.run)
             {
-                SwitchState(PlayerMovementStates.run);
-            }
-            else
-            {
-                SwitchState(PlayerMovementStates.walk);
+                if (running) SwitchState(MoveStates.run);
+                else SwitchState(MoveStates.walk);
             }
         }
-
-
         
         switch (State)
         {
-            case PlayerMovementStates.idle:
-
-                break;
-
-            case PlayerMovementStates.walk:
+            case MoveStates.walk:
                 transform.position += new Vector3(walkSpeed * _moveDir * Time.deltaTime, 0, 0);
                 break;
 
-            case PlayerMovementStates.run:
+            case MoveStates.run:
                 transform.position += new Vector3(runSpeed * _moveDir * Time.deltaTime, 0, 0);
                 break;
 
-            case PlayerMovementStates.action:
-
-                break;
-
-            case PlayerMovementStates.cinematic:
-
+            case MoveStates.crawl:
+                transform.position += new Vector3(crawlSpeed * _moveDir * Time.deltaTime, 0, 0);
                 break;
         }
     }
 
-    public void SwitchState(PlayerMovementStates nextState)
+    public void SwitchState(MoveStates nextState)
     {
         State = nextState;
     }
@@ -124,5 +113,11 @@ public class PlayerMovements : MonoBehaviour
     private void StopRun(InputAction.CallbackContext context)
     {
         running = false;
+    }
+
+    private void LieDown(InputAction.CallbackContext context)
+    {
+        if (State == MoveStates.idle || State == MoveStates.walk || State == MoveStates.run) SwitchState(MoveStates.lieDown);
+        else if (State == MoveStates.lieDown || State == MoveStates.crawl) SwitchState(MoveStates.idle);
     }
 }

@@ -44,6 +44,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LieDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""824a6ca2-323b-48ac-bea0-290ecc53681d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -178,6 +187,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7041996-a9d6-41fc-90f4-0f684ee60b7d"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LieDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a43adb4-14e7-4b4e-91b5-163d6384aa19"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LieDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +219,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Movements = asset.FindActionMap("Movements", throwIfNotFound: true);
         m_Movements_Move = m_Movements.FindAction("Move", throwIfNotFound: true);
         m_Movements_Run = m_Movements.FindAction("Run", throwIfNotFound: true);
+        m_Movements_LieDown = m_Movements.FindAction("LieDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,12 +283,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IMovementsActions> m_MovementsActionsCallbackInterfaces = new List<IMovementsActions>();
     private readonly InputAction m_Movements_Move;
     private readonly InputAction m_Movements_Run;
+    private readonly InputAction m_Movements_LieDown;
     public struct MovementsActions
     {
         private @Controls m_Wrapper;
         public MovementsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Movements_Move;
         public InputAction @Run => m_Wrapper.m_Movements_Run;
+        public InputAction @LieDown => m_Wrapper.m_Movements_LieDown;
         public InputActionMap Get() { return m_Wrapper.m_Movements; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -272,6 +306,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
+            @LieDown.started += instance.OnLieDown;
+            @LieDown.performed += instance.OnLieDown;
+            @LieDown.canceled += instance.OnLieDown;
         }
 
         private void UnregisterCallbacks(IMovementsActions instance)
@@ -282,6 +319,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
+            @LieDown.started -= instance.OnLieDown;
+            @LieDown.performed -= instance.OnLieDown;
+            @LieDown.canceled -= instance.OnLieDown;
         }
 
         public void RemoveCallbacks(IMovementsActions instance)
@@ -303,5 +343,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnLieDown(InputAction.CallbackContext context);
     }
 }
