@@ -1,117 +1,90 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class JournalMenu : MonoBehaviour
 {
     public static bool isPaused = false;
-    public GameObject pauseMenuUI;
-    public GameObject optionsMenuUI;
-    public GameObject mapMenuUI;
-    
+    public GameObject menuGroup; 
+    public GameObject optionsPanel; 
+    public GameObject mapPanel; 
+    public GameObject pausePanel;
+    //public GameObject questPanel;
+
+    private void Start()
+    {
+        
+        menuGroup.SetActive(false);
+        isPaused = false;
+        Time.timeScale = 1f; 
+    }
 
     private void Update()
     {
-
-        
-
-
         if (Input.GetKeyDown(KeyCode.Escape))
-
-        { //escape button down logic
-
+        {
             if (isPaused)
-
             {
                 Resume();
             }
-
             else
             {
                 Pause();
             }
-
         }
     }
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false); // This will bring up the different panels that contain all the ui and stuff
-        optionsMenuUI.SetActive(false);
-        mapMenuUI.SetActive(false);
-
-
-        Time.timeScale = 1f; // so that nothing is moving in the scene zwhen we pause 
+        
+        menuGroup.SetActive(false);
+        Time.timeScale = 1f; 
         isPaused = false;
     }
 
     public void Pause()
     {
-        pauseMenuUI.SetActive(false);
-        optionsMenuUI.SetActive(false);
-        mapMenuUI.SetActive(false);
-
+        
+        menuGroup.SetActive(true);
+        ActivatePanel(pausePanel);
 
         Time.timeScale = 0f; 
         isPaused = true;
     }
 
-
     public void OptionsTab()
     {
-        pauseMenuUI.SetActive(false);
-        optionsMenuUI.SetActive(true);
-        mapMenuUI.SetActive(false);
-
-        Time.timeScale = 0f;
-        isPaused = true;
+        
+        ActivatePanel(optionsPanel);
     }
+
+
+    //public void QuestTab()
+    //{
+
+    //    ActivatePanel(questPanel);
+    //}
+
 
     public void MapTab()
     {
-
-        pauseMenuUI.SetActive(false);
-        optionsMenuUI.SetActive(false);
-        mapMenuUI.SetActive(true);
-
-        Time.timeScale = 0f;
-        isPaused = true;
-
+        
+        ActivatePanel(mapPanel);
     }
-
-
-
-
 
     public void QuitGame()
     {
-
-
-
-        Debug.Log("The quit Button is worlking");
+        Debug.Log("Quit button pressed.");
         Application.Quit();
-
     }
 
-
-
-    private void Dialogue() //We zill put here a the past diologue between npc and player
+    private void ActivatePanel(GameObject panelToActivate)
     {
+        
+        foreach (Transform child in menuGroup.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
 
+        
+        panelToActivate.SetActive(true);
     }
-
-
-    private void QuestLogTab() //Guide the player to where we go next
-    {
-
-
-
-
-    }
-
-
-
-
 }
