@@ -10,7 +10,7 @@ public class JournalMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
     public GameObject mapMenuUI;
-
+    
 
     private void Update()
     {
@@ -20,7 +20,7 @@ public class JournalMenu : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
 
-        {
+        { //escape button down logic
 
             if (isPaused)
 
@@ -38,12 +38,12 @@ public class JournalMenu : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(false); // This will bring up the different panels that contain all the ui and stuff
         optionsMenuUI.SetActive(false);
+        mapMenuUI.SetActive(false);
 
 
-
-        Time.timeScale = 0f; // so that nothing is moving in the scene zwhen we pause 
+        Time.timeScale = 1f; // so that nothing is moving in the scene zwhen we pause 
         isPaused = false;
     }
 
@@ -51,25 +51,33 @@ public class JournalMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         optionsMenuUI.SetActive(false);
-
+        mapMenuUI.SetActive(false);
 
 
         Time.timeScale = 0f; 
-        isPaused = false;
+        isPaused = true;
     }
 
 
-    public void Options()
+    public void OptionsTab()
     {
         pauseMenuUI.SetActive(false);
         optionsMenuUI.SetActive(true);
+        mapMenuUI.SetActive(false);
 
+        Time.timeScale = 0f;
+        isPaused = true;
     }
 
-    public void Map()
+    public void MapTab()
     {
 
+        pauseMenuUI.SetActive(false);
+        optionsMenuUI.SetActive(false);
+        mapMenuUI.SetActive(true);
 
+        Time.timeScale = 0f;
+        isPaused = true;
 
     }
 
@@ -89,13 +97,13 @@ public class JournalMenu : MonoBehaviour
 
 
 
-    private void Dialogue()
+    private void Dialogue() //We zill put here a the past diologue between npc and player
     {
 
     }
 
 
-    private void QuestLog()
+    private void QuestLogTab() //Guide the player to where we go next
     {
 
 
