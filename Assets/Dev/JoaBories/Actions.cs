@@ -15,6 +15,7 @@ public class Actions : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _boxCollider;
+    private SpriteRenderer _spriteRenderer;
 
     private GameObject currentTriggerZone;
 
@@ -34,6 +35,7 @@ public class Actions : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -62,21 +64,26 @@ public class Actions : MonoBehaviour
 
     private void doAction(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null)
+        if (currentTriggerZone != null && PlayerMovements.instance.CheckGround())
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
 
             switch (triggerZone.type)
             {
                 case ZoneTypes.Climb:
-                    _animator.Play("climb");
-                    _rigidbody.gravityScale = 0;
-                    _boxCollider.isTrigger = true;
-                    PlayerMovements.instance.lockMovements();
-                    StartCoroutine(climbDisplacement(new Vector3(1/climbSmoothness, triggerZone.climb_height/climbSmoothness, 0)));
+                    if (_spriteRenderer.flipX == triggerZone.climb_right)
+                    {
+                        _animator.Play("climb");
+                        _rigidbody.gravityScale = 0;
+                        _boxCollider.isTrigger = true;
+                        PlayerMovements.instance.lockMovements();
+                        StartCoroutine(climbDisplacement(new Vector3(1 / climbSmoothness, triggerZone.climb_height / climbSmoothness, 0)));
+                    }
                     break;
             }
+
         }
+
     }
 
     private IEnumerator climbDisplacement(Vector3 displacementPerFrame)

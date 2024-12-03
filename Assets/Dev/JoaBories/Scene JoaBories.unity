@@ -480,7 +480,7 @@ Transform:
   m_GameObject: {fileID: 527551832}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.54, y: -1, z: -0.06358619}
+  m_LocalPosition: {x: 2.5, y: -1, z: -0.06358619}
   m_LocalScale: {x: 4, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -655,7 +655,7 @@ Transform:
   m_GameObject: {fileID: 709476082}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.87, y: 0.2, z: 0.06358619}
+  m_LocalPosition: {x: 0.8, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -675,6 +675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   climb_height: 2.5
+  climb_right: 0
 --- !u!1 &1183753529
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +687,7 @@ GameObject:
   - component: {fileID: 1183753532}
   - component: {fileID: 1183753531}
   - component: {fileID: 1183753530}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
