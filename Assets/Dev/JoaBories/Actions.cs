@@ -6,10 +6,15 @@ public class Actions : MonoBehaviour
 {
     public static Actions Instance;
 
-    private TempControlsForGameplay _inputActions;
+    private Controls _inputActions;
+    private TempControlsForGameplay _tempInputActions;
     private InputAction _ActionAction;
 
     private Utils _utils;
+
+    private Animator _animator;
+    private Rigidbody2D _rigidbody;
+    private BoxCollider2D _boxCollider;
 
     private GameObject currentTriggerZone;
 
@@ -21,14 +26,19 @@ public class Actions : MonoBehaviour
     {
         Instance = this;
 
-        _inputActions = new TempControlsForGameplay();
+        _tempInputActions = new TempControlsForGameplay();
+        _inputActions = new Controls();
 
         _utils = new Utils();
+
+        _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void OnEnable()
     {
-        _ActionAction = _inputActions.Gameplay.Action;
+        _ActionAction = _tempInputActions.Gameplay.Action;
         _ActionAction.Enable();
         _ActionAction.performed += doAction;
     }
@@ -38,7 +48,7 @@ public class Actions : MonoBehaviour
         if (collision.CompareTag("TriggerZone"))
         {
             currentTriggerZone = collision.gameObject;
-            StartCoroutine(_utils.GamepadVibration(1, 1, 1));
+            StartCoroutine(_utils.GamepadVibration(0, 1, 0.1f));
         }
     }
 
@@ -54,10 +64,16 @@ public class Actions : MonoBehaviour
     {
         if (currentTriggerZone != null)
         {
-            switch (currentTriggerZone.GetComponent<TriggerZone>().type)
+            TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
+
+            switch (triggerZone.type)
             {
-                case ZoneTypes.climb:
-                    StartCoroutine(climbDisplacement(new Vector3(1 / climbSmoothness, currentTriggerZone.GetComponent<TriggerZone>().climb_height / climbSmoothness, 0)));
+                case ZoneTypes.Climb:
+                    _animator.Play("climb");
+                    _rigidbody.gravityScale = 0;
+                    _boxCollider.isTrigger = true;
+                    PlayerMovements.instance.lockMovements();
+                    StartCoroutine(climbDisplacement(new Vector3(1/climbSmoothness, triggerZone.climb_height/climbSmoothness, 0)));
                     break;
             }
         }
@@ -72,5 +88,8 @@ public class Actions : MonoBehaviour
             yield return new WaitForSeconds(climbTime/climbSmoothness);
         }
         climbCounter = 0;
+        _rigidbody.gravityScale = 1;
+        _boxCollider.isTrigger = false;
+        PlayerMovements.instance.delockMovements();
     }
 }
