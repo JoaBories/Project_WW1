@@ -25,6 +25,9 @@ public class PlayerMovements : MonoBehaviour
     private Rigidbody2D _rigidBody;
     private SpriteRenderer _spriteRenderer;
 
+    [SerializeField] private GameObject feet;
+    [SerializeField] private LayerMask groundLayers;
+
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float crawlSpeed;
@@ -72,6 +75,8 @@ public class PlayerMovements : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(CheckGround());
+
         float _moveDir = _moveAction.ReadValue<Vector2>().x;
         if (_moveDir != 0)
         {
@@ -205,5 +210,19 @@ public class PlayerMovements : MonoBehaviour
     public void delockMovements()
     {
         _inputActions.Movements.Enable();
+    }
+
+    public bool CheckGround()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(feet.transform.position, Vector2.down, 0.1f, groundLayers);
+
+        if (hit)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
