@@ -211,6 +211,45 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""99218cff-ebc8-4577-88d4-93af7778bc1b"",
+            ""actions"": [
+                {
+                    ""name"": ""JournalMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""daa89f41-31cb-409c-9326-30fb752ecfef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f1d78d9d-448e-4b70-b572-71c3504928b0"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JournalMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b4d5f88-cee5-40a9-9895-231df1d27cd9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JournalMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -220,6 +259,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Movements_Move = m_Movements.FindAction("Move", throwIfNotFound: true);
         m_Movements_Run = m_Movements.FindAction("Run", throwIfNotFound: true);
         m_Movements_LieDown = m_Movements.FindAction("LieDown", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_JournalMenu = m_UI.FindAction("JournalMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,10 +381,60 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public MovementsActions @Movements => new MovementsActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_JournalMenu;
+    public struct UIActions
+    {
+        private @Controls m_Wrapper;
+        public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @JournalMenu => m_Wrapper.m_UI_JournalMenu;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @JournalMenu.started += instance.OnJournalMenu;
+            @JournalMenu.performed += instance.OnJournalMenu;
+            @JournalMenu.canceled += instance.OnJournalMenu;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @JournalMenu.started -= instance.OnJournalMenu;
+            @JournalMenu.performed -= instance.OnJournalMenu;
+            @JournalMenu.canceled -= instance.OnJournalMenu;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IMovementsActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnLieDown(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnJournalMenu(InputAction.CallbackContext context);
     }
 }
