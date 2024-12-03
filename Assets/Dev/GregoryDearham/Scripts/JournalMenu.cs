@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class JournalMenu : MonoBehaviour
 {
@@ -7,7 +8,28 @@ public class JournalMenu : MonoBehaviour
     public GameObject optionsPanel; 
     public GameObject mapPanel; 
     public GameObject pausePanel;
+
+    private Controls inputActions;
+    private InputAction JournalMenuAction;
+
+
+
     //public GameObject questPanel;
+
+    private void Awake()
+    {
+        inputActions = new Controls();
+    }
+
+    private void OnEnable()
+    {
+        JournalMenuAction = inputActions.UI.JournalMenu;
+        JournalMenuAction.Enable();
+
+        JournalMenuAction.performed += JournalMenuInput;
+    }
+
+
 
     private void Start()
     {
@@ -17,20 +39,13 @@ public class JournalMenu : MonoBehaviour
         Time.timeScale = 1f; 
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape)  )
+    //    {
+
+    //    }
+    //}
 
     public void Resume()
     {
@@ -38,6 +53,8 @@ public class JournalMenu : MonoBehaviour
         menuGroup.SetActive(false);
         Time.timeScale = 1f; 
         isPaused = false;
+
+        PlayerMovements.instance.delockMovements();
     }
 
     public void Pause()
@@ -50,7 +67,7 @@ public class JournalMenu : MonoBehaviour
         isPaused = true;
 
 
-        
+        PlayerMovements.instance.lockMovements();
     }
 
     public void OptionsTab()
@@ -90,4 +107,22 @@ public class JournalMenu : MonoBehaviour
         
         panelToActivate.SetActive(true);
     }
+
+
+    private void JournalMenuInput(InputAction.CallbackContext context)
+    {
+
+        if (isPaused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }
+
+
+    }
+
+
 }
