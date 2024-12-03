@@ -1,0 +1,45 @@
+{
+    "name": "TempControlsForAction",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "e3aaefb8-d8a0-4874-a5e7-5887caa7a9f0",
+            "actions": [
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "8b00c0cb-36d1-4a5f-9421-d192f1bb0482",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "da357bac-2892-4344-a982-baecaa39fbd6",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d11cbd36-3d5f-44f5-85f8-b4558db5416f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
