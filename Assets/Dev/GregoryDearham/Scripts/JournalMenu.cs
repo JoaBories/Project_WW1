@@ -48,6 +48,9 @@ public class JournalMenu : MonoBehaviour
 
         Time.timeScale = 0f; 
         isPaused = true;
+
+
+        
     }
 
     public void OptionsTab()
