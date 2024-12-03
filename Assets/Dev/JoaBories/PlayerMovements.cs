@@ -22,6 +22,8 @@ public class PlayerMovements : MonoBehaviour
     private InputAction _lieAction;
 
     private Animator _animator;
+    private Rigidbody2D _rigidBody;
+    private SpriteRenderer _spriteRenderer;
 
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
@@ -31,6 +33,8 @@ public class PlayerMovements : MonoBehaviour
 
     private bool running;
 
+    public bool moveLock;
+
     private void Awake()
     {
         instance = this;
@@ -38,6 +42,8 @@ public class PlayerMovements : MonoBehaviour
         _inputActions = new Controls();
         
         _animator = GetComponent<Animator>();
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         
         State = MoveStates.idle;
     }
@@ -73,35 +79,49 @@ public class PlayerMovements : MonoBehaviour
             else _moveDir /= _moveDir;
         }
 
-        if (Mathf.Abs(_moveDir) < 0.1f)
+        if (!moveLock)
         {
-            if (State == MoveStates.crawl) SwitchState(MoveStates.lieDown);
-            else if (State == MoveStates.walk || State == MoveStates.run) SwitchState(MoveStates.idle);
-        }
-        else
-        {
-            if (State == MoveStates.lieDown) SwitchState(MoveStates.crawl);
-            else if (State == MoveStates.idle || State == MoveStates.walk || State == MoveStates.run)
+
+            if (Mathf.Abs(_moveDir) < 0.1f)
             {
-                if (running) SwitchState(MoveStates.run);
-                else SwitchState(MoveStates.walk);
+                if (State == MoveStates.crawl) SwitchState(MoveStates.lieDown);
+                else if (State == MoveStates.walk || State == MoveStates.run) SwitchState(MoveStates.idle);
+            }
+            else
+            {
+                if (State == MoveStates.lieDown) SwitchState(MoveStates.crawl);
+                else if (State == MoveStates.idle || State == MoveStates.walk || State == MoveStates.run)
+                {
+                    if (running) SwitchState(MoveStates.run);
+                    else SwitchState(MoveStates.walk);
+                }
+
+                if (_moveDir < 0)
+                {
+                    _spriteRenderer.flipX = true;
+                }
+                else
+                {
+                    _spriteRenderer.flipX = false;
+                }
+            }
+
+            switch (State)
+            {
+                case MoveStates.walk:
+                    transform.position += new Vector3(walkSpeed * _moveDir * Time.deltaTime, 0, 0);
+                    break;
+
+                case MoveStates.run:
+                    transform.position += new Vector3(runSpeed * _moveDir * Time.deltaTime, 0, 0);
+                    break;
+
+                case MoveStates.crawl:
+                    transform.position += new Vector3(crawlSpeed * _moveDir * Time.deltaTime, 0, 0);
+                    break;
             }
         }
-        
-        switch (State)
-        {
-            case MoveStates.walk:
-                transform.position += new Vector3(walkSpeed * _moveDir * Time.deltaTime, 0, 0);
-                break;
 
-            case MoveStates.run:
-                transform.position += new Vector3(runSpeed * _moveDir * Time.deltaTime, 0, 0);
-                break;
-
-            case MoveStates.crawl:
-                transform.position += new Vector3(crawlSpeed * _moveDir * Time.deltaTime, 0, 0);
-                break;
-        }
     }
 
     public void SwitchState(MoveStates nextState)
@@ -109,26 +129,46 @@ public class PlayerMovements : MonoBehaviour
         switch (nextState)
         {
             case MoveStates.lieDown:
-                if (State == MoveStates.run) _animator.Play("dive");
+                if (State == MoveStates.run)
+                {
+                    _animator.Play("dive");
+                    if (_spriteRenderer.flipX == false)
+                    {
+                        _rigidBody.velocity += new Vector2(5, 0.5f);
+                    }
+                    else
+                    {
+                        _rigidBody.velocity += new Vector2(-5, 0.5f);
+                    }
+                }
                 else if (State != MoveStates.lieDown && State != MoveStates.crawl) _animator.Play("lyingDown");
                 SetMoveTreeFloats(1, 0);
+                moveLock = false;
                 break;
 
             case MoveStates.idle:
                 if (State == MoveStates.lieDown || State == MoveStates.crawl) _animator.Play("gettingUp");
                 SetMoveTreeFloats(0, 0);
+                moveLock = false;
                 break;
 
             case MoveStates.walk:
                 SetMoveTreeFloats(0, 1);
+                moveLock = false;
                 break;
 
             case MoveStates.crawl:
                 SetMoveTreeFloats(1, 1);
+                moveLock = false;
                 break;
 
             case MoveStates.run:
-                SetMoveTreeFloats(1, 2);
+                SetMoveTreeFloats(0, 2);
+                moveLock = false;
+                break;
+
+            case MoveStates.action:
+                moveLock = true;
                 break;
         }
 
@@ -155,5 +195,15 @@ public class PlayerMovements : MonoBehaviour
     {
         _animator.SetFloat("Speed", speed);
         _animator.SetFloat("Type", type);
+    }
+
+    public void lockMovements()
+    {
+        _inputActions.Movements.Disable();
+    }
+
+    public void delockMovements()
+    {
+        _inputActions.Movements.Enable();
     }
 }
