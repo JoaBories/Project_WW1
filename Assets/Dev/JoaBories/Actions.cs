@@ -14,7 +14,7 @@ public class Actions : MonoBehaviour
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
-    private BoxCollider2D _boxCollider;
+    private Collider2D _collider;
     private SpriteRenderer _spriteRenderer;
 
     private GameObject currentTriggerZone;
@@ -34,7 +34,7 @@ public class Actions : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _boxCollider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<Collider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -64,20 +64,26 @@ public class Actions : MonoBehaviour
 
     private void doAction(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null && PlayerMovements.instance.CheckGround())
+        if (currentTriggerZone != null && NewMovement.instance.CheckGround())
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
 
             switch (triggerZone.type)
             {
                 case ZoneTypes.Climb:
-                    if (_spriteRenderer.flipX == triggerZone.climb_right)
+                    if (_spriteRenderer.flipX == !triggerZone.climb_right)
                     {
                         _animator.Play("climb");
                         _rigidbody.gravityScale = 0;
-                        _boxCollider.isTrigger = true;
-                        PlayerMovements.instance.lockMovements();
-                        StartCoroutine(climbDisplacement(new Vector3(0.005f, triggerZone.climb_height / climbSmoothness, 0)));
+                        _collider.enabled = false;
+                        if (triggerZone.climb_right)
+                        {
+                            StartCoroutine(climbDisplacement(new Vector3(0.005f, triggerZone.climb_height / climbSmoothness, 0)));
+                        }
+                        else
+                        {
+                            StartCoroutine(climbDisplacement(new Vector3(-0.005f, triggerZone.climb_height / climbSmoothness, 0)));
+                        }
                     }
                     break;
             }
@@ -96,7 +102,6 @@ public class Actions : MonoBehaviour
         }
         climbCounter = 0;
         _rigidbody.gravityScale = 1;
-        _boxCollider.isTrigger = false;
-        PlayerMovements.instance.delockMovements();
+        _collider.enabled = true;
     }
 }

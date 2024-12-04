@@ -41,7 +41,7 @@ public partial class @TempControlsForGameplay: IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""da357bac-2892-4344-a982-baecaa39fbd6"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -52,11 +52,50 @@ public partial class @TempControlsForGameplay: IInputActionCollection2, IDisposa
                 {
                     ""name"": """",
                     ""id"": ""d11cbd36-3d5f-44f5-85f8-b4558db5416f"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Movements"",
+            ""id"": ""2ed38a1f-3b1a-4778-a499-d38356c30756"",
+            ""actions"": [
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""88ae536e-f05d-4bfe-8c73-064a6a355ec7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0806c424-a570-4a82-9b36-11f4b2678058"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bf1110d-be7c-41b4-9032-d86726ab55a0"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -68,6 +107,9 @@ public partial class @TempControlsForGameplay: IInputActionCollection2, IDisposa
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Action = m_Gameplay.FindAction("Action", throwIfNotFound: true);
+        // Movements
+        m_Movements = asset.FindActionMap("Movements", throwIfNotFound: true);
+        m_Movements_Jump = m_Movements.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -171,8 +213,58 @@ public partial class @TempControlsForGameplay: IInputActionCollection2, IDisposa
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Movements
+    private readonly InputActionMap m_Movements;
+    private List<IMovementsActions> m_MovementsActionsCallbackInterfaces = new List<IMovementsActions>();
+    private readonly InputAction m_Movements_Jump;
+    public struct MovementsActions
+    {
+        private @TempControlsForGameplay m_Wrapper;
+        public MovementsActions(@TempControlsForGameplay wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Jump => m_Wrapper.m_Movements_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_Movements; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MovementsActions set) { return set.Get(); }
+        public void AddCallbacks(IMovementsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MovementsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MovementsActionsCallbackInterfaces.Add(instance);
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        private void UnregisterCallbacks(IMovementsActions instance)
+        {
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        public void RemoveCallbacks(IMovementsActions instance)
+        {
+            if (m_Wrapper.m_MovementsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMovementsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MovementsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MovementsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MovementsActions @Movements => new MovementsActions(this);
     public interface IGameplayActions
     {
         void OnAction(InputAction.CallbackContext context);
+    }
+    public interface IMovementsActions
+    {
+        void OnJump(InputAction.CallbackContext context);
     }
 }
