@@ -19,8 +19,6 @@ public class NewMovement : MonoBehaviour
 
     private Controls _inputActions;
 
-    private TempControlsForGameplay _tempControlsForGameplay;
-
     private InputAction _moveAction;
     private InputAction _runAction;
     private InputAction _lieAction;
@@ -50,7 +48,6 @@ public class NewMovement : MonoBehaviour
         instance = this;
 
         _inputActions = new Controls();
-        _tempControlsForGameplay = new TempControlsForGameplay();
 
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
@@ -73,7 +70,7 @@ public class NewMovement : MonoBehaviour
         _lieAction.Enable();
         _lieAction.performed += LieDown;
 
-        _jumpAction = _tempControlsForGameplay.Movements.Jump;
+        _jumpAction = _inputActions.Movements.Jump;
         _jumpAction.Enable();
         _jumpAction.performed += jumpInput;
     }
