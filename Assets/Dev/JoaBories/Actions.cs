@@ -77,7 +77,7 @@ public class Actions : MonoBehaviour
                         _rigidbody.gravityScale = 0;
                         _boxCollider.isTrigger = true;
                         PlayerMovements.instance.lockMovements();
-                        StartCoroutine(climbDisplacement(new Vector3(1 / climbSmoothness, triggerZone.climb_height / climbSmoothness, 0)));
+                        StartCoroutine(climbDisplacement(new Vector3(0.005f, triggerZone.climb_height / climbSmoothness, 0)));
                     }
                     break;
             }
