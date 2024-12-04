@@ -47,7 +47,7 @@ public class Actions : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("TriggerZone"))
+        if (collision.CompareTag("TriggerZone") && NewMovement.instance.standing && NewMovement.instance.CheckGround())
         {
             currentTriggerZone = collision.gameObject;
             StartCoroutine(_utils.GamepadVibration(0, 1, 0.1f));
@@ -64,7 +64,7 @@ public class Actions : MonoBehaviour
 
     private void doAction(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null && NewMovement.instance.CheckGround())
+        if (currentTriggerZone != null && NewMovement.instance.CheckGround() && NewMovement.instance.standing)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
 
@@ -73,16 +73,17 @@ public class Actions : MonoBehaviour
                 case ZoneTypes.Climb:
                     if (_spriteRenderer.flipX == !triggerZone.climb_right)
                     {
+                        transform.position = new Vector3(currentTriggerZone.transform.position.x, transform.position.y, transform.position.z);
                         _animator.Play("climb");
                         _rigidbody.gravityScale = 0;
                         _collider.enabled = false;
                         if (triggerZone.climb_right)
                         {
-                            StartCoroutine(climbDisplacement(new Vector3(0.005f, triggerZone.climb_height / climbSmoothness, 0)));
+                            StartCoroutine(climbDisplacement(new Vector3(0, triggerZone.climb_height / climbSmoothness, 0)));
                         }
                         else
                         {
-                            StartCoroutine(climbDisplacement(new Vector3(-0.005f, triggerZone.climb_height / climbSmoothness, 0)));
+                            StartCoroutine(climbDisplacement(new Vector3(0, triggerZone.climb_height / climbSmoothness, 0)));
                         }
                     }
                     break;

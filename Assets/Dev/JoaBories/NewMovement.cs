@@ -41,7 +41,7 @@ public class NewMovement : MonoBehaviour
     public NewMoveStates State;
 
     private bool running;
-    private bool standing;
+    public bool standing;
 
     public bool moveLock;
 
