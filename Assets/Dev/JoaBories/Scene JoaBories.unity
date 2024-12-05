@@ -237,9 +237,7 @@ MonoBehaviour:
     m_Bits: 8
   walkSpeed: 2
   runSpeed: 4
-  crawlSpeed: 1
   State: 0
-  standing: 0
   moveLock: 0
 --- !u!1 &315071536
 GameObject:
@@ -954,7 +952,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 27b4d4623beebdf47a85d820eab3ba06, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1027,10 +1025,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8350993746494111421}
   - component: {fileID: 4019464294334070879}
-  - component: {fileID: 2153925215417993651}
   - component: {fileID: 170756449}
   - component: {fileID: 170756442}
+  - component: {fileID: 8350993746494111423}
   - component: {fileID: 944665205399561336}
+  - component: {fileID: 2153925215417993651}
   - component: {fileID: 8350993746494111422}
   m_Layer: 0
   m_Name: CharacterPrefab
@@ -1091,6 +1090,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.73333335, y: 2.1111112}
   m_Direction: 0
+--- !u!114 &8350993746494111423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478816980281317803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db819101a94c8f94aad4df7a315d766e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
