@@ -47,7 +47,7 @@ public class Actions : MonoBehaviour
     {
         if (collision != currentTriggerZone)
         {
-            if (collision.CompareTag("TriggerZone") && NewMovement.instance.standing && NewMovement.instance.CheckGround())
+            if (collision.CompareTag("TriggerZone") /*&& NewMovement.instance.standing*/ && NewMovement.instance.CheckGround())
             {
                 currentTriggerZone = collision.gameObject;
                 StartCoroutine(_utils.GamepadVibration(0, 1, 0.1f));
@@ -65,7 +65,7 @@ public class Actions : MonoBehaviour
 
     private void doAction(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null && NewMovement.instance.CheckGround() && NewMovement.instance.standing)
+        if (currentTriggerZone != null && NewMovement.instance.CheckGround() /*&& NewMovement.instance.standing*/)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
 
