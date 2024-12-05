@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - TriggerZone
+  - checkpoint
   layers:
   - Default
   - TransparentFX
