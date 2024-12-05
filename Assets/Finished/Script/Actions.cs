@@ -74,19 +74,8 @@ public class Actions : MonoBehaviour
                 case ZoneTypes.Climb:
                     if (_spriteRenderer.flipX == !triggerZone.climb_right)
                     {
-                        transform.position = new Vector3(currentTriggerZone.transform.position.x, transform.position.y, transform.position.z);
                         _animator.Play("climb");
-                        _rigidbody.gravityScale = 0;
-                        _collider.enabled = false;
                         NewMovement.instance.SwitchState(NewMoveStates.action);
-                        if (triggerZone.climb_right)
-                        {
-                            StartCoroutine(climbDisplacement(new Vector3(0, triggerZone.climb_height / climbSmoothness, 0)));
-                        }
-                        else
-                        {
-                            StartCoroutine(climbDisplacement(new Vector3(0, triggerZone.climb_height / climbSmoothness, 0)));
-                        }
                     }
                     break;
             }
@@ -95,17 +84,9 @@ public class Actions : MonoBehaviour
 
     }
 
-    private IEnumerator climbDisplacement(Vector3 displacementPerFrame)
+    private void EndClimb()
     {
-        while (climbCounter < climbSmoothness)
-        {
-            transform.position += displacementPerFrame;
-            climbCounter++;
-            yield return new WaitForSeconds(climbTime/climbSmoothness);
-        }
-        climbCounter = 0;
-        _rigidbody.gravityScale = 1;
-        _collider.enabled = true;
+        transform.position = currentTriggerZone.transform.position;
         NewMovement.instance.SwitchState(NewMoveStates.idle);
     }
 }
