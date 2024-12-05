@@ -7,7 +7,6 @@ public class Actions : MonoBehaviour
     public static Actions Instance;
 
     private Controls _inputActions;
-    private TempControlsForGameplay _tempInputActions;
     private InputAction _ActionAction;
 
     private Utils _utils;
@@ -27,7 +26,6 @@ public class Actions : MonoBehaviour
     {
         Instance = this;
 
-        _tempInputActions = new TempControlsForGameplay();
         _inputActions = new Controls();
 
         _utils = new Utils();
@@ -40,17 +38,20 @@ public class Actions : MonoBehaviour
 
     private void OnEnable()
     {
-        _ActionAction = _tempInputActions.Gameplay.Action;
+        _ActionAction = _inputActions.Gameplay.Climb;
         _ActionAction.Enable();
         _ActionAction.performed += doAction;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("TriggerZone") && NewMovement.instance.standing && NewMovement.instance.CheckGround())
+        if (collision != currentTriggerZone)
         {
-            currentTriggerZone = collision.gameObject;
-            StartCoroutine(_utils.GamepadVibration(0, 1, 0.1f));
+            if (collision.CompareTag("TriggerZone") /*&& NewMovement.instance.standing*/ && NewMovement.instance.CheckGround())
+            {
+                currentTriggerZone = collision.gameObject;
+                StartCoroutine(_utils.GamepadVibration(0, 1, 0.1f));
+            }
         }
     }
 
@@ -64,7 +65,7 @@ public class Actions : MonoBehaviour
 
     private void doAction(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null && NewMovement.instance.CheckGround() && NewMovement.instance.standing)
+        if (currentTriggerZone != null && NewMovement.instance.CheckGround() /*&& NewMovement.instance.standing*/)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
 
@@ -73,18 +74,8 @@ public class Actions : MonoBehaviour
                 case ZoneTypes.Climb:
                     if (_spriteRenderer.flipX == !triggerZone.climb_right)
                     {
-                        transform.position = new Vector3(currentTriggerZone.transform.position.x, transform.position.y, transform.position.z);
                         _animator.Play("climb");
-                        _rigidbody.gravityScale = 0;
-                        _collider.enabled = false;
-                        if (triggerZone.climb_right)
-                        {
-                            StartCoroutine(climbDisplacement(new Vector3(0, triggerZone.climb_height / climbSmoothness, 0)));
-                        }
-                        else
-                        {
-                            StartCoroutine(climbDisplacement(new Vector3(0, triggerZone.climb_height / climbSmoothness, 0)));
-                        }
+                        NewMovement.instance.SwitchState(NewMoveStates.action);
                     }
                     break;
             }
@@ -93,16 +84,9 @@ public class Actions : MonoBehaviour
 
     }
 
-    private IEnumerator climbDisplacement(Vector3 displacementPerFrame)
+    private void EndClimb()
     {
-        while (climbCounter < climbSmoothness)
-        {
-            transform.position += displacementPerFrame;
-            climbCounter++;
-            yield return new WaitForSeconds(climbTime/climbSmoothness);
-        }
-        climbCounter = 0;
-        _rigidbody.gravityScale = 1;
-        _collider.enabled = true;
+        transform.position = currentTriggerZone.transform.position;
+        NewMovement.instance.SwitchState(NewMoveStates.idle);
     }
 }
