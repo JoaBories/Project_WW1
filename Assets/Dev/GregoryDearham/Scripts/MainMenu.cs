@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        // Initialize the main menu panels state
+        
         menuGroup.SetActive(true);
         optionsPanel.SetActive(false);
         loadGamePanel.SetActive(false);
@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        // Handle the Escape key input to go back to the main menu or close any open panels
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             BackToMainMenu();
@@ -63,13 +63,13 @@ public class MainMenu : MonoBehaviour
 
     private void ActivatePanel(GameObject panelToActivate)
     {
-        // Deactivate all panels in the menu group
+     
         foreach (Transform child in menuGroup.transform)
         {
             child.gameObject.SetActive(false);
         }
 
-        // Activate the specified panel
+        
         panelToActivate.SetActive(true);
     }
 
@@ -86,6 +86,16 @@ public class MainMenu : MonoBehaviour
         if (menuGroup.transform.childCount > 0)
         {
             menuGroup.transform.GetChild(0).gameObject.SetActive(true); // Assume the first child is the main menu panel
+            menuGroup.transform.GetChild(1).gameObject.SetActive(true);
+            menuGroup.transform.GetChild(2).gameObject.SetActive(true);
+            menuGroup.transform.GetChild(3).gameObject.SetActive(true);
+            menuGroup.transform.GetChild(4).gameObject.SetActive(true);
+
+
+
+            menuGroup.transform.gameObject.SetActive(true);
+
+
         }
     }
 

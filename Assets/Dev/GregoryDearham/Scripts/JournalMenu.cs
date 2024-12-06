@@ -1,5 +1,7 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class JournalMenu : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class JournalMenu : MonoBehaviour
     public GameObject optionsPanel; 
     public GameObject mapPanel; 
     public GameObject pausePanel;
-
+    public GameObject areYouSurePanel;
     private Controls inputActions;
     private InputAction JournalMenuAction;
 
@@ -70,6 +72,21 @@ public class JournalMenu : MonoBehaviour
         PlayerMovements.instance.lockMovements();
     }
 
+    public void QuitStart()
+
+    {
+
+
+        ActivatePanel(areYouSurePanel);
+
+        
+
+
+    }
+
+
+
+
     public void OptionsTab()
     {
         
@@ -124,5 +141,16 @@ public class JournalMenu : MonoBehaviour
 
     }
 
+    public void Yes()
+    {
+        SceneManager.LoadScene("Start");
+    }
+
+    public void No()
+    {
+
+        Pause();
+
+    }
 
 }
