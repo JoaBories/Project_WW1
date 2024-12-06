@@ -294,6 +294,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeepMask"",
+                    ""type"": ""Button"",
+                    ""id"": ""d895b597-f1ea-4844-93e7-d095e6806900"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -318,6 +327,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Climb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4af7d0a3-63b5-43c4-bb34-391ec396b3c6"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeepMask"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a5f9890-f507-46de-b5a4-f4b030aa461a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeepMask"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -336,6 +367,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Climb = m_Gameplay.FindAction("Climb", throwIfNotFound: true);
+        m_Gameplay_KeepMask = m_Gameplay.FindAction("KeepMask", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -514,11 +546,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Climb;
+    private readonly InputAction m_Gameplay_KeepMask;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
         public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Climb => m_Wrapper.m_Gameplay_Climb;
+        public InputAction @KeepMask => m_Wrapper.m_Gameplay_KeepMask;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -531,6 +565,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Climb.started += instance.OnClimb;
             @Climb.performed += instance.OnClimb;
             @Climb.canceled += instance.OnClimb;
+            @KeepMask.started += instance.OnKeepMask;
+            @KeepMask.performed += instance.OnKeepMask;
+            @KeepMask.canceled += instance.OnKeepMask;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -538,6 +575,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Climb.started -= instance.OnClimb;
             @Climb.performed -= instance.OnClimb;
             @Climb.canceled -= instance.OnClimb;
+            @KeepMask.started -= instance.OnKeepMask;
+            @KeepMask.performed -= instance.OnKeepMask;
+            @KeepMask.canceled -= instance.OnKeepMask;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -569,5 +609,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnClimb(InputAction.CallbackContext context);
+        void OnKeepMask(InputAction.CallbackContext context);
     }
 }
