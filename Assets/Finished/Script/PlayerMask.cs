@@ -5,7 +5,7 @@ public class PlayerMask : MonoBehaviour
 {
     public static PlayerMask instance;
 
-    private TempControls _inputActions;
+    private Controls _inputActions;
     private InputAction _keepMaskAction;
 
     private Animator _animator;
@@ -14,7 +14,7 @@ public class PlayerMask : MonoBehaviour
 
     private void Awake()
     {
-        _inputActions = new TempControls();
+        _inputActions = new Controls();
 
         _animator = GetComponent<Animator>();
 
