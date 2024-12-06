@@ -86,13 +86,16 @@ public class NewMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(CheckGround());
-
         float _moveDir = _moveAction.ReadValue<Vector2>().x;
         if (_moveDir != 0)
         {
             if (_moveDir < 0) _moveDir /= -_moveDir;
             else _moveDir /= _moveDir;
+        }
+
+        if (PlayerMask.instance.mask)
+        {
+            running = false;
         }
 
         if (!moveLock)
@@ -223,7 +226,7 @@ public class NewMovement : MonoBehaviour
 
     private void StartRun(InputAction.CallbackContext context)
     {
-        running = true;
+        if (!PlayerMask.instance.mask) running = true;
     }
 
     private void StopRun(InputAction.CallbackContext context)
@@ -239,7 +242,7 @@ public class NewMovement : MonoBehaviour
 
     private void jumpInput(InputAction.CallbackContext context)
     {
-        if (CheckGround() /*&& standing*/ && !moveLock)
+        if (CheckGround() /*&& standing*/ && !moveLock && !PlayerMask.instance.mask)
         {
             if (_spriteRenderer.flipX)
             {

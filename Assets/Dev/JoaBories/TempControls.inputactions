@@ -1,0 +1,45 @@
+{
+    "name": "TempControls",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "cf31d15a-841a-4bad-bf93-52a1b56d1304",
+            "actions": [
+                {
+                    "name": "KeepMask",
+                    "type": "Button",
+                    "id": "82eda8f1-db09-4af7-ac0b-b84bbc777d9b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6e748f9f-33b9-423f-8501-2e8a308cfed4",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeepMask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cfa9836b-e3cc-40a7-a1b7-4c916dfe13c5",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KeepMask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
