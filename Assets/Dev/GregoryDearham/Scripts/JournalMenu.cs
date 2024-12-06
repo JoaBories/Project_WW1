@@ -146,11 +146,14 @@ public class JournalMenu : MonoBehaviour
         SceneManager.LoadScene("Start");
     }
 
-    public void No()
+    public void Back()
     {
 
         Pause();
 
     }
+
+
+
 
 }

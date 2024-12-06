@@ -73,7 +73,7 @@ public class MainMenu : MonoBehaviour
         panelToActivate.SetActive(true);
     }
 
-    private void BackToMainMenu()
+    public void BackToMainMenu()
     {
         // Deactivate all panels within menuGroup
         foreach (Transform child in menuGroup.transform)
