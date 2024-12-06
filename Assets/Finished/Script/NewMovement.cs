@@ -249,11 +249,11 @@ public class NewMovement : MonoBehaviour
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity += new Vector2(-3, 3);
+                        _rigidBody.velocity += new Vector2(-2f, 2);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity += new Vector2(-6, 3);
+                        _rigidBody.velocity += new Vector2(-4, 2);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
