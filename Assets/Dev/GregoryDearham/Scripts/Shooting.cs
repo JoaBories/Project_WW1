@@ -27,9 +27,16 @@ public class Shooting : MonoBehaviour
     void Update()
 
     {
-        HandleShootingInput();
+        if (NewMovement.instance.CheckGround())
+        {
+            HandleShootingInput();
+
+        }
 
 
+        
+    
+        
 
         
 
@@ -42,20 +49,20 @@ public class Shooting : MonoBehaviour
 
 
 
-  if (Input.GetKeyDown(KeyCode.Space))
+  if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             isCharging = true;
             chargeTimer = 0f;
         }
 
 
-        if (Input.GetKey(KeyCode.Space) && isCharging)
+        if (Input.GetKey(KeyCode.Mouse0) && isCharging)
         {
             chargeTimer += Time.deltaTime;
         }
 
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             if (chargeTimer >= chargeTime)
             {
