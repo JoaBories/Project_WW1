@@ -26,6 +26,11 @@ public class TriggerZonEditor : Editor
                 EditorGUILayout.EndHorizontal();
                 break;
 
+            case ZoneTypes.BarbedWire:
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("The player will die");
+                EditorGUILayout.EndHorizontal();
+                break;
 
         }
     }
