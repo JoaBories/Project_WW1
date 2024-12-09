@@ -2125,32 +2125,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2115882802376111910, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: orthographic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2115882802376111910, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: field of view
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115882802376111910, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+      propertyPath: orthographic size
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 2716185109215072432, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_Name
       value: CharacterPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 5545945107110768288, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_Size.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5545945107110768288, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x

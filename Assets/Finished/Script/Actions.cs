@@ -104,7 +104,7 @@ public class Actions : MonoBehaviour
             if (_spriteRenderer.flipX == !triggerZone.climb_right && triggerZone.type == ZoneTypes.Climb && NewMovement.instance.CheckGround())
             {
                 _animator.Play("climb");
-                NewMovement.instance.SwitchState(NewMoveStates.action);
+                NewMovement.instance.SwitchState(NewMoveStates.action, true);
             }
 
         }
@@ -124,5 +124,6 @@ public class Actions : MonoBehaviour
     {
         transform.position = currentTriggerZone.transform.position;
         NewMovement.instance.SwitchState(NewMoveStates.idle);
+        NewMovement.instance.delockMovements();
     }
 }
