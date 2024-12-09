@@ -281,13 +281,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "GoDoor",
+                    "type": "Button",
+                    "id": "24c654ac-4759-4e7d-a60c-c00f6bd3a7bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "93aee929-dd2e-496b-a1e5-c999a06df685",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -298,7 +307,7 @@
                 {
                     "name": "",
                     "id": "1c931f08-7288-457a-8324-db4a337b3ad5",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -325,6 +334,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "KeepMask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af6fe066-0902-41d9-abeb-3d18244c793a",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoDoor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7dad3de3-6905-4f5c-b8b7-4f87dc124e9d",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoDoor",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

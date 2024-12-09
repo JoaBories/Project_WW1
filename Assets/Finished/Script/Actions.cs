@@ -7,7 +7,8 @@ public class Actions : MonoBehaviour
     public static Actions Instance;
 
     private Controls _inputActions;
-    private InputAction _ActionAction;
+    private InputAction _ClimbAction;
+    private InputAction _GoDoorAction;
 
     private Utils _utils;
 
@@ -38,10 +39,28 @@ public class Actions : MonoBehaviour
 
     private void OnEnable()
     {
-        _ActionAction = _inputActions.Gameplay.Climb;
-        _ActionAction.Enable();
-        _ActionAction.performed += doAction;
+        _ClimbAction = _inputActions.Gameplay.Climb;
+        _ClimbAction.Enable();
+        _ClimbAction.performed += ClimbAction;
+
+        _GoDoorAction = _inputActions.Gameplay.GoDoor;
+        _GoDoorAction.Enable();
+        _GoDoorAction.performed += GoDoor;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("TriggerZone"))
+        {
+            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.SideOfRoom)
+            {
+                BlackScreenManager.Instance.goBlack();
+                NewMovement.instance.SwitchState(NewMoveStates.action);
+                NewMovement.instance.lockMovements();
+            }
+        }
+    }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -50,7 +69,6 @@ public class Actions : MonoBehaviour
             if (collision.CompareTag("TriggerZone") /*&& NewMovement.instance.standing*/ && NewMovement.instance.CheckGround())
             {
                 currentTriggerZone = collision.gameObject;
-                StartCoroutine(_utils.GamepadVibration(0, 1, 0.1f));
             }
         }
     }
@@ -63,28 +81,46 @@ public class Actions : MonoBehaviour
         }
     }
 
-    private void doAction(InputAction.CallbackContext context)
+    private void GoDoor(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null && NewMovement.instance.CheckGround() /*&& NewMovement.instance.standing*/)
+        if (currentTriggerZone != null)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
-
-            switch (triggerZone.type)
+            if (triggerZone.type == ZoneTypes.Door && NewMovement.instance.CheckGround())
             {
-                case ZoneTypes.Climb:
-                    if (_spriteRenderer.flipX == !triggerZone.climb_right)
-                    {
-                        _animator.Play("climb");
-                        NewMovement.instance.SwitchState(NewMoveStates.action);
-                    }
-                    break;
+                BlackScreenManager.Instance.goBlack();
+                NewMovement.instance.SwitchState(NewMoveStates.action);
+                NewMovement.instance.lockMovements();
+            }
+        }
+
+    }
+
+    private void ClimbAction(InputAction.CallbackContext context)
+    {
+        if (currentTriggerZone != null)
+        {
+            TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
+            if (_spriteRenderer.flipX == !triggerZone.climb_right && triggerZone.type == ZoneTypes.Climb && NewMovement.instance.CheckGround())
+            {
+                _animator.Play("climb");
+                NewMovement.instance.SwitchState(NewMoveStates.action);
             }
 
         }
 
     }
 
-    private void EndClimb()
+    public void Teleport()
+    {
+        transform.position = currentTriggerZone.GetComponent<TriggerZone>().nextDoor.transform.position;
+        if (currentTriggerZone.GetComponent<TriggerZone>().nextDoor.GetComponent<TriggerZone>().type == ZoneTypes.SideOfRoom)
+        {
+            GetComponent<SpriteRenderer>().flipX = !currentTriggerZone.GetComponent<TriggerZone>().nextDoor.GetComponent<TriggerZone>().toRight;
+        }
+    }
+
+    public void EndClimb()
     {
         transform.position = currentTriggerZone.transform.position;
         NewMovement.instance.SwitchState(NewMoveStates.idle);

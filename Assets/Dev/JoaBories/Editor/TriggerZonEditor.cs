@@ -1,4 +1,6 @@
+using System;
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(TriggerZone))]
 public class TriggerZonEditor : Editor
@@ -26,7 +28,27 @@ public class TriggerZonEditor : Editor
                 EditorGUILayout.EndHorizontal();
                 break;
 
+            case ZoneTypes.BarbedWire:
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("The player will die");
+                EditorGUILayout.EndHorizontal();
+                break;
 
+            case ZoneTypes.Door:
+                EditorGUILayout.BeginHorizontal();
+                zone.nextDoor = (GameObject)EditorGUILayout.ObjectField("The next door to go :", zone.nextDoor, typeof(GameObject), true);
+                EditorGUILayout.EndHorizontal();
+                break;
+
+            case ZoneTypes.SideOfRoom:
+
+                EditorGUILayout.BeginHorizontal();
+                zone.nextDoor = (GameObject)EditorGUILayout.ObjectField("The next door to go :", zone.nextDoor, typeof(GameObject), true);
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+                zone.toRight = EditorGUILayout.Toggle("go out to the right :", zone.toRight);
+                EditorGUILayout.EndHorizontal();
+                break;
         }
     }
 }

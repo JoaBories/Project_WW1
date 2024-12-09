@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +35,11 @@ public class NewMovement : MonoBehaviour
 
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
+
+    [SerializeField] private CinemachineVirtualCamera _cam;
+    [SerializeField] private float runOrthoSize;
+    private float cameraOffset;
+    private float baseOrthoSize;
     //[SerializeField] private float crawlSpeed;
 
     public NewMoveStates State;
@@ -54,6 +60,9 @@ public class NewMovement : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
         SwitchState(NewMoveStates.idle);
+
+        cameraOffset = _cam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX;
+        baseOrthoSize = _cam.m_Lens.OrthographicSize;
     }
 
     private void OnEnable()
@@ -113,17 +122,27 @@ public class NewMovement : MonoBehaviour
 
                 if (State == NewMoveStates.idle || State == NewMoveStates.walk || State == NewMoveStates.run)
                 {
-                    if (running) SwitchState(NewMoveStates.run);
-                    else SwitchState(NewMoveStates.walk);
+                    if (running)
+                    {
+                        SwitchState(NewMoveStates.run);
+                        _cam.m_Lens.OrthographicSize = runOrthoSize;
+                    }
+                    else
+                    {
+                        SwitchState(NewMoveStates.walk);
+                        _cam.m_Lens.OrthographicSize = baseOrthoSize;
+                    }
                 }
 
                 if (_moveDir < 0)
                 {
                     _spriteRenderer.flipX = true;
+                    _cam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = 1-cameraOffset;
                 }
                 else
                 {
                     _spriteRenderer.flipX = false;
+                    _cam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX = cameraOffset;
                 }
             }
 
@@ -249,11 +268,11 @@ public class NewMovement : MonoBehaviour
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity += new Vector2(-3, 3);
+                        _rigidBody.velocity += new Vector2(-2f, 2);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity += new Vector2(-6, 3);
+                        _rigidBody.velocity += new Vector2(-4, 2);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
