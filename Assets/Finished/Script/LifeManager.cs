@@ -9,7 +9,7 @@ public class LifeManager : MonoBehaviour
     private TriggerZone triggerZoneScript;
 
     private bool inGas;
-    private float gasTimer;
+    public float gasTimer;
     [SerializeField] private float gasMaxTime;
 
     private void Awake()
