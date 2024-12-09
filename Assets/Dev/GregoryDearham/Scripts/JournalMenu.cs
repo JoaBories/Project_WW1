@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,8 @@ public class JournalMenu : MonoBehaviour
     public GameObject mapPanel; 
     public GameObject pausePanel;
     public GameObject areYouSurePanel;
+    public GameObject OxygenPanel;
+    public GameObject HUDPanel;
     private Controls inputActions;
     private InputAction JournalMenuAction;
 
@@ -51,7 +54,8 @@ public class JournalMenu : MonoBehaviour
 
     public void Resume()
     {
-        
+        HUDPanel.SetActive(true);
+
         menuGroup.SetActive(false);
         Time.timeScale = 1f; 
         isPaused = false;
@@ -61,13 +65,14 @@ public class JournalMenu : MonoBehaviour
 
     public void Pause()
     {
-        
+        HUDPanel.SetActive(false);
+
         menuGroup.SetActive(true);
         ActivatePanel(pausePanel);
 
         Time.timeScale = 0f; 
         isPaused = true;
-
+        HUDPanel.SetActive(true);
 
         PlayerMovements.instance.lockMovements();
     }
@@ -123,6 +128,10 @@ public class JournalMenu : MonoBehaviour
 
         
         panelToActivate.SetActive(true);
+
+        
+
+
     }
 
 
@@ -153,6 +162,50 @@ public class JournalMenu : MonoBehaviour
 
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("TriggerZone"))
+        {
+           if (collision.GetComponent<TriggerZone>().type == ZoneTypes.Gas)
+
+            {
+
+                OxygenPanel.SetActive(true);
+
+
+            }
+
+
+
+        }
+
+
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+
+        if (collision.CompareTag("TriggerZone"))
+        {
+            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.Gas)
+
+            {
+
+                OxygenPanel.SetActive(false);
+
+
+            }
+
+
+
+        }
+
+
+
+    }
 
 
 
