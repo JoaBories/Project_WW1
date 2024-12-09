@@ -7,7 +7,7 @@ public class NPCDialogue : MonoBehaviour
 {
     [Header("Dialogue Settings")]
     [TextArea(2, 5)] public List<string> dialogueLines;
-    public float typingSpeed = 0.05f;
+    public float typingSpeed = 0.1f;
     public float interactionDistance = 3f;
     
 
@@ -37,6 +37,8 @@ public class NPCDialogue : MonoBehaviour
     private bool isTyping = false;
     private int currentLineIndex = 0;
     private Coroutine typingCoroutine;
+    private bool chatLock = false;
+
 
     private void Start()
     {
@@ -48,14 +50,23 @@ public class NPCDialogue : MonoBehaviour
 
     private void Update()
     {
-        CheckPlayerDistance();
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E)) //Change for controller
+        if (!chatLock)
         {
-            if (!isTyping)
+
+           CheckPlayerDistance();
+            if (isPlayerNearby && Input.GetKeyDown(KeyCode.E)) //Change for controller
             {
-                DisplayNextLine();
+                if (!isTyping)
+                {
+                    DisplayNextLine();
+                }
             }
+
+
+
         }
+
+ 
     }
 
 
@@ -76,11 +87,13 @@ public class NPCDialogue : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, interactionDistance);
     }
 
-    private void DisplayNextLine()
+    public void DisplayNextLine()
     {
         if (!chatBubble.activeSelf)
         {
             chatBubble.SetActive(true);
+
+            chatLock = true;
         }
 
         if (currentLineIndex < dialogueLines.Count)
@@ -144,4 +157,15 @@ public class NPCDialogue : MonoBehaviour
     //            return sideQuestIconSprite;
     //    }
     //}
+
+    public void delock()
+    {
+
+        chatLock = false;   
+
+
+
+    }
+
+
 }
