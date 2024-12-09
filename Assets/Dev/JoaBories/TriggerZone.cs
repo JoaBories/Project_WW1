@@ -5,7 +5,10 @@ public enum ZoneTypes
 {
     None,
     Climb,
-    BarbedWire
+    BarbedWire,
+    Door,
+    SideOfRoom,
+    Gas
 }
 
 public class TriggerZone : MonoBehaviour
@@ -14,6 +17,9 @@ public class TriggerZone : MonoBehaviour
     private BoxCollider2D _collider;
 
     public bool climb_right;
+
+    public GameObject nextDoor;
+    public bool toRight;
 
     private void OnDrawGizmos()
     {
@@ -26,6 +32,18 @@ public class TriggerZone : MonoBehaviour
                 break;
 
             case ZoneTypes.BarbedWire:
+                Gizmos.color = Color.red;
+                break;
+
+            case ZoneTypes.Door:
+                Gizmos.color = Color.green;
+                break;
+
+            case ZoneTypes.SideOfRoom:
+                Gizmos.color = Color.green;
+                break;
+
+            case ZoneTypes.Gas:
                 Gizmos.color = Color.red;
                 break;
 
