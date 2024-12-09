@@ -303,13 +303,22 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GoDoor"",
+                    ""type"": ""Button"",
+                    ""id"": ""24c654ac-4759-4e7d-a60c-c00f6bd3a7bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""93aee929-dd2e-496b-a1e5-c999a06df685"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -320,7 +329,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1c931f08-7288-457a-8324-db4a337b3ad5"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -349,6 +358,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""KeepMask"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af6fe066-0902-41d9-abeb-3d18244c793a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GoDoor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7dad3de3-6905-4f5c-b8b7-4f87dc124e9d"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GoDoor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -368,6 +399,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Climb = m_Gameplay.FindAction("Climb", throwIfNotFound: true);
         m_Gameplay_KeepMask = m_Gameplay.FindAction("KeepMask", throwIfNotFound: true);
+        m_Gameplay_GoDoor = m_Gameplay.FindAction("GoDoor", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -547,12 +579,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Climb;
     private readonly InputAction m_Gameplay_KeepMask;
+    private readonly InputAction m_Gameplay_GoDoor;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
         public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Climb => m_Wrapper.m_Gameplay_Climb;
         public InputAction @KeepMask => m_Wrapper.m_Gameplay_KeepMask;
+        public InputAction @GoDoor => m_Wrapper.m_Gameplay_GoDoor;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -568,6 +602,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @KeepMask.started += instance.OnKeepMask;
             @KeepMask.performed += instance.OnKeepMask;
             @KeepMask.canceled += instance.OnKeepMask;
+            @GoDoor.started += instance.OnGoDoor;
+            @GoDoor.performed += instance.OnGoDoor;
+            @GoDoor.canceled += instance.OnGoDoor;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -578,6 +615,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @KeepMask.started -= instance.OnKeepMask;
             @KeepMask.performed -= instance.OnKeepMask;
             @KeepMask.canceled -= instance.OnKeepMask;
+            @GoDoor.started -= instance.OnGoDoor;
+            @GoDoor.performed -= instance.OnGoDoor;
+            @GoDoor.canceled -= instance.OnGoDoor;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -610,5 +650,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnClimb(InputAction.CallbackContext context);
         void OnKeepMask(InputAction.CallbackContext context);
+        void OnGoDoor(InputAction.CallbackContext context);
     }
 }

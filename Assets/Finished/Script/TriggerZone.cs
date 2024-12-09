@@ -48,7 +48,7 @@ public class TriggerZone : MonoBehaviour
                 break;
 
         }
-        Gizmos.DrawWireCube(transform.position + new Vector3(_collider.offset.x, _collider.offset.y, 0), _collider.size);
+        Gizmos.DrawWireCube(transform.position + new Vector3(_collider.offset.x * transform.localScale.x, _collider.offset.y * transform.localScale.y, 0), _collider.size * transform.localScale);
 
     }
 }

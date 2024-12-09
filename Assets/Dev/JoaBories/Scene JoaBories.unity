@@ -475,6 +475,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   climb_right: 0
+  nextDoor: {fileID: 0}
+  toRight: 0
 --- !u!61 &462491698
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1217,7 +1219,7 @@ Transform:
   m_GameObject: {fileID: 1015096081}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19, y: 4, z: 0}
+  m_LocalPosition: {x: -19.05, y: 3.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1297,6 +1299,8 @@ PolygonCollider2D:
       - {x: -25.7222, y: 4.6216164}
       - {x: -17.248806, y: 4.657823}
       - {x: -17.231745, y: 2.5940206}
+      - {x: -17.187443, y: 2.1463747}
+      - {x: -11.999231, y: 2.0999846}
       - {x: -7.7036743, y: 2.605929}
       - {x: -0.71396303, y: 0.61845636}
       - {x: 5.266387, y: 0.5856316}
@@ -2150,11 +2154,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -64.49
+      value: -16.372
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.69
+      value: 3.31
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2279,6 +2283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   climb_right: 0
+  nextDoor: {fileID: 0}
+  toRight: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
