@@ -349,6 +349,8 @@ MonoBehaviour:
     m_Bits: 8
   walkSpeed: 2
   runSpeed: 4
+  _cam: {fileID: 5434898451970168288}
+  runOrthoSize: 2.1
   State: 0
   moveLock: 0
 --- !u!114 &7467867494576917501
@@ -391,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCheckpoint: {fileID: 0}
+  gasTimer: 0
   gasMaxTime: 3
 --- !u!95 &8048563870880911847
 Animator:

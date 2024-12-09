@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,32 +23,35 @@ public class NewMovement : MonoBehaviour
 
     private InputAction _moveAction;
     private InputAction _runAction;
-    //private InputAction _lieAction;
     private InputAction _jumpAction;
 
     private Animator _animator;
     private Rigidbody2D _rigidBody;
     private SpriteRenderer _spriteRenderer;
 
+    [Header("Core Assign")]
     [SerializeField] private GameObject feet1;
     [SerializeField] private GameObject feet2;
     [SerializeField] private LayerMask groundLayers;
+    [SerializeField] private CinemachineVirtualCamera _cam;
 
+    [Header("Values to tweak")]
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
 
-    [SerializeField] private CinemachineVirtualCamera _cam;
+    [SerializeField] private Vector2 staticJump;
+    [SerializeField] private Vector2 walkJump;
+    [SerializeField] private Vector2 runJump;
+
     [SerializeField] private float runOrthoSize;
     private float cameraOffset;
     private float baseOrthoSize;
-    //[SerializeField] private float crawlSpeed;
 
-    public NewMoveStates State;
+    [NonSerialized] public NewMoveStates State;
+
+    [NonSerialized] public bool moveLock;
 
     private bool running;
-    //public bool standing;
-
-    public bool moveLock;
 
     private void Awake()
     {
@@ -75,10 +79,6 @@ public class NewMovement : MonoBehaviour
         _runAction.started += StartRun;
         _runAction.canceled += StopRun;
 
-        //_lieAction = _inputActions.Movements.LieDown;
-        //_lieAction.Enable();
-        //_lieAction.performed += LieDown;
-
         _jumpAction = _inputActions.Movements.Jump;
         _jumpAction.Enable();
         _jumpAction.performed += jumpInput;
@@ -102,27 +102,22 @@ public class NewMovement : MonoBehaviour
             else _moveDir /= _moveDir;
         }
 
-        if (PlayerMask.instance.mask)
-        {
-            running = false;
-        }
-
         if (!moveLock)
         {
 
             if (Mathf.Abs(_moveDir) < 0.1f)
             {
-                //if (State == NewMoveStates.crawl) SwitchState(NewMoveStates.lieDown);
-
-                if (State == NewMoveStates.walk || State == NewMoveStates.run) SwitchState(NewMoveStates.idle);
+                if (State == NewMoveStates.walk || State == NewMoveStates.run)
+                {
+                    SwitchState(NewMoveStates.idle);
+                }
             }
             else
             {
-                //if (State == NewMoveStates.lieDown) SwitchState(NewMoveStates.crawl);
 
                 if (State == NewMoveStates.idle || State == NewMoveStates.walk || State == NewMoveStates.run)
                 {
-                    if (running)
+                    if (running && !PlayerMask.instance.mask)
                     {
                         SwitchState(NewMoveStates.run);
                         _cam.m_Lens.OrthographicSize = runOrthoSize;
@@ -155,10 +150,6 @@ public class NewMovement : MonoBehaviour
                 case NewMoveStates.run:
                     transform.position += new Vector3(runSpeed * _moveDir * Time.deltaTime, 0, 0);
                     break;
-
-                //case NewMoveStates.crawl:
-                //    transform.position += new Vector3(crawlSpeed * _moveDir * Time.deltaTime, 0, 0);
-                //    break;
             }
 
             if (State == NewMoveStates.air && CheckGround())
@@ -175,68 +166,42 @@ public class NewMovement : MonoBehaviour
 
     }
 
-    public void SwitchState(NewMoveStates nextState)
+    public void SwitchState(NewMoveStates nextState, bool alreadyPlayingAnim = false)
     {
         switch (nextState)
         {
-            //case NewMoveStates.lieDown:
-            //    if (State == NewMoveStates.run)
-            //    {
-            //        _animator.Play("dive");
-            //        if (_spriteRenderer.flipX == false)
-            //        {
-            //            _rigidBody.velocity += new Vector2(5, 0.5f);
-            //        }
-            //        else
-            //        {
-            //            _rigidBody.velocity += new Vector2(-5, 0.5f);
-            //        }
-            //    }
-            //    else if (State != NewMoveStates.lieDown && State != NewMoveStates.crawl) _animator.Play("lyingDown");
-            //    SetMoveTreeFloats(1, 0);
-            //    moveLock = false;
-            //    standing = false;
-            //    break;
-
             case NewMoveStates.idle:
-                //if (State == NewMoveStates.lieDown || State == NewMoveStates.crawl) _animator.Play("gettingUp");
                 SetMoveTreeFloats(0, 0);
                 moveLock = false;
-                //standing = true;
                 break;
 
             case NewMoveStates.walk:
                 SetMoveTreeFloats(0, 1);
                 moveLock = false;
-                //standing = true;
                 break;
 
-            //case NewMoveStates.crawl:
-            //    SetMoveTreeFloats(1, 1);
-            //    moveLock = false;
-            //    standing = false;
-            //    break;
 
             case NewMoveStates.run:
                 SetMoveTreeFloats(0, 2);
                 moveLock = false;
-                //standing = true;
                 break;
 
             case NewMoveStates.action:
+                SetMoveTreeFloats(0, 0);
+                if (!alreadyPlayingAnim)
+                {
+                    _animator.Play("MoveBlendTree");
+                }
                 moveLock = true;
-                //standing = true;
                 break;
 
             case NewMoveStates.landing:
                 _animator.Play("landing");
                 moveLock = true;
-                //standing = false;
                 break;
 
             case NewMoveStates.air:
                 moveLock = false;
-                //standing = false;
                 break;
         }
 
@@ -253,12 +218,6 @@ public class NewMovement : MonoBehaviour
         running = false;
     }
 
-    //private void LieDown(InputAction.CallbackContext context)
-    //{
-    //    if (State == NewMoveStates.idle || State == NewMoveStates.walk || State == NewMoveStates.run) SwitchState(NewMoveStates.lieDown);
-    //    else if (State == NewMoveStates.lieDown || State == NewMoveStates.crawl) SwitchState(NewMoveStates.idle);
-    //}
-
     private void jumpInput(InputAction.CallbackContext context)
     {
         if (CheckGround() /*&& standing*/ && !moveLock && !PlayerMask.instance.mask)
@@ -268,16 +227,16 @@ public class NewMovement : MonoBehaviour
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity += new Vector2(-2f, 2);
+                        _rigidBody.velocity += -walkJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity += new Vector2(-4, 2);
+                        _rigidBody.velocity += -runJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
-                        _rigidBody.velocity += new Vector2(0, 3);
-                        _animator.Play("jumpInPlace");
+                        _rigidBody.velocity += staticJump;
+                        _animator.Play("jumpStart");
                         break;
                 }
             }
@@ -286,16 +245,16 @@ public class NewMovement : MonoBehaviour
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity += new Vector2(3, 3);
+                        _rigidBody.velocity += walkJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity += new Vector2(6, 3);
+                        _rigidBody.velocity += runJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
-                        _rigidBody.velocity += new Vector2(0, 3);
-                        _animator.Play("jumpInPlace");
+                        _rigidBody.velocity += staticJump;
+                        _animator.Play("jumpStart");
                         break;
                 }
             }
@@ -310,7 +269,8 @@ public class NewMovement : MonoBehaviour
 
     public void lockMovements()
     {
-        _inputActions.Movements.Disable();
+        _inputActions.Movements.Move.Disable();
+        _inputActions.Movements.Jump.Disable();
         moveLock = true;
     }
 

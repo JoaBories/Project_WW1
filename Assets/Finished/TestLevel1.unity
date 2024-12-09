@@ -372,8 +372,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 7.75, y: 5}
-      - {x: 7.75, y: -1.5}
+    - - {x: 7, y: 5}
+      - {x: 7, y: -1.5}
       - {x: 1.75, y: -1.5}
       - {x: 1.75, y: 0.5}
       - {x: -6.75, y: 0.5}
@@ -3085,7 +3085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   climb_right: 1
-  nextDoor: {fileID: 478095655}
+  nextDoor: {fileID: 548243847}
   toRight: 0
 --- !u!61 &1824036628
 BoxCollider2D:
