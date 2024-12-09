@@ -8,9 +8,14 @@ public class LifeManager : MonoBehaviour
     private GameObject triggerZone;
     private TriggerZone triggerZoneScript;
 
+    private bool inGas;
+    private float gasTimer;
+    [SerializeField] private float gasMaxTime;
+
     private void Awake()
     {
         instance = this;
+        gasTimer = gasMaxTime;
     }
 
     private void Update()
@@ -18,6 +23,19 @@ public class LifeManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             Respawn();
+        }
+
+        if (inGas)
+        {
+            if (!PlayerMask.instance.mask)
+            {
+                gasTimer -= Time.deltaTime;
+                if (gasTimer <= 0)
+                {
+                    Respawn();
+                    gasTimer = gasMaxTime;
+                }
+            }
         }
     }
 
@@ -42,9 +60,31 @@ public class LifeManager : MonoBehaviour
                 case ZoneTypes.BarbedWire:
                     Respawn();
                     break;
+
+                case ZoneTypes.Gas:
+                    inGas = true; 
+                    break;
+
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("TriggerZone"))
+        {
+            triggerZone = collision.gameObject;
+            triggerZoneScript = triggerZone.GetComponent<TriggerZone>();
+            switch (triggerZoneScript.type)
+            {
+                case ZoneTypes.Gas:
+                    inGas = false;
+                    gasTimer = gasMaxTime;
+                    break;
+
             }
         }
 
-        
+
     }
 }

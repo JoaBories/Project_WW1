@@ -43,6 +43,20 @@ public class Actions : MonoBehaviour
         _ActionAction.performed += doAction;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("TriggerZone"))
+        {
+            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.SideOfRoom)
+            {
+                BlackScreenManager.Instance.goBlack();
+                NewMovement.instance.SwitchState(NewMoveStates.action);
+                NewMovement.instance.lockMovements();
+            }
+        }
+    }
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision != currentTriggerZone)
@@ -50,7 +64,6 @@ public class Actions : MonoBehaviour
             if (collision.CompareTag("TriggerZone") /*&& NewMovement.instance.standing*/ && NewMovement.instance.CheckGround())
             {
                 currentTriggerZone = collision.gameObject;
-                StartCoroutine(_utils.GamepadVibration(0, 1, 0.1f));
             }
         }
     }
@@ -78,13 +91,28 @@ public class Actions : MonoBehaviour
                         NewMovement.instance.SwitchState(NewMoveStates.action);
                     }
                     break;
+
+                case ZoneTypes.Door:
+                    BlackScreenManager.Instance.goBlack();
+                    NewMovement.instance.SwitchState(NewMoveStates.action);
+                    NewMovement.instance.lockMovements();
+                    break;
             }
 
         }
 
     }
 
-    private void EndClimb()
+    public void Teleport()
+    {
+        transform.position = currentTriggerZone.GetComponent<TriggerZone>().nextDoor.transform.position;
+        if (currentTriggerZone.GetComponent<TriggerZone>().nextDoor.GetComponent<TriggerZone>().type == ZoneTypes.SideOfRoom)
+        {
+            GetComponent<SpriteRenderer>().flipX = !currentTriggerZone.GetComponent<TriggerZone>().nextDoor.GetComponent<TriggerZone>().toRight;
+        }
+    }
+
+    public void EndClimb()
     {
         transform.position = currentTriggerZone.transform.position;
         NewMovement.instance.SwitchState(NewMoveStates.idle);

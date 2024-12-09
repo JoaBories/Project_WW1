@@ -7,7 +7,8 @@ public enum ZoneTypes
     Climb,
     BarbedWire,
     Door,
-    SideOfRoom
+    SideOfRoom,
+    Gas
 }
 
 public class TriggerZone : MonoBehaviour
@@ -18,6 +19,7 @@ public class TriggerZone : MonoBehaviour
     public bool climb_right;
 
     public GameObject nextDoor;
+    public bool toRight;
 
     private void OnDrawGizmos()
     {
@@ -39,6 +41,10 @@ public class TriggerZone : MonoBehaviour
 
             case ZoneTypes.SideOfRoom:
                 Gizmos.color = Color.green;
+                break;
+
+            case ZoneTypes.Gas:
+                Gizmos.color = Color.red;
                 break;
 
         }

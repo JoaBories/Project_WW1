@@ -45,6 +45,9 @@ public class TriggerZonEditor : Editor
                 EditorGUILayout.BeginHorizontal();
                 zone.nextDoor = (GameObject)EditorGUILayout.ObjectField("The next door to go :", zone.nextDoor, typeof(GameObject), true);
                 EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+                zone.toRight = EditorGUILayout.Toggle("go out to the right :", zone.toRight);
+                EditorGUILayout.EndHorizontal();
                 break;
         }
     }
