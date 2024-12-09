@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCheckpoint: {fileID: 0}
-  gasMaxTime: 0
+  gasMaxTime: 3
 --- !u!95 &8048563870880911847
 Animator:
   serializedVersion: 5
@@ -473,7 +473,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.73333335, y: 2.1111112}
+  m_Size: {x: 0.5, y: 2}
   m_Direction: 0
 --- !u!1 &2739760155985155081
 GameObject:
@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Follow: {fileID: 7083353704622380438}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 2.8
+    OrthographicSize: 2.1
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -619,7 +619,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 12
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.4716981, g: 0.17906465, b: 0, a: 1}
   m_FlipX: 0
