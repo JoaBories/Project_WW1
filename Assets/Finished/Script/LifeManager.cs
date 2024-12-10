@@ -84,7 +84,14 @@ public class LifeManager : MonoBehaviour
 
             }
         }
+    }
 
-
+    private void OnDrawGizmos()
+    {
+        if (currentCheckpoint != null)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(currentCheckpoint.transform.position, 0.2f);
+        }
     }
 }
