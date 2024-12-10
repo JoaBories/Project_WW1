@@ -227,15 +227,15 @@ public class NewMovement : MonoBehaviour
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity += -walkJump;
+                        _rigidBody.velocity = walkJump * new Vector2(-1, 1);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity += -runJump;
+                        _rigidBody.velocity = runJump * new Vector2(-1, 1);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
-                        _rigidBody.velocity += staticJump;
+                        _rigidBody.velocity = staticJump * new Vector2(-1, 1);
                         _animator.Play("jumpStart");
                         break;
                 }
@@ -245,15 +245,15 @@ public class NewMovement : MonoBehaviour
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity += walkJump;
+                        _rigidBody.velocity = walkJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity += runJump;
+                        _rigidBody.velocity = runJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
-                        _rigidBody.velocity += staticJump;
+                        _rigidBody.velocity = staticJump;
                         _animator.Play("jumpStart");
                         break;
                 }

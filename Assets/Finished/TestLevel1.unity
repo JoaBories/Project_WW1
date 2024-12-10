@@ -373,10 +373,10 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 7, y: 5}
-      - {x: 7, y: -1.5}
-      - {x: 1.75, y: -1.5}
-      - {x: 1.75, y: 0.5}
-      - {x: -6.75, y: 0.5}
+      - {x: 7, y: -1.3}
+      - {x: 1.75, y: -1.3}
+      - {x: 1.75, y: 0.7}
+      - {x: -6.75, y: 0.7}
       - {x: -6.75, y: 5}
       - {x: -8, y: 5}
       - {x: -8, y: -5}
@@ -458,65 +458,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2115882802376111910, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: orthographic size
-      value: 2.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_BiasX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_ScreenX
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_ScreenY
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_XDamping
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_YDamping
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_DeadZoneWidth
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_SoftZoneWidth
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_DeadZoneHeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_SoftZoneHeight
-      value: 0.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 2320766402831375655, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: gasMaxTime
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2716185109215072432, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_Name
       value: CharacterPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 5545945107110768288, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_Size.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5545945107110768288, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6011332
+      value: 1.6011319
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -535,24 +483,12 @@ PrefabInstance:
       value: -0.6000001
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15
+      value: 32.734
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -1.11
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -586,25 +522,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_ConstrainProportionsScale
+    - target: {fileID: 7467867494576917501, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+      propertyPath: climbDisplacement.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7407609264927653451, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: _cam
-      value: 
-      objectReference: {fileID: 2075948261}
-    - target: {fileID: 7407609264927653451, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: runSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7407609264927653451, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: walkSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7922844138885490714, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_Color.a
-      value: 1
+    - target: {fileID: 7467867494576917501, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+      propertyPath: climbDisplacement.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1017,7 +941,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 17, y: 10.002441}
+    oldSize: {x: 17, y: 10.000366}
     newSize: {x: 17, y: 10.002441}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2170,7 +2094,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 23, y: 14.004395}
+    oldSize: {x: 23, y: 14}
     newSize: {x: 23, y: 14.004395}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2353,7 +2277,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: -2}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2364,7 +2288,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.1, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &1160656742
 Transform:
@@ -2375,7 +2299,7 @@ Transform:
   m_GameObject: {fileID: 1160656739}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 31.5, y: 1, z: 0}
+  m_LocalPosition: {x: 32.54, y: -1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2983,7 +2907,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 17, y: 10.002441}
+    oldSize: {x: 17, y: 10.000366}
     newSize: {x: 17, y: 10.002441}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3486,7 +3410,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.9941406, y: 10.002793}
+    oldSize: {x: 6.9941406, y: 10}
     newSize: {x: 6.9941406, y: 10.002793}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3597,17 +3521,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 3}
   m_EdgeRadius: 0
---- !u!114 &2075948261 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5434898451970168288, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-  m_PrefabInstance: {fileID: 181467418}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1398191932470077381
 MonoBehaviour:
   m_ObjectHideFlags: 0

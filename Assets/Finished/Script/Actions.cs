@@ -18,10 +18,12 @@ public class Actions : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     private GameObject currentTriggerZone;
+    private TriggerZone currentClimb;
 
     private int climbCounter;
     [SerializeField] private int climbSmoothness;
     [SerializeField] private float climbTime;
+    [SerializeField] private Vector2 climbDisplacement;
 
     private void Awake()
     {
@@ -105,6 +107,7 @@ public class Actions : MonoBehaviour
             {
                 _animator.Play("climb");
                 NewMovement.instance.SwitchState(NewMoveStates.action, true);
+                currentClimb = triggerZone;
             }
 
         }
@@ -122,7 +125,14 @@ public class Actions : MonoBehaviour
 
     public void EndClimb()
     {
-        transform.position = currentTriggerZone.transform.position;
+        if (currentClimb.climb_right)
+        {
+            transform.position += (Vector3)climbDisplacement;
+        }
+        else
+        {
+            transform.position += (Vector3) (climbDisplacement * new Vector2(-1, 1));
+        }
         NewMovement.instance.SwitchState(NewMoveStates.idle);
         NewMovement.instance.delockMovements();
     }
