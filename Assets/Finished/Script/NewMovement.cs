@@ -164,6 +164,7 @@ public class NewMovement : MonoBehaviour
             }
         }
 
+        Debug.Log(State.ToString());
     }
 
     public void SwitchState(NewMoveStates nextState, bool alreadyPlayingAnim = false)

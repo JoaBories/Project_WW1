@@ -312,6 +312,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""db66442d-0f01-42df-9e1c-dd30c680eab9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -380,6 +389,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""GoDoor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""510709a2-53dc-4c64-8d98-3c0ffa77dc83"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfaf959f-5778-4791-806f-e5705c0c5389"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -400,6 +431,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_Climb = m_Gameplay.FindAction("Climb", throwIfNotFound: true);
         m_Gameplay_KeepMask = m_Gameplay.FindAction("KeepMask", throwIfNotFound: true);
         m_Gameplay_GoDoor = m_Gameplay.FindAction("GoDoor", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -580,6 +612,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Climb;
     private readonly InputAction m_Gameplay_KeepMask;
     private readonly InputAction m_Gameplay_GoDoor;
+    private readonly InputAction m_Gameplay_Interact;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -587,6 +620,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Climb => m_Wrapper.m_Gameplay_Climb;
         public InputAction @KeepMask => m_Wrapper.m_Gameplay_KeepMask;
         public InputAction @GoDoor => m_Wrapper.m_Gameplay_GoDoor;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -605,6 +639,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @GoDoor.started += instance.OnGoDoor;
             @GoDoor.performed += instance.OnGoDoor;
             @GoDoor.canceled += instance.OnGoDoor;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -618,6 +655,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @GoDoor.started -= instance.OnGoDoor;
             @GoDoor.performed -= instance.OnGoDoor;
             @GoDoor.canceled -= instance.OnGoDoor;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -651,5 +691,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnClimb(InputAction.CallbackContext context);
         void OnKeepMask(InputAction.CallbackContext context);
         void OnGoDoor(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

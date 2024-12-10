@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,8 @@ public class PlayerMask : MonoBehaviour
 
     private Animator _animator;
 
-    public bool mask;
+    [NonSerialized] public bool mask;
+    [NonSerialized] public bool gotMask;
 
     private void Awake()
     {
@@ -36,7 +38,7 @@ public class PlayerMask : MonoBehaviour
 
     public void BeginMask(InputAction.CallbackContext context)
     {
-        if (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run)
+        if ((NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run) && gotMask)
         {
             mask = true;
             _animator.Play("wearMask");
@@ -45,7 +47,7 @@ public class PlayerMask : MonoBehaviour
 
     public void EndMask(InputAction.CallbackContext context)
     {
-        if (mask && (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk))
+        if (mask && (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk) && gotMask)
         {
             mask = false;
             _animator.Play("removeMask");

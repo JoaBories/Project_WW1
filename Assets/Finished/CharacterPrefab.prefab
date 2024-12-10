@@ -349,10 +349,10 @@ MonoBehaviour:
     m_Bits: 8
   _cam: {fileID: 5434898451970168288}
   walkSpeed: 1.5
-  runSpeed: 2.5
-  staticJump: {x: 0, y: 5}
-  walkJump: {x: 3, y: 5}
-  runJump: {x: 6, y: 5}
+  runSpeed: 2.3
+  staticJump: {x: 0, y: 3}
+  walkJump: {x: 2, y: 3}
+  runJump: {x: 4, y: 3}
   runOrthoSize: 2.1
 --- !u!114 &7467867494576917501
 MonoBehaviour:
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   climbSmoothness: 100
   climbTime: 1
-  climbDisplacement: {x: 0, y: 0}
+  climbDisplacement: {x: 1, y: 2}
 --- !u!114 &8455992050580937457
 MonoBehaviour:
   m_ObjectHideFlags: 0
