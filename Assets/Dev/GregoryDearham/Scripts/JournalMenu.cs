@@ -19,7 +19,28 @@ public class JournalMenu : MonoBehaviour
 
 
 
-    //public GameObject questPanel;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Debug.Log("Toggling Oxygen Panel");
+            OxygenPanel.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Debug.Log("Toggling HUD Panel");
+            HUDPanel.SetActive(true);
+        }
+    }
+
+
+
+
+
+
+
 
     private void Awake()
     {
@@ -38,7 +59,8 @@ public class JournalMenu : MonoBehaviour
 
     private void Start()
     {
-        
+        OxygenPanel.SetActive(false);
+        HUDPanel.SetActive(true);
         menuGroup.SetActive(false);
         isPaused = false;
         Time.timeScale = 1f; 
@@ -72,7 +94,7 @@ public class JournalMenu : MonoBehaviour
 
         Time.timeScale = 0f; 
         isPaused = true;
-        HUDPanel.SetActive(true);
+        
 
         PlayerMovements.instance.lockMovements();
     }
