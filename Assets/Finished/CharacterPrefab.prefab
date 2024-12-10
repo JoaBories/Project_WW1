@@ -319,7 +319,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: cae36faa0c96d6f43b648acd1bfa2280, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5296354a2b5f3e747a67bbf457a590e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -350,9 +350,9 @@ MonoBehaviour:
   _cam: {fileID: 5434898451970168288}
   walkSpeed: 1.5
   runSpeed: 2.5
-  staticJump: {x: 0, y: 0}
-  walkJump: {x: 0, y: 0}
-  runJump: {x: 0, y: 0}
+  staticJump: {x: 0, y: 3}
+  walkJump: {x: 2, y: 3}
+  runJump: {x: 4, y: 3}
   runOrthoSize: 2.1
 --- !u!114 &7467867494576917501
 MonoBehaviour:
