@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,40 +5,22 @@ using UnityEngine.SceneManagement;
 public class JournalMenu : MonoBehaviour
 {
     public static bool isPaused = false;
-    public GameObject menuGroup; 
-    public GameObject optionsPanel; 
-    public GameObject mapPanel; 
+
+    [Header("Panels")]
+    public GameObject menuGroup;
+    public GameObject optionsPanel;
+    public GameObject mapPanel;
     public GameObject pausePanel;
     public GameObject areYouSurePanel;
-    public GameObject OxygenPanel;
+    public GameObject oxygenPanel;
     public GameObject HUDPanel;
+
+    [Header("Background Blur")]
+    public GameObject backgroundBlur;
+    public float blurPadding = 10f;
+
     private Controls inputActions;
     private InputAction JournalMenuAction;
-
-
-
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Debug.Log("Toggling Oxygen Panel");
-            OxygenPanel.SetActive(true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Debug.Log("Toggling HUD Panel");
-            HUDPanel.SetActive(true);
-        }
-    }
-
-
-
-
-
-
-
 
     private void Awake()
     {
@@ -51,36 +31,47 @@ public class JournalMenu : MonoBehaviour
     {
         JournalMenuAction = inputActions.UI.JournalMenu;
         JournalMenuAction.Enable();
-
         JournalMenuAction.performed += JournalMenuInput;
     }
 
-
-
     private void Start()
     {
-        OxygenPanel.SetActive(false);
+        // Initialize the states
+        oxygenPanel.SetActive(false);
         HUDPanel.SetActive(true);
         menuGroup.SetActive(false);
         isPaused = false;
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
+
+        if (backgroundBlur != null)
+        {
+            backgroundBlur.SetActive(false);
+        }
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Escape)  )
-    //    {
+    private void Update()
+    {
+        // Debug functionality for testing (can be removed in production)
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Debug.Log("Toggling Oxygen Panel");
+            oxygenPanel.SetActive(!oxygenPanel.activeSelf);
+        }
 
-    //    }
-    //}
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Debug.Log("Toggling HUD Panel");
+            HUDPanel.SetActive(!HUDPanel.activeSelf);
+        }
+    }
 
     public void Resume()
     {
         HUDPanel.SetActive(true);
-
         menuGroup.SetActive(false);
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
         isPaused = false;
+        SetBackgroundBlur(false);
 
         PlayerMovements.instance.delockMovements();
     }
@@ -88,49 +79,27 @@ public class JournalMenu : MonoBehaviour
     public void Pause()
     {
         HUDPanel.SetActive(false);
-
         menuGroup.SetActive(true);
         ActivatePanel(pausePanel);
-
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
         isPaused = true;
-        
+        SetBackgroundBlur(true);
 
         PlayerMovements.instance.lockMovements();
     }
 
     public void QuitStart()
-
     {
-
-
         ActivatePanel(areYouSurePanel);
-
-        
-
-
     }
-
-
-
 
     public void OptionsTab()
     {
-        
         ActivatePanel(optionsPanel);
     }
 
-
-    //public void QuestTab()
-    //{
-
-    //    ActivatePanel(questPanel);
-    //}
-
-
     public void MapTab()
     {
-        
         ActivatePanel(mapPanel);
     }
 
@@ -142,24 +111,15 @@ public class JournalMenu : MonoBehaviour
 
     private void ActivatePanel(GameObject panelToActivate)
     {
-        
         foreach (Transform child in menuGroup.transform)
         {
             child.gameObject.SetActive(false);
         }
-
-        
         panelToActivate.SetActive(true);
-
-        
-
-
     }
-
 
     private void JournalMenuInput(InputAction.CallbackContext context)
     {
-
         if (isPaused)
         {
             Resume();
@@ -168,8 +128,6 @@ public class JournalMenu : MonoBehaviour
         {
             Pause();
         }
-
-
     }
 
     public void Yes()
@@ -179,56 +137,49 @@ public class JournalMenu : MonoBehaviour
 
     public void Back()
     {
-
         Pause();
-
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("TriggerZone"))
         {
-           if (collision.GetComponent<TriggerZone>().type == ZoneTypes.Gas)
+            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.Gas && collision.GetComponent<PlayerMask>().mask == true) // and player inventory gas mask
+                // add logic for oxygen bar decreasing
 
             {
-
-                OxygenPanel.SetActive(true);
-
-
+                oxygenPanel.SetActive(true);
             }
-
-
-
         }
-
-
     }
-
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
-
         if (collision.CompareTag("TriggerZone"))
         {
             if (collision.GetComponent<TriggerZone>().type == ZoneTypes.Gas)
-
             {
-
-                OxygenPanel.SetActive(false);
-
-
+                oxygenPanel.SetActive(false);
             }
-
-
-
         }
-
-
-
     }
 
+    private void SetBackgroundBlur(bool isActive)
+    {
+        if (backgroundBlur != null)
+        {
+            backgroundBlur.SetActive(isActive);
 
-
+            if (isActive)
+            {
+                // Adjust padding if needed
+                RectTransform blurRect = backgroundBlur.GetComponent<RectTransform>();
+                if (blurRect != null)
+                {
+                    blurRect.offsetMin = new Vector2(-blurPadding, -blurPadding);
+                    blurRect.offsetMax = new Vector2(blurPadding, blurPadding);
+                }
+            }
+        }
+    }
 }

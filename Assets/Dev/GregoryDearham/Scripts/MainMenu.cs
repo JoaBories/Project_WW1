@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject menuGroup;
     public GameObject optionsPanel;
-    public GameObject loadGamePanel;
+    //public GameObject loadGamePanel;
 
     private Controls inputActions;
     private InputAction journalMenuAction;
@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
         
         menuGroup.SetActive(true);
         optionsPanel.SetActive(false);
-        loadGamePanel.SetActive(false);
+        //loadGamePanel.SetActive(false);
     }
 
     private void Update()
@@ -45,10 +45,10 @@ public class MainMenu : MonoBehaviour
         ActivatePanel(optionsPanel);
     }
 
-    public void LoadGame()
-    {
-        ActivatePanel(loadGamePanel);
-    }
+    //public void LoadGame()
+    //{
+    //    ActivatePanel(loadGamePanel);
+    //}
 
     public void StartGame()
     {
@@ -89,7 +89,7 @@ public class MainMenu : MonoBehaviour
             menuGroup.transform.GetChild(1).gameObject.SetActive(true);
             menuGroup.transform.GetChild(2).gameObject.SetActive(true);
             menuGroup.transform.GetChild(3).gameObject.SetActive(true);
-            menuGroup.transform.GetChild(4).gameObject.SetActive(true);
+            //menuGroup.transform.GetChild(4).gameObject.SetActive(true);
 
 
 
