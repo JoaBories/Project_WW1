@@ -190,4 +190,14 @@ public class Actions : MonoBehaviour
         NewMovement.instance.SwitchState(NewMoveStates.idle);
         NewMovement.instance.delockMovements();
     }
+
+    public void LockGameplay()
+    {
+        _inputActions.Gameplay.Disable();
+    }
+
+    public void DelockGameplay()
+    {
+        _inputActions.Gameplay.Enable();
+    }
 }
