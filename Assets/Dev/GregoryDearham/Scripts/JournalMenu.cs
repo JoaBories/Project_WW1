@@ -144,12 +144,22 @@ public class JournalMenu : MonoBehaviour
     {
         if (collision.CompareTag("TriggerZone"))
         {
-            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.Gas && collision.GetComponent<PlayerMask>().mask == true) // and player inventory gas mask
+            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.Gas && PlayerMask.instance.mask) // and player inventory gas mask
                 // add logic for oxygen bar decreasing
 
             {
                 oxygenPanel.SetActive(true);
             }
+
+            if (PlayerMask.instance.mask)
+
+            {
+
+                oxygenPanel.SetActive(true);
+            }
+
+
+
         }
     }
 
