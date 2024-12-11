@@ -24,23 +24,16 @@ public class LifeManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (inGas && !PlayerMask.instance.mask)
         {
-            Die();
-        }
-
-        if (inGas)
-        {
-            if (!PlayerMask.instance.mask)
+            gasTimer -= Time.deltaTime;
+            if (gasTimer <= 0)
             {
-                gasTimer -= Time.deltaTime;
-                if (gasTimer <= 0)
-                {
-                    Die();
-                    gasTimer = gasMaxTime;
-                }
+                Die();
+                gasTimer = gasMaxTime;
             }
         }
+        Debug.Log(gasTimer);
     }
 
     public void Die()

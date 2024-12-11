@@ -29,6 +29,7 @@ public class TriggerZone : MonoBehaviour
     public Vector3 crateMovement;
 
     public GameObject radioObject;
+    public Sprite brokenRadio;
 
     private void OnDrawGizmos()
     {

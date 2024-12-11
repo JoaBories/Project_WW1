@@ -12,7 +12,7 @@ public class PlayerMask : MonoBehaviour
     private Animator _animator;
 
     [NonSerialized] public bool mask;
-    [NonSerialized] public bool gotMask;
+    /*[NonSerialized]*/ public bool gotMask;
 
     [SerializeField] private GameObject maskDebug;
     private void Awake()

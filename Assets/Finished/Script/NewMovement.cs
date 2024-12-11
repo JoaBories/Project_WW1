@@ -164,7 +164,7 @@ public class NewMovement : MonoBehaviour
             }
         }
 
-        Debug.Log(State.ToString() + PlayerMask.instance.mask);
+        //Debug.Log(State.ToString() + PlayerMask.instance.mask);
     }
 
     public void SwitchState(NewMoveStates nextState, bool alreadyPlayingAnim = false)
