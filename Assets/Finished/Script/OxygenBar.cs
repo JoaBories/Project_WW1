@@ -13,34 +13,27 @@ public class OxygenBar : MonoBehaviour
         oxygenSlider.maxValue = maxOxygen;
         oxygenSlider.minValue = 0;
 
-        
-        UpdateOxygenBar(maxOxygen);
+
+        //UpdateOxygenBar(maxOxygen);
+        oxygenSlider.value = maxOxygen;
     }
 
     private void Update()
     {
-        if (!JournalMenu.instance.oxygenPanel.activeSelf )
-        {
+        //if (!JournalMenu.instance.oxygenPanel.activeSelf )
+        //{
 
-                float currentOxygen = LifeManager.instance.gasTimer; 
-                        UpdateOxygenBar(currentOxygen);
-            Debug.Log(LifeManager.instance.gasTimer);
-        }
-        
+        //        float currentOxygen = LifeManager.instance.gasTimer; 
+        //                UpdateOxygenBar(currentOxygen);
+        //}
+        oxygenSlider.value = Mathf.Clamp(LifeManager.instance.gasTimer, 0, maxOxygen);
     }
 
-    private void UpdateOxygenBar(float currentOxygen)
-    {
+    //private void UpdateOxygenBar(float currentOxygen)
+    //{
         
-        oxygenSlider.value = Mathf.Clamp(currentOxygen, 0, maxOxygen);
-
-        if ( oxygenSlider.value == 0 )
-        {
+    //    oxygenSlider.value = Mathf.Clamp(currentOxygen, 0, maxOxygen);
 
 
-            SceneManager.LoadScene("GameOver");
-
-        }
-
-    }
+    //}
 }

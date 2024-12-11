@@ -1945,6 +1945,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &584385918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6756052305081522897, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+  m_PrefabInstance: {fileID: 950467174}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &607413984
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,6 +3314,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8455992050580937457, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+      propertyPath: gotMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455992050580937457, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+      propertyPath: maskDebug
+      value: 
+      objectReference: {fileID: 584385918}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8154,6 +8167,7 @@ MonoBehaviour:
   crateObject: {fileID: 0}
   crateMovement: {x: 0, y: 0, z: 0}
   radioObject: {fileID: 0}
+  brokenRadio: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

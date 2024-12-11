@@ -62,11 +62,13 @@ public class JournalMenu : MonoBehaviour
     private void Update()
     {
         // Debug functionality for testing (can be removed in production)
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Debug.Log("Toggling Oxygen Panel");
-            oxygenPanel.SetActive(!oxygenPanel.activeSelf);
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    Debug.Log("Toggling Oxygen Panel");
+        //    oxygenPanel.SetActive(!oxygenPanel.activeSelf);
+        //}
+
+        oxygenPanel.SetActive(PlayerMask.instance.mask);
 
         if (Input.GetKeyDown(KeyCode.H))
         {
@@ -88,7 +90,8 @@ public class JournalMenu : MonoBehaviour
         isPaused = false;
         SetBackgroundBlur(false);
 
-        PlayerMovements.instance.delockMovements();
+        NewMovement.instance.delockMovements();
+        //NewMovement.instance.delockGameplay();
     }
 
     public void Pause()
@@ -100,7 +103,8 @@ public class JournalMenu : MonoBehaviour
         isPaused = true;
         SetBackgroundBlur(true);
 
-        PlayerMovements.instance.lockMovements();
+        NewMovement.instance.lockMovements();
+        //NewMovement.instance.lockGameplay();
     }
 
     public void QuitStart()

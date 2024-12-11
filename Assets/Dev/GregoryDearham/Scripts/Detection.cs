@@ -14,7 +14,7 @@ public class Detection : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("GameOver");
+            LifeManager.instance.Die(); 
         }
     }
 
