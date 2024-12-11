@@ -366,6 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb55fdb42fb908b4aab92371d7743401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplayLock: 0
   climbMovement: {x: 1, y: 2}
 --- !u!114 &8455992050580937457
 MonoBehaviour:
@@ -380,7 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gotMask: 0
-  maskDebug: {fileID: 0}
+  maskDebug: {fileID: 6756052305081522897}
 --- !u!114 &2320766402831375655
 MonoBehaviour:
   m_ObjectHideFlags: 0
