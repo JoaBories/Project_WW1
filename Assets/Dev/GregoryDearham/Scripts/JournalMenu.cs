@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class JournalMenu : MonoBehaviour
 {
     public static bool isPaused = false;
+    public static JournalMenu instance;
 
     [Header("Panels")]
     public GameObject menuGroup;
@@ -14,6 +16,9 @@ public class JournalMenu : MonoBehaviour
     public GameObject areYouSurePanel;
     public GameObject oxygenPanel;
     public GameObject HUDPanel;
+
+
+
 
     [Header("Background Blur")]
     public GameObject backgroundBlur;
@@ -25,6 +30,7 @@ public class JournalMenu : MonoBehaviour
     private void Awake()
     {
         inputActions = new Controls();
+        instance = this;
     }
 
     private void OnEnable()
@@ -47,12 +53,16 @@ public class JournalMenu : MonoBehaviour
         {
             backgroundBlur.SetActive(false);
         }
+
+
+
+
     }
 
     private void Update()
     {
         // Debug functionality for testing (can be removed in production)
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             Debug.Log("Toggling Oxygen Panel");
             oxygenPanel.SetActive(!oxygenPanel.activeSelf);
@@ -63,6 +73,11 @@ public class JournalMenu : MonoBehaviour
             Debug.Log("Toggling HUD Panel");
             HUDPanel.SetActive(!HUDPanel.activeSelf);
         }
+
+
+
+
+
     }
 
     public void Resume()
@@ -139,41 +154,6 @@ public class JournalMenu : MonoBehaviour
     {
         Pause();
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("TriggerZone"))
-        {
-            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.Gas && PlayerMask.instance.mask) // and player inventory gas mask
-                // add logic for oxygen bar decreasing
-
-            {
-                oxygenPanel.SetActive(true);
-            }
-
-            if (PlayerMask.instance.mask)
-
-            {
-
-                oxygenPanel.SetActive(true);
-            }
-
-
-
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("TriggerZone"))
-        {
-            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.Gas)
-            {
-                oxygenPanel.SetActive(false);
-            }
-        }
-    }
-
     private void SetBackgroundBlur(bool isActive)
     {
         if (backgroundBlur != null)

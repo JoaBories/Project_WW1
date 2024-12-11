@@ -46,6 +46,8 @@ public class NPCDialogue : MonoBehaviour
         chatBubble.SetActive(false);
         //iconSpriteRenderer.sprite = GetIconSprite(iconType);
         textMeshPro.text = "";
+
+        
     }
 
     private void Update()
