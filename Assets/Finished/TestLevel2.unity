@@ -239,14 +239,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7467867494576917501, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: climbMovement.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7467867494576917501, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: climbMovement.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8209301893252989308, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -781,6 +773,7 @@ MonoBehaviour:
   crateObject: {fileID: 0}
   crateMovement: {x: 0, y: 0, z: 0}
   radioObject: {fileID: 0}
+  brokenRadio: {fileID: 0}
 --- !u!4 &1448668778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3312130194180146271, guid: 083e1149387a2904db4850987a30553b, type: 3}
@@ -1041,6 +1034,7 @@ MonoBehaviour:
   crateObject: {fileID: 0}
   crateMovement: {x: 0, y: 0, z: 0}
   radioObject: {fileID: 0}
+  brokenRadio: {fileID: 0}
 --- !u!61 &1699201140
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1138,6 +1132,7 @@ MonoBehaviour:
   crateObject: {fileID: 0}
   crateMovement: {x: 0, y: 0, z: 0}
   radioObject: {fileID: 0}
+  brokenRadio: {fileID: 0}
 --- !u!61 &1707279076
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1337,6 +1332,7 @@ MonoBehaviour:
   crateObject: {fileID: 0}
   crateMovement: {x: 0, y: 0, z: 0}
   radioObject: {fileID: 0}
+  brokenRadio: {fileID: 0}
 --- !u!61 &1825344056
 BoxCollider2D:
   m_ObjectHideFlags: 0
