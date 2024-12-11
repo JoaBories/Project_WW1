@@ -9,6 +9,7 @@ public class Actions : MonoBehaviour
     private Controls _inputActions;
     private InputAction _ClimbAction;
     private InputAction _GoDoorAction;
+    private InputAction _InteractAction;
 
     private Utils _utils;
 
@@ -18,10 +19,11 @@ public class Actions : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     private GameObject currentTriggerZone;
+    private TriggerZone currentClimb;
 
-    private int climbCounter;
-    [SerializeField] private int climbSmoothness;
-    [SerializeField] private float climbTime;
+    public bool gameplayLock;
+
+    [SerializeField] private Vector2 climbMovement;
 
     private void Awake()
     {
@@ -46,6 +48,17 @@ public class Actions : MonoBehaviour
         _GoDoorAction = _inputActions.Gameplay.GoDoor;
         _GoDoorAction.Enable();
         _GoDoorAction.performed += GoDoor;
+
+        _InteractAction = _inputActions.Gameplay.Interact;
+        _InteractAction.Enable();
+        _InteractAction.performed += Interact;
+    }
+
+    private void OnDisable()
+    {
+        _ClimbAction.Disable();
+        _GoDoorAction.Disable();
+        _InteractAction.Disable();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,12 +74,11 @@ public class Actions : MonoBehaviour
         }
     }
 
-
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision != currentTriggerZone)
+        if (collision != currentTriggerZone && collision.CompareTag("TriggerZone"))
         {
-            if (collision.CompareTag("TriggerZone") /*&& NewMovement.instance.standing*/ && NewMovement.instance.CheckGround())
+            if (collision.GetComponent<TriggerZone>().type != ZoneTypes.Gas)
             {
                 currentTriggerZone = collision.gameObject;
             }
@@ -83,7 +95,7 @@ public class Actions : MonoBehaviour
 
     private void GoDoor(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null)
+        if (currentTriggerZone != null && !gameplayLock)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
             if (triggerZone.type == ZoneTypes.Door && NewMovement.instance.CheckGround())
@@ -93,23 +105,47 @@ public class Actions : MonoBehaviour
                 NewMovement.instance.lockMovements();
             }
         }
-
     }
 
     private void ClimbAction(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null)
+        if (currentTriggerZone != null && !gameplayLock)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
             if (_spriteRenderer.flipX == !triggerZone.climb_right && triggerZone.type == ZoneTypes.Climb && NewMovement.instance.CheckGround())
             {
                 _animator.Play("climb");
                 NewMovement.instance.SwitchState(NewMoveStates.action, true);
+                currentClimb = triggerZone;
             }
-
         }
-
     }
+
+    private void Interact(InputAction.CallbackContext context)
+    {
+        if (currentTriggerZone != null && NewMovement.instance.CheckGround() && !gameplayLock)
+        {
+            
+            switch (currentTriggerZone.GetComponent<TriggerZone>().type)
+            {
+                case ZoneTypes.Mask:
+                    _animator.Play("interact");
+                    NewMovement.instance.SwitchState(NewMoveStates.action, true);
+                    break;
+
+                case ZoneTypes.Crate:
+                    _animator.Play("interact");
+                    NewMovement.instance.SwitchState(NewMoveStates.action, true);
+                    break;
+
+                case ZoneTypes.Radio:
+                    _animator.Play("interact");
+                    NewMovement.instance.SwitchState(NewMoveStates.action, true);
+                    break;
+            }
+        }
+    }
+
 
     public void Teleport()
     {
@@ -122,8 +158,50 @@ public class Actions : MonoBehaviour
 
     public void EndClimb()
     {
-        transform.position = currentTriggerZone.transform.position;
+        if (currentClimb.climb_right)
+        {
+            transform.position += (Vector3)climbMovement;
+        }
+        else
+        {
+            transform.position += (Vector3) (climbMovement * new Vector2(-1, 1));
+        }
         NewMovement.instance.SwitchState(NewMoveStates.idle);
         NewMovement.instance.delockMovements();
+        currentClimb = null;
+    }
+
+    public void EndInteract()
+    {
+        TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
+        switch (triggerZone.type)
+        {
+            case ZoneTypes.Mask:
+                PlayerMask.instance.gotMask = true;
+                Destroy(currentTriggerZone);
+                break;
+
+            case ZoneTypes.Crate:
+                triggerZone.Push();
+                break;
+
+            case ZoneTypes.Radio:
+                triggerZone.DestroyRadio();
+                break;
+        }
+        NewMovement.instance.SwitchState(NewMoveStates.idle);
+        NewMovement.instance.delockMovements();
+    }
+
+    public void LockGameplay()
+    {
+        _inputActions.Gameplay.Disable();
+        gameplayLock = true;
+    }
+
+    public void DelockGameplay()
+    {
+        _inputActions.Gameplay.Enable();
+        gameplayLock = false;
     }
 }

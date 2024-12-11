@@ -75,8 +75,6 @@ public class PlayerMovements : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(CheckGround());
-
         float _moveDir = _moveAction.ReadValue<Vector2>().x;
         if (_moveDir != 0)
         {
