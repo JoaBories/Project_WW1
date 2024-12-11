@@ -6374,6 +6374,7 @@ GameObject:
   - component: {fileID: 1909879570}
   - component: {fileID: 1909879573}
   - component: {fileID: 1909879574}
+  - component: {fileID: 1909879575}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -6532,6 +6533,29 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.73333335, y: 2.1111112}
   m_Direction: 0
+--- !u!114 &1909879575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909879567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cbbae2c4ba5dc54484d6102405ac813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionMarkSlider: {fileID: 0}
+  exclamationMarkSlider: {fileID: 0}
+  detectionSpeed: 1
+  decaySpeed: 0.5
+  questionMarkIcon: {fileID: 0}
+  exclamationMarkIcon: {fileID: 0}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  activeColor: {r: 1, g: 0, b: 0, a: 1}
+  suspicionSound: {fileID: 0}
+  alertSound: {fileID: 0}
+  resetDelay: 2
 --- !u!1 &1916838170
 GameObject:
   m_ObjectHideFlags: 0
@@ -6622,6 +6646,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbbae2c4ba5dc54484d6102405ac813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questionMarkSlider: {fileID: 0}
+  exclamationMarkSlider: {fileID: 0}
+  detectionSpeed: 1
+  decaySpeed: 0.5
+  questionMarkIcon: {fileID: 0}
+  exclamationMarkIcon: {fileID: 0}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  activeColor: {r: 1, g: 0, b: 0, a: 1}
+  suspicionSound: {fileID: 0}
+  alertSound: {fileID: 0}
+  resetDelay: 2
 --- !u!1 &1928476261
 GameObject:
   m_ObjectHideFlags: 0
