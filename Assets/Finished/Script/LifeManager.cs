@@ -12,7 +12,7 @@ public class LifeManager : MonoBehaviour
 
     public bool inGas;
     public float gasTimer;
-    [SerializeField] private float gasMaxTime;
+    [SerializeField] public float gasMaxTime;
 
     private void Awake()
     {
