@@ -49,6 +49,24 @@ public class TriggerZonEditor : Editor
                 zone.toRight = EditorGUILayout.Toggle("go out to the right :", zone.toRight);
                 EditorGUILayout.EndHorizontal();
                 break;
+
+            case ZoneTypes.Crate:
+                EditorGUILayout.BeginHorizontal();
+                zone.crateObject = (GameObject)EditorGUILayout.ObjectField("The crate object to push : ", zone.crateObject, typeof(GameObject), true);
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+                zone.crateMovement = EditorGUILayout.Vector3Field("The movement of the crate when pushed : ", zone.crateMovement);
+                EditorGUILayout.EndHorizontal();
+                break;
+
+            case ZoneTypes.Radio:
+                EditorGUILayout.BeginHorizontal();
+                zone.radioObject = (GameObject)EditorGUILayout.ObjectField("The radio object to break : ", zone.radioObject, typeof(GameObject), true);
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+                zone.brokenRadio = (Sprite)EditorGUILayout.ObjectField("The broken radio sprite : ", zone.brokenRadio, typeof(Sprite), true);
+                EditorGUILayout.EndHorizontal();
+                break;
         }
     }
 }

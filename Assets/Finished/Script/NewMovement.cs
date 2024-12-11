@@ -164,6 +164,7 @@ public class NewMovement : MonoBehaviour
             }
         }
 
+        //Debug.Log(State.ToString() + PlayerMask.instance.mask);
     }
 
     public void SwitchState(NewMoveStates nextState, bool alreadyPlayingAnim = false)
@@ -220,7 +221,7 @@ public class NewMovement : MonoBehaviour
 
     private void jumpInput(InputAction.CallbackContext context)
     {
-        if (CheckGround() /*&& standing*/ && !moveLock && !PlayerMask.instance.mask)
+        if (CheckGround() && !moveLock && !PlayerMask.instance.mask)
         {
             if (_spriteRenderer.flipX)
             {

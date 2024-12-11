@@ -8,41 +8,44 @@ public class LifeManager : MonoBehaviour
     private GameObject triggerZone;
     private TriggerZone triggerZoneScript;
 
-    private bool inGas;
+    private Animator _animator;
+
+    public bool inGas;
     public float gasTimer;
-    [SerializeField] private float gasMaxTime;
+    [SerializeField] public float gasMaxTime;
 
     private void Awake()
     {
         instance = this;
         gasTimer = gasMaxTime;
+
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (inGas && !PlayerMask.instance.mask)
         {
-            Respawn();
-        }
-
-        if (inGas)
-        {
-            if (!PlayerMask.instance.mask)
+            gasTimer -= Time.deltaTime;
+            if (gasTimer <= 0)
             {
-                gasTimer -= Time.deltaTime;
-                if (gasTimer <= 0)
-                {
-                    Respawn();
-                    gasTimer = gasMaxTime;
-                }
+                Die();
+                gasTimer = gasMaxTime;
             }
         }
+        Debug.Log(gasTimer);
     }
 
+    public void Die()
+    {
+        NewMovement.instance.SwitchState(NewMoveStates.action, true);
+        _animator.Play("groundDeath");
+    }
 
     public void Respawn()
     {
         transform.position = currentCheckpoint.transform.position;
+        NewMovement.instance.SwitchState(NewMoveStates.idle);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,7 +61,7 @@ public class LifeManager : MonoBehaviour
             switch (triggerZoneScript.type)
             {
                 case ZoneTypes.BarbedWire:
-                    Respawn();
+                    Die();
                     break;
 
                 case ZoneTypes.Gas:
@@ -84,7 +87,14 @@ public class LifeManager : MonoBehaviour
 
             }
         }
+    }
 
-
+    private void OnDrawGizmos()
+    {
+        if (currentCheckpoint != null)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(currentCheckpoint.transform.position, 0.2f);
+        }
     }
 }
