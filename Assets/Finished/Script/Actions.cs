@@ -121,22 +121,24 @@ public class Actions : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null)
+        if (currentTriggerZone != null && NewMovement.instance.CheckGround())
         {
-            TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
-            switch (triggerZone.type)
+            
+            switch (currentTriggerZone.GetComponent<TriggerZone>().type)
             {
                 case ZoneTypes.Mask:
-                    PlayerMask.instance.gotMask = true;
-                    Destroy(currentTriggerZone);
+                    _animator.Play("interact");
+                    NewMovement.instance.SwitchState(NewMoveStates.action, true);
                     break;
 
                 case ZoneTypes.Crate:
-                    triggerZone.Push();
+                    _animator.Play("interact");
+                    NewMovement.instance.SwitchState(NewMoveStates.action, true);
                     break;
 
                 case ZoneTypes.Radio:
-                    triggerZone.DestroyRadio();
+                    _animator.Play("interact");
+                    NewMovement.instance.SwitchState(NewMoveStates.action, true);
                     break;
             }
         }
@@ -165,5 +167,27 @@ public class Actions : MonoBehaviour
         NewMovement.instance.SwitchState(NewMoveStates.idle);
         NewMovement.instance.delockMovements();
         currentClimb = null;
+    }
+
+    public void EndInteract()
+    {
+        TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
+        switch (triggerZone.type)
+        {
+            case ZoneTypes.Mask:
+                PlayerMask.instance.gotMask = true;
+                Destroy(currentTriggerZone);
+                break;
+
+            case ZoneTypes.Crate:
+                triggerZone.Push();
+                break;
+
+            case ZoneTypes.Radio:
+                triggerZone.DestroyRadio();
+                break;
+        }
+        NewMovement.instance.SwitchState(NewMoveStates.idle);
+        NewMovement.instance.delockMovements();
     }
 }

@@ -63,6 +63,9 @@ public class TriggerZonEditor : Editor
                 EditorGUILayout.BeginHorizontal();
                 zone.radioObject = (GameObject)EditorGUILayout.ObjectField("The radio object to break : ", zone.radioObject, typeof(GameObject), true);
                 EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+                zone.brokenRadio = (Sprite)EditorGUILayout.ObjectField("The broken radio sprite : ", zone.brokenRadio, typeof(Sprite), true);
+                EditorGUILayout.EndHorizontal();
                 break;
         }
     }
