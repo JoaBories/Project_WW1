@@ -44,7 +44,7 @@ public class PlayerMask : MonoBehaviour
 
     public void BeginMask(InputAction.CallbackContext context)
     {
-        if ((NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run) && gotMask)
+        if ((NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run) && gotMask && !Actions.Instance.gameplayLock)
         {
             mask = true;
             _animator.Play("wearMask");
@@ -54,7 +54,7 @@ public class PlayerMask : MonoBehaviour
     public void EndMask(InputAction.CallbackContext context)
     {
         mask = false;
-        if (mask && (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk) && gotMask)
+        if (mask && (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk) && gotMask && !Actions.Instance.gameplayLock)
         {
             _animator.Play("removeMask");
         }
