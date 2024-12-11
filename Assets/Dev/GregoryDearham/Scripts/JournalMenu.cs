@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -91,7 +92,8 @@ public class JournalMenu : MonoBehaviour
         SetBackgroundBlur(false);
 
         NewMovement.instance.delockMovements();
-        //NewMovement.instance.delockGameplay();
+        //Actions.Instance.DelockGameplay();
+        inputActions.Gameplay.Enable();
     }
 
     public void Pause()
@@ -104,7 +106,8 @@ public class JournalMenu : MonoBehaviour
         SetBackgroundBlur(true);
 
         NewMovement.instance.lockMovements();
-        //NewMovement.instance.lockGameplay();
+        //Actions.Instance.LockGameplay();
+        inputActions.Gameplay.Disable();
     }
 
     public void QuitStart()
