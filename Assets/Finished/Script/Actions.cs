@@ -21,6 +21,8 @@ public class Actions : MonoBehaviour
     private GameObject currentTriggerZone;
     private TriggerZone currentClimb;
 
+    public bool gameplayLock;
+
     [SerializeField] private Vector2 climbMovement;
 
     private void Awake()
@@ -93,7 +95,7 @@ public class Actions : MonoBehaviour
 
     private void GoDoor(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null)
+        if (currentTriggerZone != null && !gameplayLock)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
             if (triggerZone.type == ZoneTypes.Door && NewMovement.instance.CheckGround())
@@ -107,7 +109,7 @@ public class Actions : MonoBehaviour
 
     private void ClimbAction(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null)
+        if (currentTriggerZone != null && !gameplayLock)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
             if (_spriteRenderer.flipX == !triggerZone.climb_right && triggerZone.type == ZoneTypes.Climb && NewMovement.instance.CheckGround())
@@ -121,7 +123,7 @@ public class Actions : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null && NewMovement.instance.CheckGround())
+        if (currentTriggerZone != null && NewMovement.instance.CheckGround() && !gameplayLock)
         {
             
             switch (currentTriggerZone.GetComponent<TriggerZone>().type)
@@ -194,10 +196,12 @@ public class Actions : MonoBehaviour
     public void LockGameplay()
     {
         _inputActions.Gameplay.Disable();
+        gameplayLock = true;
     }
 
     public void DelockGameplay()
     {
         _inputActions.Gameplay.Enable();
+        gameplayLock = false;
     }
 }
