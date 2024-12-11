@@ -92,8 +92,8 @@ public class JournalMenu : MonoBehaviour
         SetBackgroundBlur(false);
 
         NewMovement.instance.delockMovements();
-        //Actions.Instance.DelockGameplay();
-        inputActions.Gameplay.Enable();
+        Actions.Instance.DelockGameplay();
+        //inputActions.Gameplay.Enable();
     }
 
     public void Pause()
@@ -106,8 +106,8 @@ public class JournalMenu : MonoBehaviour
         SetBackgroundBlur(true);
 
         NewMovement.instance.lockMovements();
-        //Actions.Instance.LockGameplay();
-        inputActions.Gameplay.Disable();
+        Actions.Instance.LockGameplay();
+        //inputActions.Gameplay.Disable();
     }
 
     public void QuitStart()
