@@ -14,6 +14,7 @@ public class PlayerMask : MonoBehaviour
     [NonSerialized] public bool mask;
     [NonSerialized] public bool gotMask;
 
+    [SerializeField] private GameObject maskDebug;
     private void Awake()
     {
         _inputActions = new Controls();
@@ -36,6 +37,11 @@ public class PlayerMask : MonoBehaviour
         _keepMaskAction.Disable();
     }
 
+    private void Update()
+    {
+        maskDebug.SetActive(mask);
+    }
+
     public void BeginMask(InputAction.CallbackContext context)
     {
         if ((NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run) && gotMask)
@@ -47,9 +53,9 @@ public class PlayerMask : MonoBehaviour
 
     public void EndMask(InputAction.CallbackContext context)
     {
+        mask = false;
         if (mask && (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk) && gotMask)
         {
-            mask = false;
             _animator.Play("removeMask");
         }
     }
