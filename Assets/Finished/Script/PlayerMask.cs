@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,8 +11,10 @@ public class PlayerMask : MonoBehaviour
 
     private Animator _animator;
 
-    public bool mask;
+    [NonSerialized] public bool mask;
+    /*[NonSerialized]*/ public bool gotMask;
 
+    [SerializeField] private GameObject maskDebug;
     private void Awake()
     {
         _inputActions = new Controls();
@@ -34,9 +37,14 @@ public class PlayerMask : MonoBehaviour
         _keepMaskAction.Disable();
     }
 
+    private void Update()
+    {
+        maskDebug.SetActive(mask);
+    }
+
     public void BeginMask(InputAction.CallbackContext context)
     {
-        if (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run)
+        if ((NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run) && gotMask && !Actions.Instance.gameplayLock)
         {
             mask = true;
             _animator.Play("wearMask");
@@ -45,9 +53,9 @@ public class PlayerMask : MonoBehaviour
 
     public void EndMask(InputAction.CallbackContext context)
     {
-        if (mask && (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk))
+        mask = false;
+        if (mask && (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk) && gotMask && !Actions.Instance.gameplayLock)
         {
-            mask = false;
             _animator.Play("removeMask");
         }
     }
