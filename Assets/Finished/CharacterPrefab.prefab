@@ -366,9 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb55fdb42fb908b4aab92371d7743401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  climbSmoothness: 100
-  climbTime: 1
-  climbDisplacement: {x: 1, y: 2}
+  climbMovement: {x: 1, y: 2}
 --- !u!114 &8455992050580937457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,7 +379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db819101a94c8f94aad4df7a315d766e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mask: 0
+  gotMask: 0
+  maskDebug: {fileID: 0}
 --- !u!114 &2320766402831375655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCheckpoint: {fileID: 0}
+  inGas: 0
   gasTimer: 0
   gasMaxTime: 3
 --- !u!95 &8048563870880911847
