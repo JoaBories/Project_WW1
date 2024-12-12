@@ -47,16 +47,11 @@ public class PlayerMask : MonoBehaviour
         if ((NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run) && gotMask && !Actions.Instance.gameplayLock)
         {
             mask = true;
-            _animator.Play("wearMask");
         }
     }
 
     public void EndMask(InputAction.CallbackContext context)
     {
         mask = false;
-        if (mask && (NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk) && gotMask && !Actions.Instance.gameplayLock)
-        {
-            _animator.Play("removeMask");
-        }
     }
 }

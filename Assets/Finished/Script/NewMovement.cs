@@ -8,8 +8,7 @@ public enum NewMoveStates
     idle,
     walk,
     run,
-    //lieDown,
-    //crawl,
+    jumping,
     air,
     landing,
     action
@@ -52,6 +51,8 @@ public class NewMovement : MonoBehaviour
     [NonSerialized] public bool moveLock;
 
     private bool running;
+
+    private Vector2 nextJumpForce;
 
     private void Awake()
     {
@@ -152,8 +153,9 @@ public class NewMovement : MonoBehaviour
                     break;
             }
 
-            if (State == NewMoveStates.air && CheckGround())
+            if (State == NewMoveStates.air && CheckGround() && _rigidBody.velocity.y < 0)
             {
+                _animator.Play("landing");
                 SwitchState(NewMoveStates.landing);
             }
 
@@ -163,8 +165,6 @@ public class NewMovement : MonoBehaviour
                 _animator.Play("airLoop");
             }
         }
-
-        //Debug.Log(State.ToString() + PlayerMask.instance.mask);
     }
 
     public void SwitchState(NewMoveStates nextState, bool alreadyPlayingAnim = false)
@@ -197,12 +197,15 @@ public class NewMovement : MonoBehaviour
                 break;
 
             case NewMoveStates.landing:
-                _animator.Play("landing");
                 moveLock = true;
                 break;
 
             case NewMoveStates.air:
                 moveLock = false;
+                break;
+
+            case NewMoveStates.jumping:
+                moveLock = true;
                 break;
         }
 
@@ -228,15 +231,15 @@ public class NewMovement : MonoBehaviour
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity = walkJump * new Vector2(-1, 1);
+                        nextJumpForce = walkJump * new Vector2(-1, 1);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity = runJump * new Vector2(-1, 1);
+                        nextJumpForce = runJump * new Vector2(-1, 1);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
-                        _rigidBody.velocity = staticJump * new Vector2(-1, 1);
+                        nextJumpForce = staticJump * new Vector2(-1, 1);
                         _animator.Play("jumpStart");
                         break;
                 }
@@ -246,20 +249,28 @@ public class NewMovement : MonoBehaviour
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity = walkJump;
+                        nextJumpForce = walkJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity = runJump;
+                        nextJumpForce = runJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
-                        _rigidBody.velocity = staticJump;
+                        nextJumpForce = staticJump;
                         _animator.Play("jumpStart");
                         break;
                 }
             }
+
+            SwitchState(NewMoveStates.jumping);
         }
+    }
+
+    public void endStartJump()
+    {
+        _rigidBody.velocity = nextJumpForce;
+        SwitchState(NewMoveStates.air);
     }
 
     private void SetMoveTreeFloats(float type, float speed)
