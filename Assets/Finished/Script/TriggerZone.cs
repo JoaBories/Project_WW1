@@ -97,6 +97,7 @@ public class TriggerZone : MonoBehaviour
 
     public void DestroyRadio()
     {
+        radioObject.GetComponent<SpriteRenderer>().sprite = brokenRadio;
         Destroy(gameObject);
     }
 }
