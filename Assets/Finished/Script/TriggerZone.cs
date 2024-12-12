@@ -11,7 +11,8 @@ public enum ZoneTypes
     Gas,
     Mask,
     Crate,
-    Radio
+    Radio,
+    SufferingSoldier
 }
 
 public class TriggerZone : MonoBehaviour
@@ -75,7 +76,13 @@ public class TriggerZone : MonoBehaviour
 
             case ZoneTypes.Radio:
                 _Boxcollider = GetComponent<BoxCollider2D>();
-                Gizmos.color = Color.white;
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
+                break;
+
+            case ZoneTypes.SufferingSoldier:
+                _Boxcollider = GetComponent<BoxCollider2D>();
+                Gizmos.color = Color.yellow;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
