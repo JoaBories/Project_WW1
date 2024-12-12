@@ -33,7 +33,6 @@ public class LifeManager : MonoBehaviour
                 gasTimer = gasMaxTime;
             }
         }
-        Debug.Log(gasTimer);
     }
 
     public void Die()
