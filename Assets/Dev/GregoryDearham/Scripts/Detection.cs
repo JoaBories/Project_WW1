@@ -3,102 +3,158 @@ using UnityEngine.UI;
 
 public class Detection : MonoBehaviour
 {
-    public Slider questionMarkSlider; 
-    public Slider exclamationMarkSlider; 
-    public float detectionSpeed = 1f; 
-    public float decaySpeed = 0.5f; 
-    public Image questionMarkIcon;
-    public Image exclamationMarkIcon; 
-    public Color normalColor = Color.white; 
-    public Color activeColor = Color.red; 
-    public AudioSource suspicionSound; 
-    public AudioSource alertSound; 
-    public float resetDelay = 2f; 
+    public Slider questionMarkSlider;
+    public Slider exclamationMarkSlider;
 
-    private bool inQuestionZone = false;
-    private bool inExclamationZone = false;
+    public float baseDetectionSpeed = 1f; 
+    public float speedBoostMultiplier = 2f;  
+    public float decaySpeed = 0.5f;  
+
+    public Image questionMarkIcon;
+    public Image exclamationMarkIcon;
+    public Color normalColor = Color.white;
+    public Color activeColor = Color.red;
+
+    public AudioSource suspicionSound;
+    public AudioSource alertSound;
+
+    public float resetDelay = 2f;
+
+    private enum DetectionPhase { Question, Exclamation }
+    private DetectionPhase currentPhase = DetectionPhase.Question;
+
+    private bool inDetectionZone = false;
+    private bool inSpeedBoostZone = false;
     private bool suspicionTriggered = false;
     private bool alertTriggered = false;
 
+    private float CurrentDetectionSpeed
+    {
+        get
+        {
+            return inSpeedBoostZone
+                ? baseDetectionSpeed * speedBoostMultiplier
+                : baseDetectionSpeed;
+        }
+    }
+
     private void Update()
     {
-        // Increase detection in Question Mark zone
-        if (inQuestionZone)
+        if (inDetectionZone)
         {
-            questionMarkSlider.value += detectionSpeed * Time.deltaTime;
-            questionMarkSlider.value = Mathf.Clamp01(questionMarkSlider.value);
-            UpdateIconColor(questionMarkIcon, questionMarkSlider.value > 0);
+            if (currentPhase == DetectionPhase.Question)
+            {
+                questionMarkSlider.value += CurrentDetectionSpeed * Time.deltaTime;
+                questionMarkSlider.value = Mathf.Clamp01(questionMarkSlider.value);
+
+                if (questionMarkIcon != null)
+                {
+                    questionMarkIcon.color = questionMarkSlider.value > 0 ? activeColor : normalColor;
+                }
+
+                if (questionMarkSlider.value >= 1f && !suspicionTriggered)
+                {
+                    TriggerSuspicion();
+                }
+            }
+            else if (currentPhase == DetectionPhase.Exclamation)
+            {
+                exclamationMarkSlider.value += CurrentDetectionSpeed * Time.deltaTime;
+                exclamationMarkSlider.value = Mathf.Clamp01(exclamationMarkSlider.value);
+
+                if (exclamationMarkIcon != null)
+                {
+                    exclamationMarkIcon.color = exclamationMarkSlider.value > 0 ? activeColor : normalColor;
+                }
+
+                if (exclamationMarkSlider.value >= 1f && !alertTriggered)
+                {
+                    TriggerAlert();
+                }
+            }
         }
         else
         {
-            // Decay suspicion level if not in the zone
-            questionMarkSlider.value -= decaySpeed * Time.deltaTime;
-            questionMarkSlider.value = Mathf.Clamp01(questionMarkSlider.value);
-            UpdateIconColor(questionMarkIcon, false);
-        }
+            if (currentPhase == DetectionPhase.Question)
+            {
+                questionMarkSlider.value -= decaySpeed * Time.deltaTime;
+                questionMarkSlider.value = Mathf.Clamp01(questionMarkSlider.value);
 
-        // Trigger suspicion action when slider fills
-        if (questionMarkSlider.value >= 1f && !suspicionTriggered)
-        {
-            TriggerSuspicion();
-        }
+                if (questionMarkIcon != null)
+                {
+                    questionMarkIcon.color = questionMarkSlider.value > 0 ? activeColor : normalColor;
+                }
+            }
+            else if (currentPhase == DetectionPhase.Exclamation)
+            {
+                exclamationMarkSlider.value -= decaySpeed * Time.deltaTime;
+                exclamationMarkSlider.value = Mathf.Clamp01(exclamationMarkSlider.value);
 
-        // Increase detection in Exclamation Mark zone
-        if (inExclamationZone)
-        {
-            exclamationMarkSlider.value += detectionSpeed * Time.deltaTime;
-            exclamationMarkSlider.value = Mathf.Clamp01(exclamationMarkSlider.value);
-            UpdateIconColor(exclamationMarkIcon, exclamationMarkSlider.value > 0);
-        }
-        else
-        {
-            // Decay alert level if not in the zone
-            exclamationMarkSlider.value -= decaySpeed * Time.deltaTime;
-            exclamationMarkSlider.value = Mathf.Clamp01(exclamationMarkSlider.value);
-            UpdateIconColor(exclamationMarkIcon, false);
-        }
+                if (exclamationMarkIcon != null)
+                {
+                    exclamationMarkIcon.color = exclamationMarkSlider.value > 0 ? activeColor : normalColor;
+                }
 
-        // Trigger alert action when slider fills
-        if (exclamationMarkSlider.value >= 1f && !alertTriggered)
-        {
-            TriggerAlert();
+                if (exclamationMarkSlider.value <= 0)
+                {
+                    questionMarkSlider.value = 1f;
+
+                    currentPhase = DetectionPhase.Question;
+
+                    exclamationMarkSlider.gameObject.SetActive(false);
+                    exclamationMarkIcon.gameObject.SetActive(false);
+
+                    questionMarkSlider.gameObject.SetActive(true);
+                    questionMarkIcon.gameObject.SetActive(true);
+
+                    suspicionTriggered = false;
+                    alertTriggered = false;
+                }
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("QuestionZone"))
+        if (other.CompareTag("DetectionZone"))
         {
-            inQuestionZone = true;
-            //suspicionSound?.Play(); // Play suspicion sound
+            inDetectionZone = true;
         }
-
-        if (other.CompareTag("ExclamationZone"))
+        else if (other.CompareTag("SpeedBoostZone"))
         {
-            inExclamationZone = true;
-            //alertSound?.Play(); // Play alert sound
+            inSpeedBoostZone = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("QuestionZone"))
+        if (other.CompareTag("DetectionZone"))
         {
-            inQuestionZone = false;
+            inDetectionZone = false;
         }
-
-        if (other.CompareTag("ExclamationZone"))
+        else if (other.CompareTag("SpeedBoostZone"))
         {
-            inExclamationZone = false;
+            inSpeedBoostZone = false;
         }
     }
 
     private void TriggerSuspicion()
     {
-        Debug.Log("Suspicion Maxed! Enemy is watching...");
+        Debug.Log("Suspicion Maxed! Moving to alert phase...");
         suspicionTriggered = true;
 
-        // Optional: Add additional behavior here (e.g., call for backup).
+        if (suspicionSound != null)
+        {
+            suspicionSound.Play();
+        }
+
+        currentPhase = DetectionPhase.Exclamation;
+
+        questionMarkSlider.gameObject.SetActive(false);
+        questionMarkIcon.gameObject.SetActive(false);
+
+        exclamationMarkSlider.gameObject.SetActive(true);
+        exclamationMarkIcon.gameObject.SetActive(true);
     }
 
     private void TriggerAlert()
@@ -106,23 +162,11 @@ public class Detection : MonoBehaviour
         Debug.Log("Alert Maxed! Enemy is attacking...");
         alertTriggered = true;
 
-        // Optional: Add additional behavior here (e.g., start combat).
-        Invoke(nameof(ResetSliders), resetDelay); // Reset after delay
-    }
-
-    private void UpdateIconColor(Image icon, bool isActive)
-    {
-        if (icon != null)
+        if (alertSound != null)
         {
-            icon.color = isActive ? activeColor : normalColor;
+            alertSound.Play();
         }
-    }
 
-    private void ResetSliders()
-    {
-        questionMarkSlider.value = 0;
-        exclamationMarkSlider.value = 0;
-        suspicionTriggered = false;
-        alertTriggered = false;
+        
     }
 }
