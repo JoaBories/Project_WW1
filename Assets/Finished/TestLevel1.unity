@@ -172,7 +172,7 @@ MonoBehaviour:
   nextDoor: {fileID: 981802950}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &40395706
@@ -270,7 +270,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1343776038}
   toRight: 1
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &98683657
@@ -523,7 +523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5991305
+      value: 1.6011332
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -642,7 +642,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1824036625}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!4 &309096140
@@ -791,7 +791,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1824036625}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &478095658
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1824036625}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &548243850
@@ -1348,7 +1348,7 @@ MonoBehaviour:
   nextDoor: {fileID: 886513843}
   toRight: 1
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &705935764
@@ -1538,7 +1538,7 @@ MonoBehaviour:
   nextDoor: {fileID: 8114278379743211685}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &764163309
@@ -1613,7 +1613,7 @@ Transform:
   m_GameObject: {fileID: 801796296}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0004202843, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00000028607826, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1696,7 +1696,7 @@ GameObject:
   - component: {fileID: 842655289}
   - component: {fileID: 842655288}
   m_Layer: 0
-  m_Name: Radio
+  m_Name: RadioTrigger
   m_TagString: TriggerZone
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1712,7 +1712,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2147147094}
@@ -1734,7 +1734,7 @@ MonoBehaviour:
   nextDoor: {fileID: 0}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 2147147093}
   brokenRadio: {fileID: 21300000, guid: 107a73baf6752e6419448e446ac515c8, type: 3}
 --- !u!61 &842655289
@@ -1817,7 +1817,7 @@ MonoBehaviour:
   nextDoor: {fileID: 2009518566}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &852263455
@@ -1996,7 +1996,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1824036625}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!4 &867480678
@@ -2064,7 +2064,7 @@ MonoBehaviour:
   nextDoor: {fileID: 2073183319}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &886513846
@@ -2195,18 +2195,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.08}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.2109375, y: 1.2109375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.93}
   m_EdgeRadius: 0
 --- !u!212 &951913264
 SpriteRenderer:
@@ -2249,8 +2249,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.4433962, g: 0.19150272, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 72f95b1e433f5f642ae76277975c078b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2463,7 +2463,7 @@ MonoBehaviour:
   nextDoor: {fileID: 40395703}
   toRight: 1
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &981802953
@@ -2599,7 +2599,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1226518769}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &1100990619
@@ -2841,7 +2841,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1893269909}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &1153716837
@@ -2984,7 +2984,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1824036625}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!1 &1160656739
@@ -3022,7 +3022,7 @@ MonoBehaviour:
   nextDoor: {fileID: 98683654}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &1160656741
@@ -3112,7 +3112,7 @@ Transform:
   m_GameObject: {fileID: 1172185200}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00028018953, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00000019072158, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3488,7 +3488,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1100990616}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &1226518772
@@ -3724,7 +3724,7 @@ MonoBehaviour:
   nextDoor: {fileID: 98683654}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &1343776041
@@ -4103,7 +4103,7 @@ Transform:
   m_GameObject: {fileID: 1600002642}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00028018953, y: 0, z: 0}
+  m_LocalPosition: {x: -0.00000019072158, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4234,9 +4234,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.3962264, g: 0.14731066, b: 0.042986836, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: a33be0cac13902244864591e01806d82, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4296,7 +4296,7 @@ MonoBehaviour:
   nextDoor: {fileID: 548243847}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &1824036628
@@ -4394,7 +4394,7 @@ MonoBehaviour:
   nextDoor: {fileID: 1153716834}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &1893269912
@@ -4477,7 +4477,7 @@ MonoBehaviour:
   nextDoor: {fileID: 98683654}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &1913210549
@@ -4733,7 +4733,7 @@ MonoBehaviour:
   nextDoor: {fileID: 852263453}
   toRight: 1
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &2009518569
@@ -4865,7 +4865,7 @@ MonoBehaviour:
   nextDoor: {fileID: 886513843}
   toRight: 1
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &2073183322
@@ -4929,7 +4929,7 @@ GameObject:
   - component: {fileID: 2147147094}
   - component: {fileID: 2147147095}
   m_Layer: 0
-  m_Name: RadioSprite
+  m_Name: Radio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4945,7 +4945,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 130, y: 0.6, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 842655287}
@@ -4993,7 +4993,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 9e4ef3261d2250841807b7f0985dc739, type: 3}
-  m_Color: {r: 0, g: 0.31293997, b: 0.764151, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5065,7 +5065,7 @@ MonoBehaviour:
   nextDoor: {fileID: 0}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!114 &1398191932470077381
@@ -5085,7 +5085,7 @@ MonoBehaviour:
   nextDoor: {fileID: 764163306}
   toRight: 0
   crateObject: {fileID: 0}
-  crateMovement: {x: 0, y: 0, z: 0}
+  crateMovement: 0
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!1001 &1890835527902450703
@@ -5264,7 +5264,7 @@ GameObject:
   - component: {fileID: 582244906842055664}
   - component: {fileID: 5348264589269561215}
   m_Layer: 0
-  m_Name: TriggerZone
+  m_Name: CrateTrigger
   m_TagString: TriggerZone
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -5303,7 +5303,7 @@ MonoBehaviour:
   nextDoor: {fileID: 0}
   toRight: 0
   crateObject: {fileID: 951913261}
-  crateMovement: {x: 2, y: 0, z: 0}
+  crateMovement: 2
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
 --- !u!61 &5704071088617860777
@@ -5410,7 +5410,7 @@ GameObject:
   m_Layer: 0
   m_Name: Mask
   m_TagString: TriggerZone
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

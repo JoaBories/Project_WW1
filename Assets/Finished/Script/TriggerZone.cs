@@ -27,11 +27,24 @@ public class TriggerZone : MonoBehaviour
     public GameObject nextDoor;
     public bool toRight;
 
+    public int size;
+
     public GameObject crateObject;
     public float crateMovement;
 
     public GameObject radioObject;
     public Sprite brokenRadio;
+
+    private void Awake()
+    {
+        switch (type)
+        {
+            case ZoneTypes.Gas:
+                GetComponent<Animator>().SetFloat("Size", size); 
+                break;
+        }
+    }
+
 
     private void OnDrawGizmos()
     {

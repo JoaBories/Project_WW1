@@ -50,6 +50,13 @@ public class TriggerZonEditor : Editor
                 EditorGUILayout.EndHorizontal();
                 break;
 
+            case ZoneTypes.Gas:
+
+                EditorGUILayout.BeginHorizontal();
+                zone.size = EditorGUILayout.IntField("The size of the gas cloud :", zone.size);
+                EditorGUILayout.EndHorizontal();
+                break;
+
             case ZoneTypes.Crate:
                 EditorGUILayout.BeginHorizontal();
                 zone.crateObject = (GameObject)EditorGUILayout.ObjectField("The crate object to push : ", zone.crateObject, typeof(GameObject), true);
