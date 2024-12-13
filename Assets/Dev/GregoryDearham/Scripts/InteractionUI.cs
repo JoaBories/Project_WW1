@@ -34,3 +34,4 @@ public class InteractionUI : MonoBehaviour
         interactionText.gameObject.SetActive(false);
     }
 }
+ 
