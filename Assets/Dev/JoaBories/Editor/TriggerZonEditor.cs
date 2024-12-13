@@ -1,5 +1,6 @@
 using System;
 using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 [CustomEditor(typeof(TriggerZone))]
@@ -7,16 +8,18 @@ public class TriggerZonEditor : Editor
 {
     private TriggerZone zone;
 
+    SerializedProperty typeProp;
+
     public void OnEnable()
     {
-        zone = (TriggerZone)target;
+        typeProp = serializedObject.FindProperty("type");
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
         EditorGUILayout.BeginHorizontal();
-        zone.type = (ZoneTypes)EditorGUILayout.EnumPopup("Trigger type ",zone.type);
+        EditorGUILayout.EnumPopup(typeProp.GetEnumValue<ZoneTypes>());
         EditorGUILayout.EndHorizontal();
 
         switch(zone.type)
@@ -47,13 +50,6 @@ public class TriggerZonEditor : Editor
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
                 zone.toRight = EditorGUILayout.Toggle("go out to the right :", zone.toRight);
-                EditorGUILayout.EndHorizontal();
-                break;
-
-            case ZoneTypes.Gas:
-
-                EditorGUILayout.BeginHorizontal();
-                zone.size = EditorGUILayout.IntField("The size of the gas cloud :", zone.size);
                 EditorGUILayout.EndHorizontal();
                 break;
 
