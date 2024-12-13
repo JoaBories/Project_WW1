@@ -19,21 +19,20 @@ public class Shooting : MonoBehaviour
     void HandleShootingInput()
     {
        
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isShooting) 
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isShooting && NewMovement.instance.CheckGround()) 
         {
             
             isShooting = true;
-            NewMovement.instance.lockMovements(); 
-            Actions.Instance.LockGameplay();     
+
+            NewMovement.instance.SwitchState(NewMoveStates.action, true);
+            
+            animator.Play("attack");
 
             
-            animator.SetTrigger("Attack");
-
-            
-            ShootNormalProjectile();
+           
 
            
-            StartCoroutine(ResetShooting());
+          
         }
     }
 
@@ -56,14 +55,17 @@ public class Shooting : MonoBehaviour
         Destroy(projectile, projectileDistance);
     }
 
-    System.Collections.IEnumerator ResetShooting()
+    public void ResetShooting()
     {
-        
-        yield return new WaitForSeconds(0.5f); 
+
+        NewMovement.instance.delockMovements();
+        Actions.Instance.DelockGameplay();
+
+        NewMovement.instance.SwitchState(NewMoveStates.idle);
 
        
-        NewMovement.instance.delockMovements(); 
-        Actions.Instance.DelockGameplay();     
+
+
         isShooting = false;
     }
 }
