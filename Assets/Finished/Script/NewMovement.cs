@@ -106,7 +106,7 @@ public class NewMovement : MonoBehaviour
         if (!moveLock)
         {
 
-            if (Mathf.Abs(_moveDir) < 0.1f)
+            if (Mathf.Abs(_moveDir) < 0.01f)
             {
                 if (State == NewMoveStates.walk || State == NewMoveStates.run)
                 {

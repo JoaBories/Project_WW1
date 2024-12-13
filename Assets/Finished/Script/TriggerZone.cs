@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ public class TriggerZone : MonoBehaviour
     public bool toRight;
 
     public GameObject crateObject;
-    public Vector3 crateMovement;
+    public float crateMovement;
 
     public GameObject radioObject;
     public Sprite brokenRadio;
@@ -98,13 +99,29 @@ public class TriggerZone : MonoBehaviour
 
     public void Push()
     {
-        crateObject.transform.position += crateMovement;
+        StartCoroutine(PushCoroutin(crateMovement));
+    }
+
+    public IEnumerator PushCoroutin(float distanceToTravel)
+    {
+        int iterateNumber = 0;
+        while (iterateNumber < 100)
+        {
+            crateObject.transform.position += new Vector3(distanceToTravel/100, 0, 0);
+            iterateNumber++;
+            yield return new WaitForSeconds(0.01f);
+        }
         Destroy(gameObject);
     }
 
     public void DestroyRadio()
     {
         radioObject.GetComponent<SpriteRenderer>().sprite = brokenRadio;
+        Destroy(gameObject);
+    }
+
+    public void ExecuteSoldier()
+    {
         Destroy(gameObject);
     }
 }

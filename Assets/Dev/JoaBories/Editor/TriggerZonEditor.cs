@@ -55,7 +55,7 @@ public class TriggerZonEditor : Editor
                 zone.crateObject = (GameObject)EditorGUILayout.ObjectField("The crate object to push : ", zone.crateObject, typeof(GameObject), true);
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
-                zone.crateMovement = EditorGUILayout.Vector3Field("The movement of the crate when pushed : ", zone.crateMovement);
+                zone.crateMovement = EditorGUILayout.FloatField("The movement of the crate when pushed : ", zone.crateMovement);
                 EditorGUILayout.EndHorizontal();
                 break;
 
