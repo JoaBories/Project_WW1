@@ -2,12 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject menuGroup;
-    public GameObject optionsPanel;
-    //public GameObject loadGamePanel;
+    public GameObject menuGroup; // Group containing all panels
+    public GameObject optionsPanel; // Options panel
+
+    [Header("Default Buttons")]
+    public Button mainMenuDefaultButton; // Default button for main menu
+    public Button optionsPanelDefaultButton; // Default button for options panel
 
     private Controls inputActions;
     private InputAction journalMenuAction;
@@ -25,15 +29,19 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        
+        // Initialize menu state
         menuGroup.SetActive(true);
         optionsPanel.SetActive(false);
-        //loadGamePanel.SetActive(false);
+
+        // Set the default button for the main menu
+        if (mainMenuDefaultButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(mainMenuDefaultButton.gameObject);
+        }
     }
 
     private void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             BackToMainMenu();
@@ -42,13 +50,8 @@ public class MainMenu : MonoBehaviour
 
     public void OptionsTab()
     {
-        ActivatePanel(optionsPanel);
+        ActivatePanel(optionsPanel, optionsPanelDefaultButton);
     }
-
-    //public void LoadGame()
-    //{
-    //    ActivatePanel(loadGamePanel);
-    //}
 
     public void StartGame()
     {
@@ -61,42 +64,43 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private void ActivatePanel(GameObject panelToActivate)
+    private void ActivatePanel(GameObject panelToActivate, Button defaultButton)
     {
-     
+        // Deactivate all panels in menuGroup
         foreach (Transform child in menuGroup.transform)
         {
             child.gameObject.SetActive(false);
         }
 
-        
+        // Activate the specified panel
         panelToActivate.SetActive(true);
+
+        // Set the default button for the activated panel
+        if (defaultButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(defaultButton.gameObject);
+        }
     }
 
     public void BackToMainMenu()
     {
-        // Deactivate all panels within menuGroup
+        // Deactivate all panels in menuGroup
+        // Deactivate all child panels of menuGroup
         foreach (Transform child in menuGroup.transform)
         {
             child.gameObject.SetActive(false);
         }
 
-        // Activate the main menu panel (menuGroup itself stays active)
-        menuGroup.SetActive(true);
+        // Reactivate the main menu panel explicitly (assumed to be the first child)
         if (menuGroup.transform.childCount > 0)
         {
-            menuGroup.transform.GetChild(0).gameObject.SetActive(true); // Assume the first child is the main menu panel
-            menuGroup.transform.GetChild(1).gameObject.SetActive(true);
-            menuGroup.transform.GetChild(2).gameObject.SetActive(true);
-            menuGroup.transform.GetChild(3).gameObject.SetActive(true);
-            //menuGroup.transform.GetChild(4).gameObject.SetActive(true);
+            menuGroup.transform.GetChild(0).gameObject.SetActive(true); // Main menu panel
+        }
 
-
-
-            menuGroup.transform.gameObject.SetActive(true);
-
-
+        // Set focus on the main menu default button for controller navigation
+        if (mainMenuDefaultButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(mainMenuDefaultButton.gameObject);
         }
     }
-
 }
