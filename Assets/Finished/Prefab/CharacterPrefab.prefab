@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1349928421943510630}
   m_Layer: 0
-  m_Name: Feet1
+  m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -26,37 +26,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.2, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7083353704622380438}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1370261241423573031
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2106071203685791726}
-  m_Layer: 0
-  m_Name: Feet2
-  m_TagString: Untagged
-  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2106071203685791726
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370261241423573031}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -92,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 1963117183744982418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6011319, y: 0.6000001, z: -14.285713}
+  m_LocalPosition: {x: 1.6002736, y: 0.6000001, z: -14.285713}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -286,7 +255,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1349928421943510630}
-  - {fileID: 2106071203685791726}
   - {fileID: 1082641608672749383}
   - {fileID: 5589371620233718054}
   m_Father: {fileID: 0}
@@ -355,17 +323,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4981c08d5d03b53458cce363aad2ec94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feet1: {fileID: 272965514362653016}
-  feet2: {fileID: 1370261241423573031}
+  groundCheckPoint: {fileID: 1349928421943510630}
+  groundCheckSize: {x: 0.2, y: 0.01}
   groundLayers:
     serializedVersion: 2
     m_Bits: 8
   _cam: {fileID: 5434898451970168288}
-  walkSpeed: 1.5
-  runSpeed: 2.3
+  walkSpeed: 2
+  runSpeed: 3
+  acceleration: 10
+  decceleration: 10
+  velPower: 0.9
+  frictionAmount: 0.2
   staticJump: {x: 0, y: 3}
   walkJump: {x: 2, y: 3}
   runJump: {x: 4, y: 3}
+  upGravity: 1
+  downGravity: 2
   runOrthoSize: 2.1
 --- !u!114 &7467867494576917501
 MonoBehaviour:
@@ -447,7 +421,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 27b4d4623beebdf47a85d820eab3ba06, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
