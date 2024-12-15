@@ -8,18 +8,16 @@ public class TriggerZonEditor : Editor
 {
     private TriggerZone zone;
 
-    SerializedProperty typeProp;
-
     public void OnEnable()
     {
-        typeProp = serializedObject.FindProperty("type");
+        zone = (TriggerZone)target;
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
         EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.EnumPopup(typeProp.GetEnumValue<ZoneTypes>());
+        zone.type = (ZoneTypes)EditorGUILayout.EnumPopup(zone.type);
         EditorGUILayout.EndHorizontal();
 
         switch(zone.type)
