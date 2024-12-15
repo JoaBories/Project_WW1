@@ -31,6 +31,12 @@ public class TriggerZone : MonoBehaviour
     public GameObject radioObject;
     public Sprite brokenRadio;
 
+
+
+    
+    //public string interactionText; // The text to display for this zone
+    //public Sprite interactionSprite;
+
     private void OnDrawGizmos()
     {
         switch (type)
