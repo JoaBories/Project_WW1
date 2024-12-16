@@ -68,6 +68,12 @@ public class TriggerZonEditor : Editor
                 zone.brokenRadio = (Sprite)EditorGUILayout.ObjectField("The broken radio sprite : ", zone.brokenRadio, typeof(Sprite), true);
                 EditorGUILayout.EndHorizontal();
                 break;
+
+            case ZoneTypes.Shootings:
+                EditorGUILayout.BeginHorizontal();
+                zone.coolDown = EditorGUILayout.FloatField("Shooting cooldown", zone.coolDown);
+                EditorGUILayout.EndHorizontal();
+                break;
         }
     }
 }
