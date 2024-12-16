@@ -62,6 +62,8 @@ public class NewMovement : MonoBehaviour
 
     private Vector2 nextJumpForce;
 
+    [NonSerialized] public bool isGround;
+
     private void Awake()
     {
         instance = this;
@@ -76,6 +78,8 @@ public class NewMovement : MonoBehaviour
 
         cameraOffset = _cam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX;
         baseOrthoSize = _cam.m_Lens.OrthographicSize;
+
+        isGround = CheckGround();
     }
 
     private void OnEnable()
@@ -150,18 +154,20 @@ public class NewMovement : MonoBehaviour
                 }
             }
 
-            if (State == NewMoveStates.air && CheckGround() && _rigidBody.velocity.y < 0)
+            if (State == NewMoveStates.air && isGround && _rigidBody.velocity.y < 0.1f)
             {
                 _animator.Play("landing");
                 SwitchState(NewMoveStates.landing);
             }
 
-            if (!CheckGround())
+            if (!isGround)
             {
                 SwitchState(NewMoveStates.air);
                 _animator.Play("airLoop");
             }
         }
+
+        Debug.Log(State);
     }
 
     private void FixedUpdate()
@@ -170,6 +176,8 @@ public class NewMovement : MonoBehaviour
         float speedDif;
         float accelRate;
         float movement;
+
+        isGround = CheckGround();
 
         if (!moveLock)
         {
@@ -193,15 +201,28 @@ public class NewMovement : MonoBehaviour
             }
         }
 
-        if (CheckGround() && Mathf.Abs(_moveDir) < 0.01f && State != NewMoveStates.air)
+        if (isGround)
         {
-            float amount = Mathf.Min(Mathf.Abs(_rigidBody.velocity.x), Mathf.Abs(frictionAmount)) * Mathf.Sign(_rigidBody.velocity.x);
-            _rigidBody.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+            if (State != NewMoveStates.air)
+            {
+                _rigidBody.gravityScale = 0;
+            }
+            if (Mathf.Abs(_moveDir) < 0.01f && State != NewMoveStates.air)
+            {
+                float amount = Mathf.Min(Mathf.Abs(_rigidBody.velocity.x), Mathf.Abs(frictionAmount)) * Mathf.Sign(_rigidBody.velocity.x);
+                _rigidBody.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+            }
         }
-
-        if (!CheckGround() && _rigidBody.velocity.y < 0)
+        else
         {
-            _rigidBody.gravityScale = downGravity;
+            if (_rigidBody.velocity.y <= 0)
+            {
+                _rigidBody.gravityScale = downGravity;
+            } 
+            else
+            {
+                _rigidBody.gravityScale = upGravity;
+            }
         }
     }
 
@@ -262,7 +283,7 @@ public class NewMovement : MonoBehaviour
 
     private void jumpInput(InputAction.CallbackContext context)
     {
-        if (CheckGround() && !moveLock && !PlayerMask.instance.mask)
+        if (isGround && !moveLock && !PlayerMask.instance.mask)
         {
             if (_spriteRenderer.flipX)
             {
