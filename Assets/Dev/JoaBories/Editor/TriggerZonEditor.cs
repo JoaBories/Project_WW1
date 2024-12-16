@@ -1,5 +1,6 @@
 using System;
 using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 [CustomEditor(typeof(TriggerZone))]
@@ -16,7 +17,7 @@ public class TriggerZonEditor : Editor
     {
         serializedObject.Update();
         EditorGUILayout.BeginHorizontal();
-        zone.type = (ZoneTypes)EditorGUILayout.EnumPopup("Trigger type ",zone.type);
+        zone.type = (ZoneTypes)EditorGUILayout.EnumPopup(zone.type);
         EditorGUILayout.EndHorizontal();
 
         switch(zone.type)
@@ -55,7 +56,7 @@ public class TriggerZonEditor : Editor
                 zone.crateObject = (GameObject)EditorGUILayout.ObjectField("The crate object to push : ", zone.crateObject, typeof(GameObject), true);
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.BeginHorizontal();
-                zone.crateMovement = EditorGUILayout.Vector3Field("The movement of the crate when pushed : ", zone.crateMovement);
+                zone.crateMovement = EditorGUILayout.FloatField("The movement of the crate when pushed : ", zone.crateMovement);
                 EditorGUILayout.EndHorizontal();
                 break;
 

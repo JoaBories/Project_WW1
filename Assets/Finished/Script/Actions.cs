@@ -142,6 +142,11 @@ public class Actions : MonoBehaviour
                     _animator.Play("interact");
                     NewMovement.instance.SwitchState(NewMoveStates.action, true);
                     break;
+
+                case ZoneTypes.SufferingSoldier:
+                    _animator.Play("execute");
+                    NewMovement.instance.SwitchState(NewMoveStates.action, true);
+                    break;
             }
         }
     }
@@ -187,6 +192,10 @@ public class Actions : MonoBehaviour
 
             case ZoneTypes.Radio:
                 triggerZone.DestroyRadio();
+                break;
+
+            case ZoneTypes.SufferingSoldier:
+                triggerZone.ExecuteSoldier();
                 break;
         }
         NewMovement.instance.SwitchState(NewMoveStates.idle);
