@@ -203,10 +203,10 @@ public class NewMovement : MonoBehaviour
 
         if (isGround)
         {
-            if (State != NewMoveStates.air)
-            {
-                _rigidBody.gravityScale = 0;
-            }
+            //if (State != NewMoveStates.air)
+            //{
+            //    _rigidBody.gravityScale = 0;
+            //}
             if (Mathf.Abs(_moveDir) < 0.01f && State != NewMoveStates.air)
             {
                 float amount = Mathf.Min(Mathf.Abs(_rigidBody.velocity.x), Mathf.Abs(frictionAmount)) * Mathf.Sign(_rigidBody.velocity.x);
@@ -215,14 +215,14 @@ public class NewMovement : MonoBehaviour
         }
         else
         {
-            if (_rigidBody.velocity.y <= 0)
-            {
-                _rigidBody.gravityScale = downGravity;
-            } 
-            else
-            {
-                _rigidBody.gravityScale = upGravity;
-            }
+            //if (_rigidBody.velocity.y <= 0)
+            //{
+            //    _rigidBody.gravityScale = downGravity;
+            //} 
+            //else
+            //{
+            //    _rigidBody.gravityScale = upGravity;
+            //}
         }
     }
 
