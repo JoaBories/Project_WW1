@@ -18,6 +18,10 @@ public class JournalMenu : MonoBehaviour
     public GameObject areYouSurePanel;
     public GameObject oxygenPanel;
     public GameObject HUDPanel;
+    //public GameObject bloodKillone;
+    //public GameObject bloodKilltwo;
+    //public GameObject bloodKillthree;
+
 
     [Header("Background Blur")]
     public GameObject backgroundBlur;
@@ -33,6 +37,9 @@ public class JournalMenu : MonoBehaviour
     public Button optionsPanelDefaultButton;
     public Button pausePanelDefaultButton;
     public Button areYouSureButton;
+
+
+    
 
     private void Awake()
     {
@@ -137,6 +144,16 @@ public class JournalMenu : MonoBehaviour
     {
         ActivatePanel(optionsPanel, optionsPanelDefaultButton);
     }
+    //public void KillSoldier()
+
+    //{
+    //    if 
+    //    ActivatePanel(bloodKillone, null);
+
+    //}
+
+
+
 
     public void QuitGame()
     {
@@ -198,4 +215,6 @@ public class JournalMenu : MonoBehaviour
             }
         }
     }
+
+
 }

@@ -3,7 +3,16 @@ guid: 530c555132d82b94ca1987864924dc58
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ambienceAudioSource: {instanceID: 0}
+  - sfxAudioSource: {instanceID: 0}
+  - ambienceSlider: {instanceID: 0}
+  - sfxSlider: {instanceID: 0}
+  - backgroundDayTrenchies: {instanceID: 0}
+  - backgroundNightTrenchies: {fileID: 8300000, guid: 9377f2abf025b70499ad485621e1fde8, type: 3}
+  - backgroundBunkerEcho: {instanceID: 0}
+  - jumpStart: {instanceID: 0}
+  - pickUpItem: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

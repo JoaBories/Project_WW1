@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneAudioManagerScript : MonoBehaviour
+public class SceneAudioManager : MonoBehaviour
 {
-    public static SceneAudioManagerScript Instance;
+    public static SceneAudioManager Instance;
 
     private void Awake()
     {
@@ -20,19 +20,21 @@ public class SceneAudioManagerScript : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        
-        if (sceneName == "NightScene")
+        // Trigger appropriate ambience for the scene
+        switch (sceneName)
         {
-            AudioManager.Instance.PlayAmbience(AudioManager.Instance.backgroundNightTrenchies);
+            case "GregsDevCorner":
+                AudioManager.Instance.PlayAmbience(AudioManager.Instance.backgroundNightTrenchies);
+                break;
+            case "BunkerScene":
+                AudioManager.Instance.PlayAmbience(AudioManager.Instance.backgroundBunkerEcho);
+                break;
+            default:
+                AudioManager.Instance.StopAmbience(); // Stop ambience if no specific match
+                break;
         }
-        else if (sceneName == "BunkerScene")
-        {
-            AudioManager.Instance.PlayAmbience(AudioManager.Instance.backgroundBunkerEcho);
-        }
-
+        Debug.Log("The scene loaded with required audio");
         // Load the new scene
         SceneManager.LoadScene(sceneName);
-
-        //SceneManagerScript.Instance.LoadScene("NextScene"); use this
     }
 }
