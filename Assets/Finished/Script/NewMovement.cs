@@ -162,7 +162,9 @@ public class NewMovement : MonoBehaviour
                 _animator.Play("airLoop");
             }
         }
+        Debug.Log(State);
     }
+
 
     private void FixedUpdate()
     {
