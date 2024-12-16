@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,7 +14,9 @@ public enum ZoneTypes
     Mask,
     Crate,
     Radio,
-    SufferingSoldier
+    SufferingSoldier,
+    Shootings,
+    ConstantShootings
 }
 
 public class TriggerZone : MonoBehaviour
@@ -32,6 +35,19 @@ public class TriggerZone : MonoBehaviour
 
     public GameObject radioObject;
     public Sprite brokenRadio;
+
+    [NonSerialized] public bool shooting;
+    private float nextStatechange;
+    public float coolDown;
+
+    private void FixedUpdate()
+    {
+        if (Time.time > nextStatechange)
+        {
+            nextStatechange = Time.time + coolDown;
+            shooting = !shooting;
+        }
+    }
 
 
     private void OnDrawGizmos()
@@ -89,6 +105,19 @@ public class TriggerZone : MonoBehaviour
                 break;
 
             case ZoneTypes.Gas:
+                _Boxcollider = GetComponent<BoxCollider2D>();
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
+                break;
+
+            case ZoneTypes.Shootings:
+                _Boxcollider = GetComponent<BoxCollider2D>();
+                if (shooting) Gizmos.color = Color.red;
+                else Gizmos.color = Color.green;
+                Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
+                break;
+
+            case ZoneTypes.ConstantShootings:
                 _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
