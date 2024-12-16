@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckPoint: {fileID: 1349928421943510630}
-  groundCheckSize: {x: 0.2, y: 0.01}
+  groundCheckSize: {x: 0.01, y: 0.01}
   groundLayers:
     serializedVersion: 2
     m_Bits: 8
