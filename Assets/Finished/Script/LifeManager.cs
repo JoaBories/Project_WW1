@@ -86,6 +86,9 @@ public class LifeManager : MonoBehaviour
                     }
                     break;
 
+                case ZoneTypes.ConstantShootings:
+                    Die();
+                    break;
             }
         }
     }
