@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5082898559816132594}
   - component: {fileID: 2940689359949607034}
   - component: {fileID: -5009813152644739612}
+  - component: {fileID: 8225803794853455880}
   m_Layer: 0
   m_Name: ChatBubbleManager
   m_TagString: Untagged
@@ -60,3 +61,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hudObjectiveText: {fileID: 0}
   pauseMenuObjectiveText: {fileID: 0}
+--- !u!114 &8225803794853455880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376963222445924447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2872f4951d55d2e4aa7cb916f1c2ce0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 6572195777001664702, guid: dec3be9cbfe5b1f43a3c2f79d546b862, type: 3}
+  Sounds: []
+  SoundsNames: []
