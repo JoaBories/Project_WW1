@@ -4,35 +4,24 @@ using UnityEngine;
 
 public class PuzzleSwitch : MonoBehaviour
 {
-    public bool state;
-    [SerializeField] List<PuzzleDoor> DoorsConnected;
-    [SerializeField] List<PuzzleLight> LightConnected;
+    [SerializeField] PuzzleDoor DoorsConnected;
+    [SerializeField] PuzzleLight LightToSwitchOn;
+    [SerializeField] PuzzleLight LightToSwitchOff;
 
     private void Start()
     {
-        foreach (PuzzleDoor door in DoorsConnected)
-        {
-            door.Off();
-        }
-        foreach (PuzzleLight light in LightConnected)
-        {
-            light.Off();
-        }
+        DoorsConnected.Off();
+        LightToSwitchOff.On();
+        LightToSwitchOn.Off();
     }
 
     public void switchOn()
     {
-        state = true;
         GetComponent<Animator>().Play("SwitchActivated");
         GetComponent<Collider2D>().enabled = false;
-        foreach (PuzzleDoor door in DoorsConnected)
-        {
-            door.On();
-        }
-        foreach (PuzzleLight light in LightConnected)
-        {
-            light.On();
-        }
+        LightToSwitchOn.On();
+        LightToSwitchOff.Off();
+        DoorsConnected.On();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
