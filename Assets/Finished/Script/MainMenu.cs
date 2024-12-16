@@ -55,7 +55,8 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneAudioManager.Instance.LoadScene("GregsDevCorner");
+        //SceneAudioManager.Instance.LoadScene("GregsDevCorner");
+        SceneManager.LoadScene("GregsDevCorner");
     }
 
     public void QuitGame()

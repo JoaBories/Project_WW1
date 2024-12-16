@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,104 +9,99 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource ambienceAudioSource;
     [SerializeField] private AudioSource sfxAudioSource;
 
-    [Header("Volume Sliders")]
-    [SerializeField] private Slider ambienceSlider;
-    [SerializeField] private Slider sfxSlider;
+    private Dictionary<string, AudioClip> ambienceClips;
+    private Dictionary<string, AudioClip> sfxClips;
 
-    [Header("Ambience Clips")]
-    public AudioClip backgroundDayTrenchies;
-    public AudioClip backgroundNightTrenchies;
-    public AudioClip backgroundBunkerEcho;
-
-    [Header("Player Sound Effects")]
-    public AudioClip jumpStart;
-    public AudioClip pickUpItem;
-    // Add other clips here...
+    
+    public float AmbienceVolume { get; private set; } = 1f;
+    public float SFXVolume { get; private set; } = 1f;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Persist across scenes
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Prevent duplicates
+            Destroy(gameObject);
         }
+
+        ambienceClips = new Dictionary<string, AudioClip>();
+        sfxClips = new Dictionary<string, AudioClip>();
     }
 
     private void Start()
     {
-        // Initialize sliders with saved volume settings or defaults
-        float savedAmbienceVolume = PlayerPrefs.GetFloat("AmbienceVolume", 1f);
-        float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        // Load saved volumes
+        AmbienceVolume = PlayerPrefs.GetFloat("AmbienceVolume", 1f);
+        SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
-        SetAmbienceVolume(savedAmbienceVolume);
-        SetSFXVolume(savedSFXVolume);
-
-        if (ambienceSlider != null)
-        {
-            ambienceSlider.value = savedAmbienceVolume;
-            ambienceSlider.onValueChanged.AddListener(SetAmbienceVolume);
-        }
-
-        if (sfxSlider != null)
-        {
-            sfxSlider.value = savedSFXVolume;
-            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
-        }
+        if (ambienceAudioSource) ambienceAudioSource.volume = AmbienceVolume;
+        if (sfxAudioSource) sfxAudioSource.volume = SFXVolume;
     }
 
     public void SetAmbienceVolume(float volume)
     {
-        if (ambienceAudioSource != null)
-        {
-            ambienceAudioSource.volume = volume;
-        }
-        PlayerPrefs.SetFloat("AmbienceVolume", volume); // Save the value
+        AmbienceVolume = volume;
+        if (ambienceAudioSource) ambienceAudioSource.volume = volume;
+        PlayerPrefs.SetFloat("AmbienceVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
-        if (sfxAudioSource != null)
-        {
-            sfxAudioSource.volume = volume;
-        }
-        PlayerPrefs.SetFloat("SFXVolume", volume); // Save the value
+        SFXVolume = volume;
+        if (sfxAudioSource) sfxAudioSource.volume = volume;
+        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
-    #region Sound Playback
-
-    public void PlayAmbience(AudioClip ambienceClip)
+    public void PlayAmbience(string clipName)
     {
-        if (ambienceClip == null || ambienceAudioSource == null) return;
-
-        if (ambienceAudioSource.clip != ambienceClip)
+        if (ambienceClips == null)
         {
-            ambienceAudioSource.clip = ambienceClip;
-            ambienceAudioSource.loop = true;
-            ambienceAudioSource.Play();
+            Debug.LogWarning("Ambience clips dictionary is not initialized.");
+            return;
+        }
+
+        if (ambienceAudioSource == null)
+        {
+            Debug.LogWarning("Ambience audio source is not assigned.");
+            return;
+        }
+
+        if (ambienceClips.ContainsKey(clipName))
+        {
+            var clip = ambienceClips[clipName];
+            if (ambienceAudioSource.clip != clip)
+            {
+                ambienceAudioSource.clip = clip;
+                ambienceAudioSource.loop = true;
+                ambienceAudioSource.Play();
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Ambience clip '{clipName}' not found.");
+        }
+    }
+
+    public void PlaySFX(string clipName)
+    {
+        if (sfxClips.ContainsKey(clipName) && sfxAudioSource)
+        {
+            sfxAudioSource.PlayOneShot(sfxClips[clipName]);
         }
     }
 
     public void StopAmbience()
     {
-        if (ambienceAudioSource != null && ambienceAudioSource.isPlaying)
-        {
-            ambienceAudioSource.Stop();
-            ambienceAudioSource.clip = null;
-        }
-
+        if (ambienceAudioSource) ambienceAudioSource.Stop();
     }
 
-    public void PlaySFX(AudioClip sfxClip)
+    public void InitializeClips(Dictionary<string, AudioClip> ambience, Dictionary<string, AudioClip> sfx)
     {
-        if (sfxClip != null && sfxAudioSource != null)
-        {
-            sfxAudioSource.PlayOneShot(sfxClip);
-        }
+        ambienceClips = ambience;
+        sfxClips = sfx;
     }
-
-    #endregion
 }
