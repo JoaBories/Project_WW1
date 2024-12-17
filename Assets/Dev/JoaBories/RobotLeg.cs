@@ -8,11 +8,14 @@ public enum SmashPhases
     stayingUp,
     goingRight,
     goingDown,
-    stayingDown
+    stayingDown,
+    end
 }
 
 public class RobotLeg : MonoBehaviour
 {
+    [SerializeField] private bool first;
+
     [SerializeField] private GameObject floorWaypoint;
     [SerializeField] private GameObject skyWaypoint;
 
@@ -43,19 +46,20 @@ public class RobotLeg : MonoBehaviour
         {
             case SmashPhases.goingUp:
                 transform.position += new Vector3(0, upSpeed * Time.deltaTime, 0);
-                if(transform.position.y >= floorWaypoint.transform.position.y)
+                if(transform.position.y >= skyWaypoint.transform.position.y)
                 {
                     phase = SmashPhases.goingRight;
-                    transform.position = new Vector3(transform.position.x, floorWaypoint.transform.position.y, transform.position.z);
+                    transform.position = new Vector3(transform.position.x, skyWaypoint.transform.position.y, transform.position.z);
                 }
                 break;
 
             case SmashPhases.goingDown:
                 transform.position += new Vector3(0, -upSpeed * Time.deltaTime, 0);
-                if (transform.position.y >= floorWaypoint.transform.position.y)
+                if (transform.position.y <= floorWaypoint.transform.position.y)
                 {
                     phase = SmashPhases.stayingDown;
                     transform.position = new Vector3(transform.position.x, floorWaypoint.transform.position.y, transform.position.z);
+                    nextStayingEnd = Time.time + stayingTime;
                 }
                 break;
 
@@ -68,6 +72,9 @@ public class RobotLeg : MonoBehaviour
                     if (currenSmashWaypointIndex < smashWaypoints.Count)
                     {
                         currenSmashWaypointIndex++;
+                    } else
+                    {
+                        phase = SmashPhases.end;
                     }
                     nextStayingEnd = Time.time + stayingTime;
                 }
