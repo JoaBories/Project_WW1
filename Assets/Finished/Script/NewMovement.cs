@@ -230,7 +230,7 @@ public class NewMovement : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.transform.position, Vector2.down, 0.01f, groundLayers);
                 if (hit.point != Vector2.zero)
                 {
-                    transform.position = new Vector3(transform.position.x, hit.point.y + transform.localScale.y * (GetComponent<CapsuleCollider2D>().size.y / 2), transform.position.z);
+                    transform.position = new Vector3(transform.position.x, hit.point.y + transform.localScale.y * (GetComponent<CapsuleCollider2D>().size.y / 2) -0.001f, transform.position.z);
                 }
             }
 
