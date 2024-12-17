@@ -64,6 +64,8 @@ public class NewMovement : MonoBehaviour
 
     [NonSerialized] public bool isGround;
 
+    [SerializeField] private bool isInTrench;
+
     private void Awake()
     {
         instance = this;
@@ -80,6 +82,11 @@ public class NewMovement : MonoBehaviour
         baseOrthoSize = _cam.m_Lens.OrthographicSize;
 
         isGround = CheckGround();
+
+        if (isInTrench)
+        {
+            _animator.SetFloat("Trench", 1);
+        }
     }
 
     private void OnEnable()
@@ -168,6 +175,7 @@ public class NewMovement : MonoBehaviour
         }
     }
 
+
     private void FixedUpdate()
     {
         float targetSpeed;
@@ -220,7 +228,7 @@ public class NewMovement : MonoBehaviour
             if (State != NewMoveStates.jumping && State != NewMoveStates.air)
             {
                 _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
-                RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.transform.position, Vector2.down, 0.01f, groundLayers);
+                RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.transform.position, Vector2.down, 1f, groundLayers);
                 if (hit.point != Vector2.zero)
                 {
                     transform.position = new Vector3(transform.position.x, hit.point.y + transform.localScale.y * (GetComponent<CapsuleCollider2D>().size.y / 2), transform.position.z);
