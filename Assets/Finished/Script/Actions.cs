@@ -19,6 +19,7 @@ public class Actions : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     private GameObject currentTriggerZone;
+    private GameObject currentEnemy;
     private TriggerZone currentClimb;
 
     public bool gameplayLock;
@@ -82,6 +83,10 @@ public class Actions : MonoBehaviour
             {
                 currentTriggerZone = collision.gameObject;
             }
+        } 
+        else if (collision != currentEnemy && collision.CompareTag("Enemy"))
+        {
+            currentEnemy = collision.gameObject;
         }
     }
 
@@ -90,6 +95,11 @@ public class Actions : MonoBehaviour
         if (currentTriggerZone == collision.gameObject)
         {
             currentTriggerZone = null;
+        }
+
+        if (currentEnemy == collision.gameObject)
+        {
+            currentEnemy = null;
         }
     }
 
@@ -142,12 +152,13 @@ public class Actions : MonoBehaviour
                     _animator.Play("interact");
                     NewMovement.instance.SwitchState(NewMoveStates.action, true);
                     break;
-
-                case ZoneTypes.SufferingSoldier:
-                    _animator.Play("execute");
-                    NewMovement.instance.SwitchState(NewMoveStates.action, true);
-                    break;
             }
+        }
+
+        if (currentEnemy != null && NewMovement.instance.CheckGround() && !gameplayLock)
+        {
+            _animator.Play("execute");
+            NewMovement.instance.SwitchState(NewMoveStates.action, true);
         }
     }
 
@@ -193,11 +204,13 @@ public class Actions : MonoBehaviour
             case ZoneTypes.Radio:
                 triggerZone.DestroyRadio();
                 break;
-
-            case ZoneTypes.SufferingSoldier:
-                triggerZone.ExecuteSoldier();
-                break;
         }
+
+        if (currentEnemy != null && NewMovement.instance.CheckGround() && !gameplayLock)
+        {
+            // play something there
+        }
+
         NewMovement.instance.SwitchState(NewMoveStates.idle);
         NewMovement.instance.delockMovements();
     }
