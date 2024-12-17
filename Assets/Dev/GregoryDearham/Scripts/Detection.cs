@@ -47,6 +47,8 @@ public class Detection : MonoBehaviour
         {
             if (currentPhase == DetectionPhase.Question)
             {
+
+
                 questionMarkSlider.value += CurrentDetectionSpeed * Time.deltaTime;
                 questionMarkSlider.value = Mathf.Clamp01(questionMarkSlider.value);
 

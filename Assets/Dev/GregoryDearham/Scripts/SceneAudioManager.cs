@@ -65,14 +65,35 @@ public class SceneAudioManager : MonoBehaviour
         // Play audio specific to each scene
         switch (sceneName)
         {
-            case "GregsDevCorner":
+            case "Tutorial": //Trench
                 AudioManager.Instance.PlayAmbience("NightTrenchies");
-                AudioManager.Instance.PlaySFX("DoorCreak"); // Example SFX
+                //AudioManager.Instance.PlaySFX("DoorCreak"); // Example SFX
+                break;
+            case "LVL1": //Trench
+                AudioManager.Instance.PlayAmbience("TrenchBombs");
+                //AudioManager.Instance.PlaySFX("BunkerRumble"); 
+                break;
+            case "LVL2": //bunker
+                AudioManager.Instance.PlayAmbience("BunkerEcho");
+                //AudioManager.Instance.PlaySFX("BunkerRumble");
+                break;
+            case "LVL3": //trench
+                AudioManager.Instance.PlayAmbience("TrenchV3");
+                //AudioManager.Instance.PlaySFX("BunkerRumble");
+                break;
+            case "LVL4": //Bunker
+                AudioManager.Instance.PlayAmbience("BunkerV2");
+                //AudioManager.Instance.PlaySFX("BunkerRumble");
                 break;
             case "GameOver":
                 AudioManager.Instance.PlayAmbience("BunkerEcho");
-                AudioManager.Instance.PlaySFX("BunkerRumble");
+                //AudioManager.Instance.PlaySFX("BunkerRumble");
                 break;
+
+
+
+
+
             default:
                 AudioManager.Instance.StopAmbience();
                 break;
