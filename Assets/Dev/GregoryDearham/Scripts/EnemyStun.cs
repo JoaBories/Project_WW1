@@ -32,11 +32,11 @@ public class EnemyStun : MonoBehaviour
             Stun = true;
 
             // Destroy the specific child Canvas GameObject
-            if (childCanvas != null)
-            {
-                Destroy(childCanvas.gameObject);
-                Debug.Log("Child Canvas Destroyed");
-            }
+            //if (childCanvas != null)
+            //{
+            //    Destroy(childCanvas.gameObject);
+            //    Debug.Log("Child Canvas Destroyed");
+            //}
         }
     }
 
