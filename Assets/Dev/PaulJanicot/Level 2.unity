@@ -430,11 +430,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.12184674, y: 0.8654944}
-      - {x: -1.1347952, y: 0.44655955}
-      - {x: -1.0625625, y: -0.33539134}
-      - {x: 1.0247337, y: 0.06488454}
-      - {x: 0.9436748, y: 1.0317209}
+    - - {x: 0.13130036, y: 0.17523146}
+      - {x: -0.75997967, y: 0.07661051}
+      - {x: -0.7645998, y: -0.26090068}
+      - {x: 1.0436457, y: -0.1431398}
+      - {x: 1.0384328, y: -0.111566976}
+      - {x: 0.992109, y: 0.16887516}
   m_UseDelaunayMesh: 0
 --- !u!114 &84125910
 MonoBehaviour:
@@ -1329,7 +1330,7 @@ Transform:
   m_GameObject: {fileID: 259159194}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.977634, y: -2.09, z: 0}
+  m_LocalPosition: {x: 31.41997, y: -2.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2883,7 +2884,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 32, y: 10.449219}
+    oldSize: {x: 32, y: 10.453125}
     newSize: {x: 49.008038, y: 16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3621,13 +3622,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.16898237, y: 0.8413051}
-      - {x: -0.8333897, y: 0.21264738}
-      - {x: -0.4844313, y: -0.21303388}
-      - {x: -0.20025708, y: -0.22514986}
-      - {x: 0.20857304, y: -0.69051296}
-      - {x: 0.5697943, y: -0.021453619}
-      - {x: 0.4348919, y: 0.6009159}
+    - - {x: -0.014621317, y: 0.51489717}
+      - {x: -0.13843974, y: 0.09688985}
+      - {x: -0.056129515, y: -0.21882194}
+      - {x: -0.009257212, y: -0.29460412}
+      - {x: 0.091270015, y: -0.27230325}
+      - {x: 0.3055601, y: 0.0849611}
+      - {x: 0.1543862, y: 0.39691132}
   m_UseDelaunayMesh: 0
 --- !u!114 &1060164533
 MonoBehaviour:
@@ -4394,7 +4395,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 18, y: 8.000244}
+    oldSize: {x: 18.004396, y: 8}
     newSize: {x: 18.004396, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5275,7 +5276,7 @@ Transform:
   m_GameObject: {fileID: 1444069917}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.977634, y: 1.35, z: 0}
+  m_LocalPosition: {x: 31.41997, y: 1.35, z: 0}
   m_LocalScale: {x: 0.73, y: 0.73, z: 0.73}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5858,7 +5859,7 @@ Transform:
   m_GameObject: {fileID: 1563766096}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50.966568, y: 0, z: 0}
+  m_LocalPosition: {x: 47.130116, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6090,6 +6091,75 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &1846265623
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1939728365917148937, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_Name
+      value: Crate
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7071
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7071
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7071
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 64.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -19.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527377969771875744, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1b169cf4baf546648956c418516ef9b7, type: 3}
 --- !u!1 &1860011866
 GameObject:
   m_ObjectHideFlags: 0
@@ -6566,7 +6636,7 @@ Transform:
   m_GameObject: {fileID: 1918807085}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 98.47, y: -6.51, z: 0}
+  m_LocalPosition: {x: 98.47, y: -6.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6618,7 +6688,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 32, y: 14.222656}
+    oldSize: {x: 32.008793, y: 14.222656}
     newSize: {x: 36.008793, y: 16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6805,7 +6875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5980747
+      value: 1.6005487
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6829,11 +6899,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.89
+      value: 30.1
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -25.44
+      value: -25.31
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7120,7 +7190,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20, y: 11.000977}
+    oldSize: {x: 20.007105, y: 11}
     newSize: {x: 20.007105, y: 11}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7165,7 +7235,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20, y: 11.000977}
+    oldSize: {x: 20.007105, y: 11}
     newSize: {x: 20.007105, y: 11}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9133,3 +9203,4 @@ SceneRoots:
   - {fileID: 1300918140}
   - {fileID: 1101554403}
   - {fileID: 399358101}
+  - {fileID: 1846265623}
