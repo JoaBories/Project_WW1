@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class Detection : MonoBehaviour
 {
+    [SerializeField] public Light2D Light;
+
     public Slider questionMarkSlider;
     public Slider exclamationMarkSlider;
 
@@ -40,10 +43,12 @@ public class Detection : MonoBehaviour
 
     private void Update()
     {
-        if (inDetectionZone)
+        if (inDetectionZone && Light.enabled)
         {
             if (currentPhase == DetectionPhase.Question)
             {
+
+
                 questionMarkSlider.value += CurrentDetectionSpeed * Time.deltaTime;
                 questionMarkSlider.value = Mathf.Clamp01(questionMarkSlider.value);
 
@@ -161,6 +166,8 @@ public class Detection : MonoBehaviour
     {
         Debug.Log("Alert Maxed! Enemy is attacking...");
         alertTriggered = true;
+
+        LifeManager.instance.Die();
 
         if (alertSound != null)
         {

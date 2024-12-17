@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems; // Ensure EventSystem is used
 
 public class JournalMenu : MonoBehaviour
 {
@@ -17,16 +18,28 @@ public class JournalMenu : MonoBehaviour
     public GameObject areYouSurePanel;
     public GameObject oxygenPanel;
     public GameObject HUDPanel;
-
-
+    //public GameObject bloodKillone;
+    //public GameObject bloodKilltwo;
+    //public GameObject bloodKillthree;
 
 
     [Header("Background Blur")]
     public GameObject backgroundBlur;
     public float blurPadding = 10f;
 
+    [Header("ControlAction")]
     private Controls inputActions;
     private InputAction JournalMenuAction;
+    private InputAction rightShoulderAction;
+    private InputAction leftShoulderAction;
+
+    [Header("Panel Default Buttons")]
+    public Button optionsPanelDefaultButton;
+    public Button pausePanelDefaultButton;
+    public Button areYouSureButton;
+
+
+    
 
     private void Awake()
     {
@@ -39,11 +52,43 @@ public class JournalMenu : MonoBehaviour
         JournalMenuAction = inputActions.UI.JournalMenu;
         JournalMenuAction.Enable();
         JournalMenuAction.performed += JournalMenuInput;
+
+        rightShoulderAction = inputActions.UI.RightShoulder;
+        leftShoulderAction = inputActions.UI.LeftShoulder;
+
+        rightShoulderAction.Enable();
+        leftShoulderAction.Enable();
+
+        rightShoulderAction.performed += OnRightShoulderPressed;
+        leftShoulderAction.performed += OnLeftShoulderPressed;
+    }
+
+    private void OnDisable()
+    {
+        rightShoulderAction.performed -= OnRightShoulderPressed;
+        leftShoulderAction.performed -= OnLeftShoulderPressed;
+
+        rightShoulderAction.Disable();
+        leftShoulderAction.Disable();
+    }
+
+    private void OnRightShoulderPressed(InputAction.CallbackContext context)
+    {
+        Debug.Log("Right Shoulder (RB) pressed!");
+        ActivatePanel(optionsPanel, optionsPanelDefaultButton);
+        AudioManager.Instance.PlaySFX("PaperTurn");
+    }
+
+    private void OnLeftShoulderPressed(InputAction.CallbackContext context)
+    {
+        Debug.Log("Left Shoulder (LB) pressed!");
+        ActivatePanel(pausePanel, pausePanelDefaultButton);
+        AudioManager.Instance.PlaySFX("PaperTurn");
     }
 
     private void Start()
     {
-        // Initialize the states
+        // Initialize states
         oxygenPanel.SetActive(false);
         HUDPanel.SetActive(true);
         menuGroup.SetActive(false);
@@ -54,21 +99,10 @@ public class JournalMenu : MonoBehaviour
         {
             backgroundBlur.SetActive(false);
         }
-
-
-
-
     }
 
     private void Update()
     {
-        // Debug functionality for testing (can be removed in production)
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    Debug.Log("Toggling Oxygen Panel");
-        //    oxygenPanel.SetActive(!oxygenPanel.activeSelf);
-        //}
-
         oxygenPanel.SetActive(PlayerMask.instance.mask);
 
         if (Input.GetKeyDown(KeyCode.H))
@@ -76,11 +110,6 @@ public class JournalMenu : MonoBehaviour
             Debug.Log("Toggling HUD Panel");
             HUDPanel.SetActive(!HUDPanel.activeSelf);
         }
-
-
-
-
-
     }
 
     public void Resume()
@@ -91,39 +120,46 @@ public class JournalMenu : MonoBehaviour
         isPaused = false;
         SetBackgroundBlur(false);
 
+        AudioManager.Instance.PlaySFX("PaperTurn");
+
         NewMovement.instance.delockMovements();
         Actions.Instance.DelockGameplay();
-        //inputActions.Gameplay.Enable();
     }
 
     public void Pause()
     {
         HUDPanel.SetActive(false);
         menuGroup.SetActive(true);
-        ActivatePanel(pausePanel);
+        ActivatePanel(pausePanel, pausePanelDefaultButton);
         Time.timeScale = 0f;
         isPaused = true;
         SetBackgroundBlur(true);
 
+        AudioManager.Instance.PlaySFX("PaperTurn");
+
         NewMovement.instance.lockMovements();
         Actions.Instance.LockGameplay();
-        //inputActions.Gameplay.Disable();
     }
 
     public void QuitStart()
     {
-        ActivatePanel(areYouSurePanel);
+        ActivatePanel(areYouSurePanel, areYouSureButton);
     }
 
     public void OptionsTab()
     {
-        ActivatePanel(optionsPanel);
+        ActivatePanel(optionsPanel, optionsPanelDefaultButton);
     }
+    //public void KillSoldier()
 
-    public void MapTab()
-    {
-        ActivatePanel(mapPanel);
-    }
+    //{
+    //    if 
+    //    ActivatePanel(bloodKillone, null);
+
+    //}
+
+
+
 
     public void QuitGame()
     {
@@ -131,13 +167,19 @@ public class JournalMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private void ActivatePanel(GameObject panelToActivate)
+    private void ActivatePanel(GameObject panelToActivate, Button defaultButton)
     {
         foreach (Transform child in menuGroup.transform)
         {
             child.gameObject.SetActive(false);
         }
         panelToActivate.SetActive(true);
+
+        // Set selection to default button if specified
+        if (defaultButton != null)
+        {
+            EventSystem.current.SetSelectedGameObject(defaultButton.gameObject);
+        }
     }
 
     private void JournalMenuInput(InputAction.CallbackContext context)
@@ -161,6 +203,7 @@ public class JournalMenu : MonoBehaviour
     {
         Pause();
     }
+
     private void SetBackgroundBlur(bool isActive)
     {
         if (backgroundBlur != null)
@@ -169,7 +212,6 @@ public class JournalMenu : MonoBehaviour
 
             if (isActive)
             {
-                // Adjust padding if needed
                 RectTransform blurRect = backgroundBlur.GetComponent<RectTransform>();
                 if (blurRect != null)
                 {
@@ -179,4 +221,6 @@ public class JournalMenu : MonoBehaviour
             }
         }
     }
+
+
 }
