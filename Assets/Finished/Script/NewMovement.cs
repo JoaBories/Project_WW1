@@ -221,8 +221,11 @@ public class NewMovement : MonoBehaviour
             if (State != NewMoveStates.jumping && State != NewMoveStates.air)
             {
                 _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
-                RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.transform.position, Vector2.down, 0.1f, groundLayers);
-                transform.position = new Vector3(transform.position.x, hit.point.y + transform.localScale.y * (GetComponent<CapsuleCollider2D>().size.y / 2), transform.position.z);
+                RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.transform.position, Vector2.down, 0.01f, groundLayers);
+                if (hit.point != Vector2.zero)
+                {
+                    transform.position = new Vector3(transform.position.x, hit.point.y + transform.localScale.y * (GetComponent<CapsuleCollider2D>().size.y / 2), transform.position.z);
+                }
             }
 
             if (Mathf.Abs(_moveDir) < 0.01f && State != NewMoveStates.air)
