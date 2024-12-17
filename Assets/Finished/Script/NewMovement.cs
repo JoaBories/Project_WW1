@@ -168,6 +168,7 @@ public class NewMovement : MonoBehaviour
         }
     }
 
+
     private void FixedUpdate()
     {
         float targetSpeed;
