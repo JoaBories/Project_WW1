@@ -146,7 +146,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1980301597681897715}
+  m_Motion: {fileID: 7400000, guid: 1674b14ed2a60d54f82bc2c910e983b5, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -184,10 +184,10 @@ AnimatorStateMachine:
     m_Position: {x: -210, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8039169144774220115}
-    m_Position: {x: 10, y: 50, z: 0}
+    m_Position: {x: 10, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6731645278991330545}
-    m_Position: {x: 10, y: -10, z: 0}
+    m_Position: {x: 10, y: 50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2053202011909423250}
     m_Position: {x: 450, y: 170, z: 0}
@@ -272,7 +272,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -943848382924429660}
+  m_Motion: {fileID: 7400000, guid: bca0b2a8b06688d4c8943c657322be33, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -390,12 +390,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
-  - m_Name: Trench
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -506,7 +500,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6830423129422145653}
+  m_Motion: {fileID: 7400000, guid: d11482d487163c147bdb097b28bf0e71, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -533,7 +527,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 3331496103813593197}
+  m_Motion: {fileID: 7400000, guid: 8ddeaeab2c74a09438f92a646be95864, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
