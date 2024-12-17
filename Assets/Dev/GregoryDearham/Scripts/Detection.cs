@@ -43,7 +43,7 @@ public class Detection : MonoBehaviour
 
     private void Update()
     {
-        if (inDetectionZone && Light.enabled)
+        if (inDetectionZone && Light.enabled && !EnemyStun.instance.Stun)
         {
             if (currentPhase == DetectionPhase.Question)
             {
