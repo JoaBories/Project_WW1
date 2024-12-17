@@ -64,6 +64,8 @@ public class NewMovement : MonoBehaviour
 
     [NonSerialized] public bool isGround;
 
+    [SerializeField] private bool isInTrench;
+
     private void Awake()
     {
         instance = this;
@@ -80,6 +82,11 @@ public class NewMovement : MonoBehaviour
         baseOrthoSize = _cam.m_Lens.OrthographicSize;
 
         isGround = CheckGround();
+
+        if (isInTrench)
+        {
+            _animator.SetFloat("Trench", 1);
+        }
     }
 
     private void OnEnable()
