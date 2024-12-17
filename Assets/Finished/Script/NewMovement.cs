@@ -166,8 +166,6 @@ public class NewMovement : MonoBehaviour
                 _animator.Play("airLoop");
             }
         }
-
-        Debug.Log(State);
     }
 
 
@@ -192,6 +190,17 @@ public class NewMovement : MonoBehaviour
                     _rigidBody.AddForce(movement * Vector2.right);
                     break;
 
+                case NewMoveStates.air:
+                    if (_moveAction.enabled)
+                    {
+                        targetSpeed = _moveDir * walkSpeed;
+                        speedDif = targetSpeed - _rigidBody.velocity.x;
+                        accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+                        movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+                        _rigidBody.AddForce(movement * Vector2.right);
+                    }
+                    break;
+
                 case NewMoveStates.run:
                     targetSpeed = _moveDir * runSpeed;
                     speedDif = targetSpeed - _rigidBody.velocity.x;
@@ -208,6 +217,14 @@ public class NewMovement : MonoBehaviour
             {
                 _rigidBody.gravityScale = 0;
             }
+
+            if (State != NewMoveStates.jumping && State != NewMoveStates.air)
+            {
+                _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
+                RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.transform.position, Vector2.down, 0.1f, groundLayers);
+                transform.position = new Vector3(transform.position.x, hit.point.y + transform.localScale.y * (GetComponent<CapsuleCollider2D>().size.y / 2), transform.position.z);
+            }
+
             if (Mathf.Abs(_moveDir) < 0.01f && State != NewMoveStates.air)
             {
                 float amount = Mathf.Min(Mathf.Abs(_rigidBody.velocity.x), Mathf.Abs(frictionAmount)) * Mathf.Sign(_rigidBody.velocity.x);
@@ -219,12 +236,14 @@ public class NewMovement : MonoBehaviour
             if (_rigidBody.velocity.y <= 0)
             {
                 _rigidBody.gravityScale = downGravity;
-            } 
+            }
             else
             {
                 _rigidBody.gravityScale = upGravity;
             }
         }
+
+        
     }
 
     public void SwitchState(NewMoveStates nextState, bool alreadyPlayingAnim = false)
