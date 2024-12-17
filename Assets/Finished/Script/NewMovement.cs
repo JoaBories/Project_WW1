@@ -8,8 +8,7 @@ public enum NewMoveStates
     idle,
     walk,
     run,
-    //lieDown,
-    //crawl,
+    jumping,
     air,
     landing,
     action
@@ -30,18 +29,25 @@ public class NewMovement : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     [Header("Core Assign")]
-    [SerializeField] private GameObject feet1;
-    [SerializeField] private GameObject feet2;
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private Vector2 groundCheckSize;
     [SerializeField] private LayerMask groundLayers;
     [SerializeField] private CinemachineVirtualCamera _cam;
 
     [Header("Values to tweak")]
-    [SerializeField] private float walkSpeed;
-    [SerializeField] private float runSpeed;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float runSpeed;
+    [SerializeField] float acceleration;
+    [SerializeField] float decceleration;
+    [SerializeField] float velPower;
+
+    [SerializeField] float frictionAmount;
 
     [SerializeField] private Vector2 staticJump;
     [SerializeField] private Vector2 walkJump;
     [SerializeField] private Vector2 runJump;
+
+    [SerializeField] private float upGravity, downGravity;
 
     [SerializeField] private float runOrthoSize;
     private float cameraOffset;
@@ -50,8 +56,13 @@ public class NewMovement : MonoBehaviour
     [NonSerialized] public NewMoveStates State;
 
     [NonSerialized] public bool moveLock;
+    private float _moveDir;
 
     private bool running;
+
+    private Vector2 nextJumpForce;
+
+    [NonSerialized] public bool isGround;
 
     private void Awake()
     {
@@ -67,6 +78,8 @@ public class NewMovement : MonoBehaviour
 
         cameraOffset = _cam.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX;
         baseOrthoSize = _cam.m_Lens.OrthographicSize;
+
+        isGround = CheckGround();
     }
 
     private void OnEnable()
@@ -95,7 +108,8 @@ public class NewMovement : MonoBehaviour
 
     private void Update()
     {
-        float _moveDir = _moveAction.ReadValue<Vector2>().x;
+        _moveDir = _moveAction.ReadValue<Vector2>().x;
+        
         if (_moveDir != 0)
         {
             if (_moveDir < 0) _moveDir /= -_moveDir;
@@ -105,7 +119,7 @@ public class NewMovement : MonoBehaviour
         if (!moveLock)
         {
 
-            if (Mathf.Abs(_moveDir) < 0.1f)
+            if (Mathf.Abs(_moveDir) < 0.01f)
             {
                 if (State == NewMoveStates.walk || State == NewMoveStates.run)
                 {
@@ -114,7 +128,6 @@ public class NewMovement : MonoBehaviour
             }
             else
             {
-
                 if (State == NewMoveStates.idle || State == NewMoveStates.walk || State == NewMoveStates.run)
                 {
                     if (running && !PlayerMask.instance.mask)
@@ -141,30 +154,95 @@ public class NewMovement : MonoBehaviour
                 }
             }
 
-            switch (State)
+            if (State == NewMoveStates.air && isGround && _rigidBody.velocity.y < 0.1f)
             {
-                case NewMoveStates.walk:
-                    transform.position += new Vector3(walkSpeed * _moveDir * Time.deltaTime, 0, 0);
-                    break;
-
-                case NewMoveStates.run:
-                    transform.position += new Vector3(runSpeed * _moveDir * Time.deltaTime, 0, 0);
-                    break;
-            }
-
-            if (State == NewMoveStates.air && CheckGround())
-            {
+                _animator.Play("landing");
                 SwitchState(NewMoveStates.landing);
             }
 
-            if (!CheckGround())
+            if (!isGround)
             {
                 SwitchState(NewMoveStates.air);
                 _animator.Play("airLoop");
             }
         }
+    }
 
-        //Debug.Log(State.ToString() + PlayerMask.instance.mask);
+    private void FixedUpdate()
+    {
+        float targetSpeed;
+        float speedDif;
+        float accelRate;
+        float movement;
+
+        isGround = CheckGround();
+
+        if (!moveLock)
+        {
+            switch (State)
+            {
+                case NewMoveStates.walk:
+                    targetSpeed = _moveDir * walkSpeed;
+                    speedDif = targetSpeed - _rigidBody.velocity.x;
+                    accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+                    movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+                    _rigidBody.AddForce(movement * Vector2.right);
+                    break;
+
+                case NewMoveStates.air:
+                    if (_moveAction.enabled)
+                    {
+                        targetSpeed = _moveDir * walkSpeed;
+                        speedDif = targetSpeed - _rigidBody.velocity.x;
+                        accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+                        movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+                        _rigidBody.AddForce(movement * Vector2.right);
+                    }
+                    break;
+
+                case NewMoveStates.run:
+                    targetSpeed = _moveDir * runSpeed;
+                    speedDif = targetSpeed - _rigidBody.velocity.x;
+                    accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+                    movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+                    _rigidBody.AddForce(movement * Vector2.right);
+                    break;
+            }
+        }
+
+        if (isGround)
+        {
+            if (State != NewMoveStates.air)
+            {
+                _rigidBody.gravityScale = 0;
+            }
+
+            if (State != NewMoveStates.jumping && State != NewMoveStates.air)
+            {
+                _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
+                RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.transform.position, Vector2.down, 0.1f, groundLayers);
+                transform.position = new Vector3(transform.position.x, hit.point.y + transform.localScale.y * (GetComponent<CapsuleCollider2D>().size.y / 2), transform.position.z);
+            }
+
+            if (Mathf.Abs(_moveDir) < 0.01f && State != NewMoveStates.air)
+            {
+                float amount = Mathf.Min(Mathf.Abs(_rigidBody.velocity.x), Mathf.Abs(frictionAmount)) * Mathf.Sign(_rigidBody.velocity.x);
+                _rigidBody.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+            }
+        }
+        else
+        {
+            if (_rigidBody.velocity.y <= 0)
+            {
+                _rigidBody.gravityScale = downGravity;
+            }
+            else
+            {
+                _rigidBody.gravityScale = upGravity;
+            }
+        }
+
+        
     }
 
     public void SwitchState(NewMoveStates nextState, bool alreadyPlayingAnim = false)
@@ -197,12 +275,15 @@ public class NewMovement : MonoBehaviour
                 break;
 
             case NewMoveStates.landing:
-                _animator.Play("landing");
                 moveLock = true;
                 break;
 
             case NewMoveStates.air:
                 moveLock = false;
+                break;
+
+            case NewMoveStates.jumping:
+                moveLock = true;
                 break;
         }
 
@@ -221,22 +302,22 @@ public class NewMovement : MonoBehaviour
 
     private void jumpInput(InputAction.CallbackContext context)
     {
-        if (CheckGround() && !moveLock && !PlayerMask.instance.mask)
+        if (isGround && !moveLock && !PlayerMask.instance.mask)
         {
             if (_spriteRenderer.flipX)
             {
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity = walkJump * new Vector2(-1, 1);
+                        nextJumpForce = walkJump * new Vector2(-1, 1);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity = runJump * new Vector2(-1, 1);
+                        nextJumpForce = runJump * new Vector2(-1, 1);
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
-                        _rigidBody.velocity = staticJump * new Vector2(-1, 1);
+                        nextJumpForce = staticJump * new Vector2(-1, 1);
                         _animator.Play("jumpStart");
                         break;
                 }
@@ -246,20 +327,29 @@ public class NewMovement : MonoBehaviour
                 switch (State)
                 {
                     case NewMoveStates.walk:
-                        _rigidBody.velocity = walkJump;
+                        nextJumpForce = walkJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.run:
-                        _rigidBody.velocity = runJump;
+                        nextJumpForce = runJump;
                         _animator.Play("jumpStart");
                         break;
                     case NewMoveStates.idle:
-                        _rigidBody.velocity = staticJump;
+                        nextJumpForce = staticJump;
                         _animator.Play("jumpStart");
                         break;
                 }
             }
+
+            SwitchState(NewMoveStates.jumping);
         }
+    }
+
+    public void endStartJump()
+    {
+        _rigidBody.AddForce(nextJumpForce, ForceMode2D.Impulse);
+        _rigidBody.gravityScale = upGravity;
+        SwitchState(NewMoveStates.air);
     }
 
     private void SetMoveTreeFloats(float type, float speed)
@@ -294,17 +384,7 @@ public class NewMovement : MonoBehaviour
 
     public bool CheckGround()
     {
-        RaycastHit2D hit1 = Physics2D.Raycast(feet1.transform.position, Vector2.down, 0.1f, groundLayers);
-        RaycastHit2D hit2 = Physics2D.Raycast(feet2.transform.position, Vector2.down, 0.1f, groundLayers);
-
-        if (hit1 || hit2)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayers);
     }
 
 }

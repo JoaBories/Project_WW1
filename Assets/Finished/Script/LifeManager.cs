@@ -33,7 +33,6 @@ public class LifeManager : MonoBehaviour
                 gasTimer = gasMaxTime;
             }
         }
-        Debug.Log(gasTimer);
     }
 
     public void Die()
@@ -72,6 +71,28 @@ public class LifeManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("TriggerZone"))
+        {
+            triggerZone = collision.gameObject;
+            triggerZoneScript = triggerZone.GetComponent<TriggerZone>();
+            switch (triggerZoneScript.type)
+            {
+                case ZoneTypes.Shootings:
+                    if (triggerZoneScript.shooting)
+                    {
+                        Die();
+                    }
+                    break;
+
+                case ZoneTypes.ConstantShootings:
+                    Die();
+                    break;
+            }
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("TriggerZone"))
@@ -86,15 +107,6 @@ public class LifeManager : MonoBehaviour
                     break;
 
             }
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (currentCheckpoint != null)
-        {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(currentCheckpoint.transform.position, 0.2f);
         }
     }
 }

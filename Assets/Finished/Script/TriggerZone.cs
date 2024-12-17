@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,7 +13,10 @@ public enum ZoneTypes
     Gas,
     Mask,
     Crate,
-    Radio
+    Radio,
+    SufferingSoldier,
+    Shootings,
+    ConstantShootings
 }
 
 public class TriggerZone : MonoBehaviour
@@ -26,10 +31,24 @@ public class TriggerZone : MonoBehaviour
     public bool toRight;
 
     public GameObject crateObject;
-    public Vector3 crateMovement;
+    public float crateMovement;
 
     public GameObject radioObject;
     public Sprite brokenRadio;
+
+    [NonSerialized] public bool shooting;
+    private float nextStatechange;
+    public float coolDown;
+
+    private void FixedUpdate()
+    {
+        if (Time.time > nextStatechange)
+        {
+            nextStatechange = Time.time + coolDown;
+            shooting = !shooting;
+        }
+    }
+
 
     private void OnDrawGizmos()
     {
@@ -75,11 +94,30 @@ public class TriggerZone : MonoBehaviour
 
             case ZoneTypes.Radio:
                 _Boxcollider = GetComponent<BoxCollider2D>();
-                Gizmos.color = Color.white;
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
+                break;
+
+            case ZoneTypes.SufferingSoldier:
+                _Boxcollider = GetComponent<BoxCollider2D>();
+                Gizmos.color = Color.yellow;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.Gas:
+                _Boxcollider = GetComponent<BoxCollider2D>();
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
+                break;
+
+            case ZoneTypes.Shootings:
+                _Boxcollider = GetComponent<BoxCollider2D>();
+                if (shooting) Gizmos.color = Color.red;
+                else Gizmos.color = Color.green;
+                Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
+                break;
+
+            case ZoneTypes.ConstantShootings:
                 _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
@@ -91,11 +129,28 @@ public class TriggerZone : MonoBehaviour
 
     public void Push()
     {
-        crateObject.transform.position += crateMovement;
+        StartCoroutine(PushCoroutin(crateMovement));
+    }
+
+    public IEnumerator PushCoroutin(float distanceToTravel)
+    {
+        int iterateNumber = 0;
+        while (iterateNumber < 100)
+        {
+            crateObject.transform.position += new Vector3(distanceToTravel/100, 0, 0);
+            iterateNumber++;
+            yield return new WaitForSeconds(0.01f);
+        }
         Destroy(gameObject);
     }
 
     public void DestroyRadio()
+    {
+        radioObject.GetComponent<SpriteRenderer>().sprite = brokenRadio;
+        Destroy(gameObject);
+    }
+
+    public void ExecuteSoldier()
     {
         Destroy(gameObject);
     }
