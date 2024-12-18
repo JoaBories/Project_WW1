@@ -14,30 +14,31 @@ public enum SmashPhases
 
 public class RobotLeg : MonoBehaviour
 {
-    [SerializeField] private bool first;
-
     [SerializeField] private GameObject floorWaypoint;
     [SerializeField] private GameObject skyWaypoint;
 
-    [SerializeField] private float upSpeed, downSpeed , sideSpeed;
+    [SerializeField] private float upSpeed, baseDownSpeed , sideSpeed;
+    private float downSpeed;
 
     [SerializeField] private List<GameObject> smashWaypoints;
     private int currenSmashWaypointIndex;
 
     private float nextStayingEnd;
+    [SerializeField] private float firstStayingStart;
     [SerializeField] private float stayingTime;
 
     [SerializeField] private SmashPhases phase;
 
-    private void Awake()
-    {
+    [SerializeField] private RobotShadow shadow;
 
-    }
+    [SerializeField] private RobotLeg otherLeg;
+    private Vector3 firstPos;
+    private SmashPhases firstPhase;
 
     private void Start()
     {
-        phase = SmashPhases.stayingDown;
-        nextStayingEnd = Time.time + stayingTime;
+        nextStayingEnd = Time.time + firstStayingStart;
+        downSpeed = baseDownSpeed;
     }
 
     private void Update()
@@ -54,13 +55,15 @@ public class RobotLeg : MonoBehaviour
                 break;
 
             case SmashPhases.goingDown:
-                transform.position += new Vector3(0, -upSpeed * Time.deltaTime, 0);
+                transform.position += new Vector3(0, -downSpeed * Time.deltaTime, 0);
                 if (transform.position.y <= floorWaypoint.transform.position.y)
                 {
                     phase = SmashPhases.stayingDown;
                     transform.position = new Vector3(transform.position.x, floorWaypoint.transform.position.y, transform.position.z);
                     nextStayingEnd = Time.time + stayingTime;
                 }
+                
+
                 break;
 
             case SmashPhases.goingRight:
@@ -72,9 +75,6 @@ public class RobotLeg : MonoBehaviour
                     if (currenSmashWaypointIndex < smashWaypoints.Count)
                     {
                         currenSmashWaypointIndex++;
-                    } else
-                    {
-                        phase = SmashPhases.end;
                     }
                     nextStayingEnd = Time.time + stayingTime;
                 }
@@ -85,6 +85,11 @@ public class RobotLeg : MonoBehaviour
                 {
                     phase = SmashPhases.goingUp;
                 }
+                if (currenSmashWaypointIndex >= smashWaypoints.Count)
+                {
+                    phase = SmashPhases.end;
+                }
+
                 break;
 
             case SmashPhases.stayingUp:
@@ -95,7 +100,19 @@ public class RobotLeg : MonoBehaviour
                 break;
         }
 
+        if (shadow.isPlayer)
+        {
+            phase = SmashPhases.goingDown;
+            downSpeed = 100;
+        }
+    }
 
+    public void Reset()
+    {
+        transform.position = firstPos;
+        phase = firstPhase;
+        nextStayingEnd = Time.time + firstStayingStart;
+        downSpeed = baseDownSpeed;
     }
 
 }
