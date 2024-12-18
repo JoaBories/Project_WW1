@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, AudioClip> sfxClips;
     private Dictionary<string, AudioClip> environmentClips;
 
+    public float MasterVolume { get; private set; } = 1f; // Add MasterVolume property
 
     public float AmbienceVolume { get; private set; } = 1f;
     public float SFXVolume { get; private set; } = 1f;
@@ -145,6 +146,17 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Audio is Working");
             sfxAudioSource.Stop();
         }
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        MasterVolume = volume;
+
+        if (ambienceAudioSource) ambienceAudioSource.volume = AmbienceVolume * MasterVolume;
+        if (sfxAudioSource) sfxAudioSource.volume = SFXVolume * MasterVolume;
+        if (environmentAudioSource) environmentAudioSource.volume = environmentAudioSourceVolume * MasterVolume;
+
+        PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 
 

@@ -23,6 +23,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8b6c98ef9a01c624ab0d97479a6baa86, type: 3}
   - name: TrenchV3
     clip: {fileID: 8300000, guid: ad4f0892f2e6d9945a6f629eec389b56, type: 3}
+  - name: Start
+    clip: {fileID: 8300000, guid: 8b6c98ef9a01c624ab0d97479a6baa86, type: 3}
   sfxClips:
   - name: PaperTurn
     clip: {fileID: 8300000, guid: 62a0d466ad09aa04dba11cdaef0a4de7, type: 3}

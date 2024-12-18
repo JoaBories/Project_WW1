@@ -71,6 +71,9 @@ public class SceneAudioManager : MonoBehaviour
         // Play audio specific to each scene
         switch (sceneName)
         {
+            case "Start":
+                AudioManager.Instance.PlayAmbience("Start");
+                break;
             case "LVLtuto": //Trench
                 AudioManager.Instance.PlayAmbience("NightTrenchies");
                 //AudioManager.Instance.PlaySFX("DoorCreak"); // Example SFX
@@ -96,12 +99,17 @@ public class SceneAudioManager : MonoBehaviour
                 //AudioManager.Instance.PlaySFX("BunkerRumble");
                 break;
 
+            case "GregsDevCorner": //Bunker
+                AudioManager.Instance.PlayAmbience("Start");
+                //AudioManager.Instance.PlaySFX("BunkerRumble");
+                break;
+
 
 
 
 
             default:
-                AudioManager.Instance.StopAmbience();
+                AudioManager.Instance.PlayAmbience("Start");
                 break;
         }
     }

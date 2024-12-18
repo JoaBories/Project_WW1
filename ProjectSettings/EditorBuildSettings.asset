@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Dev/GregoryDearham/Scene/Start.unity
+    guid: 9a8a17c7f0d6d884880d6c32a2e6ab42
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Dev/GregoryDearham/GregsDevCorner.unity
     guid: c4be4d859618c474e9ad05dda8be84d1
-  - enabled: 1
-    path: Assets/Dev/GregoryDearham/Scene/Start.unity
-    guid: 9a8a17c7f0d6d884880d6c32a2e6ab42
   - enabled: 1
     path: Assets/Dev/GregoryDearham/Scene/GameOver.unity
     guid: 1eaf18e7448d71548ac6243e0e7b36e6
