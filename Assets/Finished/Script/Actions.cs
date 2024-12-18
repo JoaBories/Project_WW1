@@ -88,11 +88,11 @@ public class Actions : MonoBehaviour
             {
                 currentTriggerZone = collision.gameObject;
             }
-        } 
-        //else if (collision != currentEnemy && collision.CompareTag("Enemy"))
-        //{
-        //    currentEnemy = collision.gameObject;
-        //}
+        }
+        else if (collision != currentEnemy && collision.CompareTag("Enemy"))
+        {
+            currentEnemy = collision.gameObject;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

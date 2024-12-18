@@ -1232,7 +1232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
+  type: 12
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 1
@@ -1241,7 +1241,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
-  sceneNum: 4
+  sceneNum: 2
 --- !u!61 &1322585509
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1664,7 +1664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6001673
+      value: 1.5999929
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2229,7 +2229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 8
+  type: 7
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0

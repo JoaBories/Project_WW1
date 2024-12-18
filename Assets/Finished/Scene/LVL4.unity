@@ -375,11 +375,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 144.68
+      value: 92.18
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.32
+      value: -26.65
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -3139,6 +3139,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &979548891
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1266958786789075622, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_Name
+      value: TriggerZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 145.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -26.877821
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280448989618658725, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244385968842653126, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: type
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244385968842653126, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
+      propertyPath: sceneNum
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
 --- !u!1 &997629042
 GameObject:
   m_ObjectHideFlags: 0
@@ -3425,7 +3490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -3908,7 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -4008,7 +4073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -4108,7 +4173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -5084,7 +5149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -5786,7 +5851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -6742,7 +6807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -7237,7 +7302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -7376,7 +7441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -7476,7 +7541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 11
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -7981,3 +8046,4 @@ SceneRoots:
   - {fileID: 47877031}
   - {fileID: 674022332}
   - {fileID: 1206921586}
+  - {fileID: 979548891}
