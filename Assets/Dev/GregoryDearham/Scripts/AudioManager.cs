@@ -99,6 +99,9 @@ public class AudioManager : MonoBehaviour
         if (ambienceAudioSource) ambienceAudioSource.Stop();
     }
 
+    
+
+
     public void InitializeClips(Dictionary<string, AudioClip> ambience, Dictionary<string, AudioClip> sfx)
     {
         ambienceClips = ambience;

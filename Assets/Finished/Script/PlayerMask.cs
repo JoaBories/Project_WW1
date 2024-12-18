@@ -26,6 +26,7 @@ public class PlayerMask : MonoBehaviour
 
     private void OnEnable()
     {
+        
         _keepMaskAction = _inputActions.Gameplay.KeepMask;
         _keepMaskAction.Enable();
         _keepMaskAction.started += BeginMask;
@@ -46,6 +47,7 @@ public class PlayerMask : MonoBehaviour
     {
         if ((NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run) && gotMask && !Actions.Instance.gameplayLock)
         {
+            AudioManager.Instance.PlaySFX("JeanBreathing");
             mask = true;
         }
     }
@@ -53,5 +55,6 @@ public class PlayerMask : MonoBehaviour
     public void EndMask(InputAction.CallbackContext context)
     {
         mask = false;
+        //AudioManager.Instance.StopSFX();
     }
 }
