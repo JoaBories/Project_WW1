@@ -43,7 +43,7 @@ public class SceneAudioManager : MonoBehaviour
         // Populate dictionaries
         Dictionary<string, AudioClip> ambienceClips = new Dictionary<string, AudioClip>();
         Dictionary<string, AudioClip> sfxClips = new Dictionary<string, AudioClip>();
-
+        Dictionary<string, AudioClip> environmentClips = new Dictionary<string, AudioClip>();
         foreach (var entry in clipLibrary.ambienceClips)
         {
             if (!string.IsNullOrEmpty(entry.name) && entry.clip != null)
@@ -56,8 +56,14 @@ public class SceneAudioManager : MonoBehaviour
                 sfxClips[entry.name] = entry.clip;
         }
 
+        foreach (var entry in clipLibrary.environmentClips)
+        {
+            if (!string.IsNullOrEmpty(entry.name) && entry.clip != null)
+                environmentClips[entry.name] = entry.clip;
+        }
+
         // Initialize AudioManager with these clips
-        AudioManager.Instance.InitializeClips(ambienceClips, sfxClips);
+        AudioManager.Instance.InitializeClips(ambienceClips, sfxClips, environmentClips);
     }
 
     private void PlaySceneAudio(string sceneName)
@@ -65,7 +71,10 @@ public class SceneAudioManager : MonoBehaviour
         // Play audio specific to each scene
         switch (sceneName)
         {
-            case "Tutorial": //Trench
+            case "Start":
+                AudioManager.Instance.PlayAmbience("Start");
+                break;
+            case "LVLtuto": //Trench
                 AudioManager.Instance.PlayAmbience("NightTrenchies");
                 //AudioManager.Instance.PlaySFX("DoorCreak"); // Example SFX
                 break;
@@ -90,12 +99,17 @@ public class SceneAudioManager : MonoBehaviour
                 //AudioManager.Instance.PlaySFX("BunkerRumble");
                 break;
 
+            case "GregsDevCorner": //Bunker
+                AudioManager.Instance.PlayAmbience("Start");
+                //AudioManager.Instance.PlaySFX("BunkerRumble");
+                break;
+
 
 
 
 
             default:
-                AudioManager.Instance.StopAmbience();
+                AudioManager.Instance.PlayAmbience("Start");
                 break;
         }
     }
