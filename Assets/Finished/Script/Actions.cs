@@ -124,7 +124,7 @@ public class Actions : MonoBehaviour
 
     private void ClimbAction(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null && !gameplayLock)
+        if (currentTriggerZone != null && !gameplayLock && !PlayerMask.instance.mask)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
             if (_spriteRenderer.flipX == !triggerZone.climb_right && triggerZone.type == ZoneTypes.Climb && NewMovement.instance.CheckGround())
