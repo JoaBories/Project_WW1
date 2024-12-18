@@ -375,11 +375,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 92.5
+      value: 144.68
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.68
+      value: -26.32
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6151,6 +6151,18 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 9.925
       objectReference: {fileID: 0}
+    - target: {fileID: 2003164243716161608, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003164243716161608, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003164243716161608, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3172712995415825171, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
       propertyPath: m_Name
       value: RobotLeg
@@ -6251,6 +6263,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 272b107fa0a93a24fa037e660b5287da, type: 3}
+    - target: {fileID: 8406564152756850187, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406564152756850187, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.80784315
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406564152756850187, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.77254903
+      objectReference: {fileID: 0}
     - target: {fileID: 8406564152756850187, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -6384,6 +6408,18 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 9.925
       objectReference: {fileID: 0}
+    - target: {fileID: 2003164243716161608, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003164243716161608, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003164243716161608, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3172712995415825171, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
       propertyPath: m_Name
       value: RobotLeg (1)
@@ -6472,6 +6508,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 272b107fa0a93a24fa037e660b5287da, type: 3}
+    - target: {fileID: 8406564152756850187, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406564152756850187, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.80889624
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406564152756850187, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7718939
+      objectReference: {fileID: 0}
     - target: {fileID: 8406564152756850187, guid: 05af1278350265c46851bbb6d10a4f0f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
