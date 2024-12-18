@@ -54,7 +54,7 @@ public class DetectionAI : MonoBehaviour
         switch (currentPhase)
         {
             case DetectionPhase.Question:
-                if (inDetectionZone && !EnemyStun.instance.Stun)
+                if (inDetectionZone && !GetComponent<EnemyStun>().Stun)
                 {
                     IncreaseQuestionProgress();
                 }
@@ -65,9 +65,10 @@ public class DetectionAI : MonoBehaviour
                 break;
 
             case DetectionPhase.Exclamation:
-                if (inDetectionZone && !EnemyStun.instance.Stun)
+                if (inDetectionZone && !GetComponent<EnemyStun>().Stun)
                 {
                     IncreaseExclamationProgress();
+                    
                 }
                 else
                 {
@@ -102,6 +103,7 @@ public class DetectionAI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inDetectionZone = false;
+
         }
         else if (other.CompareTag("SpeedBoostZone"))
         {
