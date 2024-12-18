@@ -9,6 +9,7 @@ public enum ZoneTypes
     None,
     Climb,
     BarbedWire,
+    BarbedReload,
     Door,
     SideOfRoom,
     SceneChangeSideOfRoom,
