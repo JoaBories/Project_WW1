@@ -76,14 +76,23 @@ public class JournalMenu : MonoBehaviour
     {
         Debug.Log("Right Shoulder (RB) pressed!");
         ActivatePanel(optionsPanel, optionsPanelDefaultButton);
-        AudioManager.Instance.PlaySFX("PaperTurn");
+        if (isPaused)
+        {
+            AudioManager.Instance.PlaySFX("PaperTurn");
+
+        }
+            
     }
 
     private void OnLeftShoulderPressed(InputAction.CallbackContext context)
     {
         Debug.Log("Left Shoulder (LB) pressed!");
         ActivatePanel(pausePanel, pausePanelDefaultButton);
-        AudioManager.Instance.PlaySFX("PaperTurn");
+        if (isPaused)
+        {
+            AudioManager.Instance.PlaySFX("PaperTurn");
+
+        }
     }
 
     private void Start()
@@ -119,7 +128,8 @@ public class JournalMenu : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         SetBackgroundBlur(false);
-
+       
+        
         AudioManager.Instance.PlaySFX("PaperTurn");
 
         NewMovement.instance.delockMovements();
@@ -134,6 +144,7 @@ public class JournalMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         SetBackgroundBlur(true);
+        oxygenPanel.SetActive(false);
 
         AudioManager.Instance.PlaySFX("PaperTurn");
 

@@ -194,26 +194,29 @@ public class Actions : MonoBehaviour
 
     public void EndInteract()
     {
-        TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
-        switch (triggerZone.type)
+        if (currentTriggerZone != null)
         {
-            case ZoneTypes.Mask:
-                PlayerMask.instance.gotMask = true;
-                Destroy(currentTriggerZone);
-                break;
+            TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
+            switch (triggerZone.type)
+            {
+                case ZoneTypes.Mask:
+                    PlayerMask.instance.gotMask = true;
+                    Destroy(currentTriggerZone);
+                    break;
 
-            case ZoneTypes.Crate:
-                triggerZone.Push();
-                break;
+                case ZoneTypes.Crate:
+                    triggerZone.Push();
+                    break;
 
-            case ZoneTypes.Radio:
-                triggerZone.DestroyRadio();
-                break;
+                case ZoneTypes.Radio:
+                    triggerZone.DestroyRadio();
+                    break;
+            }
         }
 
         if (currentEnemy != null && NewMovement.instance.CheckGround() && !gameplayLock)
         {
-            // play something there
+            currentEnemy.GetComponent<EnemyStun>().killSoldier();
         }
 
         NewMovement.instance.SwitchState(NewMoveStates.idle);
