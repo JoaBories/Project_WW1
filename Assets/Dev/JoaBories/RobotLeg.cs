@@ -39,6 +39,8 @@ public class RobotLeg : MonoBehaviour
     {
         nextStayingEnd = Time.time + firstStayingStart;
         downSpeed = baseDownSpeed;
+        firstPos = transform.position;
+        firstPhase = phase;
     }
 
     private void Update()
@@ -113,6 +115,15 @@ public class RobotLeg : MonoBehaviour
         phase = firstPhase;
         nextStayingEnd = Time.time + firstStayingStart;
         downSpeed = baseDownSpeed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            LifeManager.instance.DieReload();
+
+        }
     }
 
 }

@@ -68,7 +68,7 @@ public class Actions : MonoBehaviour
         {
             if (collision.GetComponent<TriggerZone>().type == ZoneTypes.SideOfRoom)
             {
-                BlackScreenManager.Instance.goBlack();
+                BlackScreenManager.Instance.animationPlay("transparentToBlackForDoor");
                 NewMovement.instance.SwitchState(NewMoveStates.action);
                 NewMovement.instance.lockMovements();
             }
@@ -110,7 +110,7 @@ public class Actions : MonoBehaviour
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
             if (triggerZone.type == ZoneTypes.Door && NewMovement.instance.CheckGround())
             {
-                BlackScreenManager.Instance.goBlack();
+                BlackScreenManager.Instance.animationPlay("transparentToBlackForDoor");
                 NewMovement.instance.SwitchState(NewMoveStates.action);
                 NewMovement.instance.lockMovements();
             }

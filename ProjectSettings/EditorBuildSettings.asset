@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Dev/GregoryDearham/Scene/GameOver.unity
     guid: 1eaf18e7448d71548ac6243e0e7b36e6
+  - enabled: 1
+    path: Assets/Finished/TestLevel1.unity
+    guid: d3b047662601cfc4082a7d3fe1cb1f30
   m_configObjects: {}
