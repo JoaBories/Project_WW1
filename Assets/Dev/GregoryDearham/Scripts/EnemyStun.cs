@@ -4,7 +4,7 @@ public class EnemyStun : MonoBehaviour
 {
     public bool Stun = false;
     private Animator _animator;
-
+    
 
     private void Start()
     {
@@ -17,17 +17,15 @@ public class EnemyStun : MonoBehaviour
     {
         if (collision.CompareTag("ElectricShock"))
         {
-            Debug.Log("Dead");
-            _animator.Play("EnemyStun");
+            Debug.Log("ElectricShock collision detected");
 
-            Stun = true;
 
-            // Destroy the specific child Canvas GameObject
-            //if (childCanvas != null)
-            //{
-            //    Destroy(childCanvas.gameObject);
-            //    Debug.Log("Child Canvas Destroyed");
-            //}
+            
+             
+
+                _animator.Play("EnemyStun");
+                Stun = true;
+            
         }
     }
 

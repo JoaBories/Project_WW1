@@ -65,7 +65,7 @@ public class SceneAudioManager : MonoBehaviour
         // Play audio specific to each scene
         switch (sceneName)
         {
-            case "Tutorial": //Trench
+            case "LVLtuto": //Trench
                 AudioManager.Instance.PlayAmbience("NightTrenchies");
                 //AudioManager.Instance.PlaySFX("DoorCreak"); // Example SFX
                 break;

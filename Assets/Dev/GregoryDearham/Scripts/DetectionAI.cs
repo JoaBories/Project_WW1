@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -84,6 +85,8 @@ public class DetectionAI : MonoBehaviour
         // Update materials for visual feedback
         UpdateShaderFill(questionFillMat, questionProgress);
         UpdateShaderFill(exclamationFillMat, exclamationProgress);
+
+      
     }
 
     private void OnTriggerEnter2D(Collider2D other)
