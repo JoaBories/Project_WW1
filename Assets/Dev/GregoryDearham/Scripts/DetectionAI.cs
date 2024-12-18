@@ -4,7 +4,12 @@ using UnityEngine.Rendering.Universal;
 
 public class DetectionAI : MonoBehaviour
 {
+
+    [SerializeField] QuestionZone DetectionCollider;
+
+
     [Header("Light Reference")]
+
     public Light2D detectionLight;
 
     [Header("Sprites")]
@@ -55,7 +60,7 @@ public class DetectionAI : MonoBehaviour
         switch (currentPhase)
         {
             case DetectionPhase.Question:
-                if (inDetectionZone && !GetComponent<EnemyStun>().Stun)
+                if (DetectionCollider.inDetectionZone && !GetComponent<EnemyStun>().Stun)
                 {
                     IncreaseQuestionProgress();
                 }
@@ -66,7 +71,7 @@ public class DetectionAI : MonoBehaviour
                 break;
 
             case DetectionPhase.Exclamation:
-                if (inDetectionZone && !GetComponent<EnemyStun>().Stun)
+                if (DetectionCollider.inDetectionZone && !GetComponent<EnemyStun>().Stun)
                 {
                     IncreaseExclamationProgress();
                     
@@ -89,30 +94,8 @@ public class DetectionAI : MonoBehaviour
       
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            inDetectionZone = true;
-        }
-        else if (other.CompareTag("SpeedBoostZone"))
-        {
-            inSpeedBoostZone = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            inDetectionZone = false;
-
-        }
-        else if (other.CompareTag("SpeedBoostZone"))
-        {
-            inSpeedBoostZone = false;
-        }
-    }
+  
+  
 
     private void IncreaseQuestionProgress()
     {

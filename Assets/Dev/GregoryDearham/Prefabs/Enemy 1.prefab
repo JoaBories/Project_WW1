@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7716983374278753463}
-  - component: {fileID: 5831301383945920515}
   m_Layer: 0
   m_Name: CollisionBoxes
   m_TagString: Untagged
@@ -34,33 +33,6 @@ Transform:
   - {fileID: 6099376626235045013}
   m_Father: {fileID: 6090828481597450389}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &5831301383945920515
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226637083816330781}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.0001
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &1446197834562751782
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,6 +43,8 @@ GameObject:
   m_Component:
   - component: {fileID: 929945348904840198}
   - component: {fileID: 4476400116906676392}
+  - component: {fileID: 3384301253089999975}
+  - component: {fileID: 2403463796417782731}
   m_Layer: 0
   m_Name: QuestionZone
   m_TagString: DetectionZone
@@ -138,6 +112,46 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.185884, y: 2.1437764}
   m_EdgeRadius: 0
+--- !u!50 &3384301253089999975
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446197834562751782}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &2403463796417782731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446197834562751782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ee40111703ecd4999f77fac9b80491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inDetectionZone: 0
 --- !u!1 &3070574556411194031
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6099376626235045013}
   - component: {fileID: 6712833528631800992}
+  - component: {fileID: 7959169434798771144}
   m_Layer: 0
   m_Name: ExclamationZone
   m_TagString: SpeedBoostZone
@@ -391,6 +406,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5083439, y: 2.0929418}
   m_EdgeRadius: 0
+--- !u!50 &7959169434798771144
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353160123182179414}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6375628925592370947
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2fa39138661a942892b55ee7a2633f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DetectionCollider: {fileID: 2403463796417782731}
   detectionLight: {fileID: 0}
   questionFillSprite: {fileID: 6430409768805959303}
   questionOutlineSprite: {fileID: 3212684503367849598}

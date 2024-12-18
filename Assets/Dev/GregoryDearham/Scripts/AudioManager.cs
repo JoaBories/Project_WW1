@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Audio;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,13 +10,18 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] private AudioSource ambienceAudioSource;
     [SerializeField] private AudioSource sfxAudioSource;
+    [SerializeField] private AudioSource environmentAudioSource;
+    //[SerializeField] private AudioSource sfxAudioSource;
 
     private Dictionary<string, AudioClip> ambienceClips;
     private Dictionary<string, AudioClip> sfxClips;
+    private Dictionary<string, AudioClip> environmentClips;
 
-    
+
     public float AmbienceVolume { get; private set; } = 1f;
     public float SFXVolume { get; private set; } = 1f;
+
+    public float environmentAudioSourceVolume { get; private set; } = 1f;
 
     private void Awake()
     {
@@ -30,7 +37,8 @@ public class AudioManager : MonoBehaviour
 
         ambienceClips = new Dictionary<string, AudioClip>();
         sfxClips = new Dictionary<string, AudioClip>();
-    }
+        environmentClips = new Dictionary<string, AudioClip>();
+}
 
     private void Start()
     {
@@ -40,6 +48,8 @@ public class AudioManager : MonoBehaviour
 
         if (ambienceAudioSource) ambienceAudioSource.volume = AmbienceVolume;
         if (sfxAudioSource) sfxAudioSource.volume = SFXVolume;
+        if (environmentAudioSource) environmentAudioSource.volume = environmentAudioSourceVolume;
+
     }
 
     public void SetAmbienceVolume(float volume)
@@ -56,6 +66,13 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
+    public void SetenvironmentAudioSourceVolume(float volume)
+    {
+        SFXVolume = volume;
+        if (environmentAudioSource) environmentAudioSource.volume = volume;
+        PlayerPrefs.SetFloat("EnvironmentVolume", volume);
+    }
+
     public void PlayAmbience(string clipName)
     {
         if (ambienceClips == null)
@@ -70,6 +87,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+       
         if (ambienceClips.ContainsKey(clipName))
         {
             var clip = ambienceClips[clipName];
@@ -86,6 +104,26 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+
+    public void PlayEnvironment (string clipName)
+    {
+        
+        if (environmentClips.ContainsKey(clipName) && environmentAudioSource)
+        {
+            environmentAudioSource.PlayOneShot(environmentClips[clipName]);
+            environmentAudioSource.loop = true;
+
+        }
+
+    }
+
+    public void StopEnvironment(string clipName)
+    {
+
+        if (environmentAudioSource) environmentAudioSource.Stop();
+
+    }
+
     public void PlaySFX(string clipName)
     {
         if (sfxClips.ContainsKey(clipName) && sfxAudioSource)
@@ -99,9 +137,23 @@ public class AudioManager : MonoBehaviour
         if (ambienceAudioSource) ambienceAudioSource.Stop();
     }
 
-    public void InitializeClips(Dictionary<string, AudioClip> ambience, Dictionary<string, AudioClip> sfx)
+    public void StopSFX(string clipName)
+    {
+        // Check if the current clip's name matches the specified clip name 
+        if (sfxClips.ContainsKey(clipName) && sfxAudioSource)
+        {
+            Debug.Log("Audio is Working");
+            sfxAudioSource.Stop();
+        }
+    }
+
+
+
+
+    public void InitializeClips(Dictionary<string, AudioClip> ambience, Dictionary<string, AudioClip> sfx, Dictionary<string, AudioClip> environment)
     {
         ambienceClips = ambience;
         sfxClips = sfx;
+        environmentClips = environment;
     }
 }

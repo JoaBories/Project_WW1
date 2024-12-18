@@ -13,17 +13,17 @@ public class EnemyStun : MonoBehaviour
       
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("ElectricShock"))
         {
             Debug.Log("ElectricShock collision detected");
 
 
-            
-             
 
-                _animator.Play("EnemyStun");
+
+            AudioManager.Instance.PlaySFX("GermanFall");
+            _animator.Play("EnemyStun");
                 Stun = true;
             
         }

@@ -62,3 +62,6 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e6905bd1ff87f5540ab335c1a43e3269, type: 3}
   - name: Robot
     clip: {fileID: 8300000, guid: 9d68501d2c7101c45bc7695073b0f364, type: 3}
+  environmentClips:
+  - name: JeanBreathing
+    clip: {fileID: 8300000, guid: cb10aa921153b7a489a2570336043e5e, type: 3}
