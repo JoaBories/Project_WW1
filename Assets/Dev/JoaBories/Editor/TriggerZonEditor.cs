@@ -74,6 +74,11 @@ public class TriggerZonEditor : Editor
                 zone.coolDown = EditorGUILayout.FloatField("Shooting cooldown", zone.coolDown);
                 EditorGUILayout.EndHorizontal();
                 break;
+            case ZoneTypes.SceneChangeSideOfRoom:
+                EditorGUILayout.BeginHorizontal();
+                zone.sceneNum = EditorGUILayout.IntField("Number of the scene", zone.sceneNum);
+                EditorGUILayout.EndHorizontal();
+                break;
         }
     }
 }

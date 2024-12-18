@@ -36,5 +36,4 @@ public class BlackScreenManager : MonoBehaviour
     {
         Actions.Instance.Teleport();
     }
-
 }

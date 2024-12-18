@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public enum ZoneTypes
@@ -10,6 +11,7 @@ public enum ZoneTypes
     BarbedWire,
     Door,
     SideOfRoom,
+    SceneChangeSideOfRoom,
     Gas,
     Mask,
     Crate,
@@ -40,6 +42,8 @@ public class TriggerZone : MonoBehaviour
     private float nextStatechange;
     public float coolDown;
 
+    public int sceneNum;
+
     private void FixedUpdate()
     {
         if (Time.time > nextStatechange)
@@ -52,8 +56,9 @@ public class TriggerZone : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (GetComponent<BoxCollider2D>() == null) return;
         _Boxcollider = GetComponent<BoxCollider2D>();
-        if (_Boxcollider == null) return;
+        if (GetComponent<CircleCollider2D>() != null ) _Circlecollider = GetComponent<CircleCollider2D>();
 
         switch (type)
         {
@@ -68,8 +73,8 @@ public class TriggerZone : MonoBehaviour
                 break;
 
             case ZoneTypes.BarbedWire:
-                _Circlecollider = GetComponent<CircleCollider2D>();
                 Gizmos.color = Color.red;
+                if (GetComponent<CircleCollider2D>() == null) return ;
                 Gizmos.DrawWireSphere(transform.position + new Vector3(_Circlecollider.offset.x * transform.localScale.x, _Circlecollider.offset.y * transform.localScale.y, 0), _Circlecollider.radius * transform.localScale.x);
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;

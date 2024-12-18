@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Actions : MonoBehaviour
 {
@@ -72,7 +73,11 @@ public class Actions : MonoBehaviour
                 NewMovement.instance.SwitchState(NewMoveStates.action);
                 NewMovement.instance.lockMovements();
             }
-        }
+            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.SceneChangeSideOfRoom)
+            {
+                SceneManager.LoadScene(collision.GetComponent<TriggerZone>().sceneNum);
+            }
+            }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -84,10 +89,10 @@ public class Actions : MonoBehaviour
                 currentTriggerZone = collision.gameObject;
             }
         } 
-        else if (collision != currentEnemy && collision.CompareTag("Enemy"))
-        {
-            currentEnemy = collision.gameObject;
-        }
+        //else if (collision != currentEnemy && collision.CompareTag("Enemy"))
+        //{
+        //    currentEnemy = collision.gameObject;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
