@@ -87,6 +87,8 @@ public class NewMovement : MonoBehaviour
         {
             _animator.SetFloat("Trench", 1);
         }
+
+        lockMovements();
     }
 
     private void OnEnable()
