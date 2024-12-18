@@ -9,6 +9,7 @@ TagManager:
   - ElectricShock
   - SpeedBoostZone
   - DetectionZone
+  - Enemy
   layers:
   - Default
   - TransparentFX

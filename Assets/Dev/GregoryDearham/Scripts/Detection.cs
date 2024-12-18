@@ -15,8 +15,8 @@ public class Detection : MonoBehaviour
 
     public Image questionMarkIcon;
     public Image exclamationMarkIcon;
-    public Color normalColor = Color.white;
-    public Color activeColor = Color.red;
+    //public Color normalColor = Color.white;
+    //public Color activeColor = Color.red;
 
     public AudioSource suspicionSound;
     public AudioSource alertSound;
@@ -43,19 +43,21 @@ public class Detection : MonoBehaviour
 
     private void Update()
     {
-        if (inDetectionZone && Light.enabled)
+        if (inDetectionZone && Light.enabled )
         {
             if (currentPhase == DetectionPhase.Question)
             {
 
+                questionMarkSlider.gameObject.SetActive(true);
+                questionMarkIcon.gameObject.SetActive(true);
 
                 questionMarkSlider.value += CurrentDetectionSpeed * Time.deltaTime;
                 questionMarkSlider.value = Mathf.Clamp01(questionMarkSlider.value);
 
-                if (questionMarkIcon != null)
-                {
-                    questionMarkIcon.color = questionMarkSlider.value > 0 ? activeColor : normalColor;
-                }
+                //if (questionMarkIcon != null)
+                //{
+                //    questionMarkIcon.color = questionMarkSlider.value > 0 ? activeColor : normalColor;
+                //}
 
                 if (questionMarkSlider.value >= 1f && !suspicionTriggered)
                 {
@@ -67,10 +69,10 @@ public class Detection : MonoBehaviour
                 exclamationMarkSlider.value += CurrentDetectionSpeed * Time.deltaTime;
                 exclamationMarkSlider.value = Mathf.Clamp01(exclamationMarkSlider.value);
 
-                if (exclamationMarkIcon != null)
-                {
-                    exclamationMarkIcon.color = exclamationMarkSlider.value > 0 ? activeColor : normalColor;
-                }
+                //if (exclamationMarkIcon != null)
+                //{
+                //    exclamationMarkIcon.color = exclamationMarkSlider.value > 0 ? activeColor : normalColor;
+                //}
 
                 if (exclamationMarkSlider.value >= 1f && !alertTriggered)
                 {
@@ -85,20 +87,38 @@ public class Detection : MonoBehaviour
                 questionMarkSlider.value -= decaySpeed * Time.deltaTime;
                 questionMarkSlider.value = Mathf.Clamp01(questionMarkSlider.value);
 
-                if (questionMarkIcon != null)
-                {
-                    questionMarkIcon.color = questionMarkSlider.value > 0 ? activeColor : normalColor;
-                }
+                //if (questionMarkIcon != null)
+                //{
+                //    questionMarkIcon.color = questionMarkSlider.value > 0 ? activeColor : normalColor;
+                //}
             }
+
+
+            if (exclamationMarkSlider.value <= 0 && questionMarkSlider.value <=0)
+            {
+                
+
+                exclamationMarkSlider.gameObject.SetActive(false);
+                exclamationMarkIcon.gameObject.SetActive(false);
+
+                questionMarkSlider.gameObject.SetActive(false);
+                questionMarkIcon.gameObject.SetActive(false);
+
+            }
+
+
+
+
+
             else if (currentPhase == DetectionPhase.Exclamation)
             {
                 exclamationMarkSlider.value -= decaySpeed * Time.deltaTime;
                 exclamationMarkSlider.value = Mathf.Clamp01(exclamationMarkSlider.value);
 
-                if (exclamationMarkIcon != null)
-                {
-                    exclamationMarkIcon.color = exclamationMarkSlider.value > 0 ? activeColor : normalColor;
-                }
+                //if (exclamationMarkIcon != null)
+                //{
+                //    exclamationMarkIcon.color = exclamationMarkSlider.value > 0 ? activeColor : normalColor;
+                //}
 
                 if (exclamationMarkSlider.value <= 0)
                 {
@@ -115,7 +135,13 @@ public class Detection : MonoBehaviour
                     suspicionTriggered = false;
                     alertTriggered = false;
                 }
+
             }
+
+
+
+
+
         }
     }
 

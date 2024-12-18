@@ -6,6 +6,7 @@ public class AudioClipLibrary : ScriptableObject
 {
     public List<ClipEntry> ambienceClips;
     public List<ClipEntry> sfxClips;
+    public List<ClipEntry> environmentClips;
 
     [System.Serializable]
     public class ClipEntry
