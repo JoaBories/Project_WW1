@@ -333,13 +333,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 3962443803939799837, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.736
+      objectReference: {fileID: 0}
     - target: {fileID: 5434898451970168288, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_Lens.OrthographicSize
       value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8666649
+      value: 1.8660355
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -417,6 +421,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7357610759095837659, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1600440718}
     - target: {fileID: 7407609264927653451, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: runOrthoSize
       value: 3
@@ -456,11 +464,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 773885646560106604, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+    - {fileID: 3890951947100663201, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2716185109215072432, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 469663737}
     - targetCorrespondingSourceObject: {fileID: 1963117183744982418, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       insertIndex: 4
       addedObject: {fileID: 1142026094}
@@ -1078,11 +1084,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.9105911, y: 0.28217697}
   m_EdgeRadius: 0
---- !u!4 &223798846 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6463847658848944772, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-  m_PrefabInstance: {fileID: 47877031}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &228889654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,34 +1533,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &469663733 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2716185109215072432, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-  m_PrefabInstance: {fileID: 47877031}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &469663736 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8048563870880911847, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-  m_PrefabInstance: {fileID: 47877031}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &469663737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469663733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4196b6f4fab49c241ad44e23370a560e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalProjectilePrefab: {fileID: 3839348519539242211, guid: 822ca8bb537547d4f8a0ff2aa850d766, type: 3}
-  firePoint: {fileID: 223798846}
-  projectileSpeed: 0.97
-  animator: {fileID: 469663736}
-  projectileDistance: 0.5
-  inputActions: {fileID: -944628639613478452, guid: 9db743520d521934f803aa94a2b1d540, type: 3}
 --- !u!1001 &476563091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5623,6 +5596,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1600440718 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3962443803939799837, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+  m_PrefabInstance: {fileID: 47877031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1634285069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 422378801753229255, guid: 87b58dd0a9a0d564fb316d08b5eb05b2, type: 3}
