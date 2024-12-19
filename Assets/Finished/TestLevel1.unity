@@ -841,6 +841,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7407609264927653451, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+      propertyPath: isDay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7467867494576917501, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -850,10 +854,6 @@ PrefabInstance:
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7922844138885490714, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7922844138885490714, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_Size.x
       value: 6.35
       objectReference: {fileID: 0}
@@ -861,10 +861,6 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 6.08
       objectReference: {fileID: 0}
-    - target: {fileID: 7922844138885490714, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1522950a31f751545a4e1b3aaf90346c, type: 3}
     - target: {fileID: 7922844138885490714, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
