@@ -18,7 +18,9 @@ public enum ZoneTypes
     Radio,
     SufferingSoldier,
     Shootings,
-    ConstantShootings
+    ConstantShootings,
+    BarbedWireReload,
+    SceneChangeDoor
 }
 
 public class TriggerZone : MonoBehaviour

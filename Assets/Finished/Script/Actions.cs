@@ -118,6 +118,9 @@ public class Actions : MonoBehaviour
                 BlackScreenManager.Instance.animationPlay("transparentToBlackForDoor");
                 NewMovement.instance.SwitchState(NewMoveStates.action);
                 NewMovement.instance.lockMovements();
+            } else if (triggerZone.type == ZoneTypes.SceneChangeDoor && NewMovement.instance.CheckGround())
+            {
+                SceneManager.LoadScene(triggerZone.sceneNum);
             }
         }
     }
