@@ -4,8 +4,8 @@ public class EnemyStun : MonoBehaviour
 {
     public bool Stun = false;
     private Animator _animator;
-    
-
+    public int soldierToKill;
+    public GameObject blockedDoor;
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -32,5 +32,10 @@ public class EnemyStun : MonoBehaviour
     public void killSoldier()
     {
         Destroy(gameObject);
+        soldierToKill--;
+        if (soldierToKill == 0)
+        {
+            blockedDoor.SetActive(false);
+        }
     }
 }
