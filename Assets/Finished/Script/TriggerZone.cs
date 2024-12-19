@@ -42,6 +42,7 @@ public class TriggerZone : MonoBehaviour
     [NonSerialized] public bool shooting;
     private float nextStatechange;
     public float coolDown;
+    public GameObject ZoneShot;
 
     public int sceneNum;
 
@@ -49,6 +50,10 @@ public class TriggerZone : MonoBehaviour
     {
         if (Time.time > nextStatechange)
         {
+            if (!shooting)
+                ZoneShot.SetActive(true);
+            else if (shooting == true)
+                ZoneShot.SetActive(false);
             nextStatechange = Time.time + coolDown;
             shooting = !shooting;
         }
