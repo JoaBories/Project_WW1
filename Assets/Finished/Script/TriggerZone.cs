@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public enum ZoneTypes
@@ -10,13 +11,16 @@ public enum ZoneTypes
     BarbedWire,
     Door,
     SideOfRoom,
+    SceneChangeSideOfRoom,
     Gas,
     Mask,
     Crate,
     Radio,
     SufferingSoldier,
     Shootings,
-    ConstantShootings
+    ConstantShootings,
+    BarbedWireReload,
+    SceneChangeDoor
 }
 
 public class TriggerZone : MonoBehaviour
@@ -40,6 +44,8 @@ public class TriggerZone : MonoBehaviour
     private float nextStatechange;
     public float coolDown;
 
+    public int sceneNum;
+
     private void FixedUpdate()
     {
         if (Time.time > nextStatechange)
@@ -52,73 +58,66 @@ public class TriggerZone : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (GetComponent<BoxCollider2D>() == null) return;
+        _Boxcollider = GetComponent<BoxCollider2D>();
+        if (GetComponent<CircleCollider2D>() != null ) _Circlecollider = GetComponent<CircleCollider2D>();
+
         switch (type)
         {
             case ZoneTypes.Climb:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.Crate:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.BarbedWire:
-                _Circlecollider = GetComponent<CircleCollider2D>();
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.red;
+                if (GetComponent<CircleCollider2D>() == null) return ;
                 Gizmos.DrawWireSphere(transform.position + new Vector3(_Circlecollider.offset.x * transform.localScale.x, _Circlecollider.offset.y * transform.localScale.y, 0), _Circlecollider.radius * transform.localScale.x);
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.Door:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.green;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.SideOfRoom:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.green;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.Mask:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.white;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.Radio:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.SufferingSoldier:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.Gas:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.Shootings:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 if (shooting) Gizmos.color = Color.red;
                 else Gizmos.color = Color.green;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
 
             case ZoneTypes.ConstantShootings:
-                _Boxcollider = GetComponent<BoxCollider2D>();
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;

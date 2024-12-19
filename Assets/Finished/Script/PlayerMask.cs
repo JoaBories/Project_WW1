@@ -46,12 +46,15 @@ public class PlayerMask : MonoBehaviour
     {
         if ((NewMovement.instance.State == NewMoveStates.idle || NewMovement.instance.State == NewMoveStates.walk || NewMovement.instance.State == NewMoveStates.run) && gotMask && !Actions.Instance.gameplayLock)
         {
+            AudioManager.Instance.PlayEnvironment("JeanBreathing");
             mask = true;
         }
     }
 
     public void EndMask(InputAction.CallbackContext context)
     {
+
+        AudioManager.Instance.StopEnvironment("JeanBreathing");
         mask = false;
     }
 }

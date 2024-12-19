@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Actions : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Actions : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     private GameObject currentTriggerZone;
+    private GameObject currentEnemy;
     private TriggerZone currentClimb;
 
     public bool gameplayLock;
@@ -67,11 +69,15 @@ public class Actions : MonoBehaviour
         {
             if (collision.GetComponent<TriggerZone>().type == ZoneTypes.SideOfRoom)
             {
-                BlackScreenManager.Instance.goBlack();
+                BlackScreenManager.Instance.animationPlay("transparentToBlackForDoor");
                 NewMovement.instance.SwitchState(NewMoveStates.action);
                 NewMovement.instance.lockMovements();
             }
-        }
+            if (collision.GetComponent<TriggerZone>().type == ZoneTypes.SceneChangeSideOfRoom)
+            {
+                SceneManager.LoadScene(collision.GetComponent<TriggerZone>().sceneNum);
+            }
+            }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -82,7 +88,11 @@ public class Actions : MonoBehaviour
             {
                 currentTriggerZone = collision.gameObject;
             }
-        }
+        } 
+        //else if (collision != currentEnemy && collision.CompareTag("Enemy"))
+        //{
+        //    currentEnemy = collision.gameObject;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -90,6 +100,11 @@ public class Actions : MonoBehaviour
         if (currentTriggerZone == collision.gameObject)
         {
             currentTriggerZone = null;
+        }
+
+        if (currentEnemy == collision.gameObject)
+        {
+            currentEnemy = null;
         }
     }
 
@@ -100,16 +115,19 @@ public class Actions : MonoBehaviour
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
             if (triggerZone.type == ZoneTypes.Door && NewMovement.instance.CheckGround())
             {
-                BlackScreenManager.Instance.goBlack();
+                BlackScreenManager.Instance.animationPlay("transparentToBlackForDoor");
                 NewMovement.instance.SwitchState(NewMoveStates.action);
                 NewMovement.instance.lockMovements();
+            } else if (triggerZone.type == ZoneTypes.SceneChangeDoor && NewMovement.instance.CheckGround())
+            {
+                SceneManager.LoadScene(triggerZone.sceneNum);
             }
         }
     }
 
     private void ClimbAction(InputAction.CallbackContext context)
     {
-        if (currentTriggerZone != null && !gameplayLock)
+        if (currentTriggerZone != null && !gameplayLock && !PlayerMask.instance.mask)
         {
             TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
             if (_spriteRenderer.flipX == !triggerZone.climb_right && triggerZone.type == ZoneTypes.Climb && NewMovement.instance.CheckGround())
@@ -142,12 +160,13 @@ public class Actions : MonoBehaviour
                     _animator.Play("interact");
                     NewMovement.instance.SwitchState(NewMoveStates.action, true);
                     break;
-
-                case ZoneTypes.SufferingSoldier:
-                    _animator.Play("execute");
-                    NewMovement.instance.SwitchState(NewMoveStates.action, true);
-                    break;
             }
+        }
+
+        if (currentEnemy != null && NewMovement.instance.CheckGround() && !gameplayLock)
+        {
+            _animator.Play("execute");
+            NewMovement.instance.SwitchState(NewMoveStates.action, true);
         }
     }
 
@@ -178,26 +197,31 @@ public class Actions : MonoBehaviour
 
     public void EndInteract()
     {
-        TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
-        switch (triggerZone.type)
+        if (currentTriggerZone != null)
         {
-            case ZoneTypes.Mask:
-                PlayerMask.instance.gotMask = true;
-                Destroy(currentTriggerZone);
-                break;
+            TriggerZone triggerZone = currentTriggerZone.GetComponent<TriggerZone>();
+            switch (triggerZone.type)
+            {
+                case ZoneTypes.Mask:
+                    PlayerMask.instance.gotMask = true;
+                    Destroy(currentTriggerZone);
+                    break;
 
-            case ZoneTypes.Crate:
-                triggerZone.Push();
-                break;
+                case ZoneTypes.Crate:
+                    triggerZone.Push();
+                    break;
 
-            case ZoneTypes.Radio:
-                triggerZone.DestroyRadio();
-                break;
-
-            case ZoneTypes.SufferingSoldier:
-                triggerZone.ExecuteSoldier();
-                break;
+                case ZoneTypes.Radio:
+                    triggerZone.DestroyRadio();
+                    break;
+            }
         }
+
+        if (currentEnemy != null && NewMovement.instance.CheckGround() && !gameplayLock)
+        {
+            currentEnemy.GetComponent<EnemyStun>().killSoldier();
+        }
+
         NewMovement.instance.SwitchState(NewMoveStates.idle);
         NewMovement.instance.delockMovements();
     }

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BlackScreenManager : MonoBehaviour
 {
@@ -15,15 +14,9 @@ public class BlackScreenManager : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-
-    public void goTransparent()
+    public void animationPlay(string name)
     {
-        _animator.Play("blackToTransparent");
-    }
-
-    public void goBlack()
-    {
-        _animator.Play("transparentToBlack");
+        _animator.Play(name);
     }
 
     public void endTransition()
@@ -37,4 +30,13 @@ public class BlackScreenManager : MonoBehaviour
         Actions.Instance.Teleport();
     }
 
+    public void Respawn()
+    {
+        LifeManager.instance.Respawn();
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

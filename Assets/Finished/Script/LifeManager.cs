@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LifeManager : MonoBehaviour
 {
@@ -41,6 +42,22 @@ public class LifeManager : MonoBehaviour
         _animator.Play("groundDeath");
     }
 
+    public void DieReload()
+    {
+        NewMovement.instance.SwitchState(NewMoveStates.action, true);
+        _animator.Play("ReloadDeath");
+    }
+
+    public void DieReloadScene()
+    {
+        BlackScreenManager.Instance.animationPlay("transparentToBlackToReloadScene");
+    }
+
+    public void toBlackForDeath()
+    {
+        BlackScreenManager.Instance.animationPlay("goBlackForRespawn");
+    }
+
     public void Respawn()
     {
         transform.position = currentCheckpoint.transform.position;
@@ -66,7 +83,10 @@ public class LifeManager : MonoBehaviour
                 case ZoneTypes.Gas:
                     inGas = true; 
                     break;
-
+                
+                case ZoneTypes.BarbedWireReload:
+                    DieReload();
+                    break;
             }
         }
     }
