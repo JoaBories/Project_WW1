@@ -42,8 +42,6 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 00ab371c8d63ebe4aa247f62b0c7d34d, type: 3}
   - name: JeanJumpStart
     clip: {fileID: 8300000, guid: 57b3cdecf320226418ab60b46640f81f, type: 3}
-  - name: JeanPickUp
-    clip: {fileID: 8300000, guid: 65b0ba301c4770441a446e26186da38c, type: 3}
   - name: JeanPickup
     clip: {fileID: 8300000, guid: 65b0ba301c4770441a446e26186da38c, type: 3}
   - name: JeanPushBox
