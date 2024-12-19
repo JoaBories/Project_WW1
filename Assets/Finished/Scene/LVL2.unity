@@ -344,6 +344,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &23409860
 BoxCollider2D:
@@ -540,6 +541,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 3
 --- !u!61 &99895822
 BoxCollider2D:
@@ -947,6 +949,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &135897922
 BoxCollider2D:
@@ -1047,6 +1050,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &169252930
 BoxCollider2D:
@@ -1229,6 +1233,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &194813419
 BoxCollider2D:
@@ -1558,6 +1563,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &239442242
 BoxCollider2D:
@@ -1862,6 +1868,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &279906309
 BoxCollider2D:
@@ -1979,6 +1986,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &318540049
 BoxCollider2D:
@@ -2094,6 +2102,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &320987206
 BoxCollider2D:
@@ -2336,7 +2345,7 @@ SpriteRenderer:
   m_Size: {x: 35.08, y: 49.615913}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &430763052
@@ -2564,6 +2573,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &525620023
 BoxCollider2D:
@@ -2745,6 +2755,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &539693667
 BoxCollider2D:
@@ -2845,6 +2856,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &557707343
 BoxCollider2D:
@@ -3022,6 +3034,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &626479091
 BoxCollider2D:
@@ -3427,6 +3440,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!4 &660648311
 Transform:
@@ -4193,7 +4207,7 @@ Transform:
   m_GameObject: {fileID: 877181858}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.574654, y: 0, z: 0}
+  m_LocalPosition: {x: 17.575056, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4761,6 +4775,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1003100362
 BoxCollider2D:
@@ -5010,6 +5025,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6090828481597450389, guid: d2b81d7adf76887419a532be34348e78, type: 3}
   m_PrefabInstance: {fileID: 1074270607}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1087868614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8035846956597949021, guid: d2b81d7adf76887419a532be34348e78, type: 3}
+  m_PrefabInstance: {fileID: 1544237855}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1101554402
 GameObject:
   m_ObjectHideFlags: 0
@@ -5138,7 +5158,7 @@ SpriteRenderer:
   m_Size: {x: 35.08, y: 49.615913}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1154818587 stripped
@@ -5346,6 +5366,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1174735092
 BoxCollider2D:
@@ -6228,7 +6249,7 @@ SpriteRenderer:
   m_Size: {x: 35.08, y: 49.615913}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1366525936
@@ -6899,6 +6920,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1449441606
 BoxCollider2D:
@@ -7339,6 +7361,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1536802992
 BoxCollider2D:
@@ -7556,7 +7579,7 @@ Transform:
   m_GameObject: {fileID: 1549853075}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.180995, y: 0, z: 0}
+  m_LocalPosition: {x: 13.181297, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7903,6 +7926,99 @@ Transform:
   - {fileID: 310966116}
   m_Father: {fileID: 1918807087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1705572316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1705572319}
+  - component: {fileID: 1705572318}
+  - component: {fileID: 1705572317}
+  m_Layer: 0
+  m_Name: BlockedDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1705572317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705572316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed52870659660b74ba06ca476faa02d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 1087868614}
+  BlockedDoor: {fileID: 1705572316}
+--- !u!61 &1705572318
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705572316}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &1705572319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705572316}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.91, y: -23.65, z: 0.073759764}
+  m_LocalScale: {x: 1, y: 2.2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1735012686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6090828481597450389, guid: d2b81d7adf76887419a532be34348e78, type: 3}
@@ -7913,7 +8029,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4492269262700614957, guid: d2b81d7adf76887419a532be34348e78, type: 3}
   m_PrefabInstance: {fileID: 1544237855}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1087868614}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b0a99b0d4bb7124dabd7c06a2a48e40, type: 3}
@@ -8238,6 +8354,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1860011869
 BoxCollider2D:
@@ -8338,6 +8455,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1875573728
 BoxCollider2D:
@@ -8483,6 +8601,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1903727282
 BoxCollider2D:
@@ -8736,11 +8855,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3994789
+      value: 1.3999999
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.48542023
+      value: 0.5250001
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8772,11 +8891,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -155.89
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.32
+      value: -23.28
       objectReference: {fileID: 0}
     - target: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8832,11 +8951,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8209301893252989308, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00051498413
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8209301893252989308, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03957987
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8209301893252989308, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9530,6 +9649,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &2063220020
 BoxCollider2D:
@@ -9645,6 +9765,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &2063301709
 BoxCollider2D:
@@ -10282,6 +10403,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &2119412604
 BoxCollider2D:
@@ -10748,6 +10870,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!114 &661971276903772504
 MonoBehaviour:
@@ -10770,6 +10893,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!4 &763645943552822790
 Transform:
@@ -11156,6 +11280,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!1 &2418998464696275849
 GameObject:
@@ -11877,6 +12002,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!1 &6156552840636839517
 GameObject:
@@ -11952,6 +12078,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!60 &7079467896042133598
 PolygonCollider2D:
@@ -12062,6 +12189,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!114 &8244385969391932723
 MonoBehaviour:
@@ -12084,6 +12212,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!114 &8244385969604011543
 MonoBehaviour:
@@ -12106,6 +12235,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!114 &8244385969744577797
 MonoBehaviour:
@@ -12128,6 +12258,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!114 &8351923834732827714
 MonoBehaviour:
@@ -12235,6 +12366,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!60 &8927398283054723480
 PolygonCollider2D:
@@ -12345,3 +12477,4 @@ SceneRoots:
   - {fileID: 21277910}
   - {fileID: 181950862}
   - {fileID: 430763054}
+  - {fileID: 1705572319}
