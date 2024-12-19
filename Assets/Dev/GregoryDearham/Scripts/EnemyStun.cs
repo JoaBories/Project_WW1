@@ -31,6 +31,7 @@ public class EnemyStun : MonoBehaviour
 
     public void killSoldier()
     {
+        //KillCountManager.Instance.AddKill();
         Destroy(gameObject);
     }
 }

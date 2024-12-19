@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -38,13 +39,14 @@ public class JournalMenu : MonoBehaviour
     public Button pausePanelDefaultButton;
     public Button areYouSureButton;
 
-
-    
+    //public TextMeshProUGUI killCountText;
 
     private void Awake()
     {
         inputActions = new Controls();
         instance = this;
+
+
     }
 
     private void OnEnable()
@@ -103,6 +105,9 @@ public class JournalMenu : MonoBehaviour
         menuGroup.SetActive(false);
         isPaused = false;
         Time.timeScale = 1f;
+
+        //KillCountManager.Instance.killCountText = killCountText;
+
 
         if (backgroundBlur != null)
         {

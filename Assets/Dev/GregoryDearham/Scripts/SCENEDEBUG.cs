@@ -11,7 +11,7 @@ public class SCENEDEBUG : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GregsDevCorner");
         }
     }
 
