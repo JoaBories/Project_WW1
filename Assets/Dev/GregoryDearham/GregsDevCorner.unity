@@ -133,6 +133,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &465812757 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4492269262700614957, guid: d2b81d7adf76887419a532be34348e78, type: 3}
+  m_PrefabInstance: {fileID: 1438578306}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0a99b0d4bb7124dabd7c06a2a48e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &494804857
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +347,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6756052305081522897, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
   m_PrefabInstance: {fileID: 950467174}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &601569551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4492269262700614957, guid: d2b81d7adf76887419a532be34348e78, type: 3}
+  m_PrefabInstance: {fileID: 937751205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0a99b0d4bb7124dabd7c06a2a48e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &638365531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4003742341016711155, guid: 21c56721514f62c4d832d2064178e98c, type: 3}
@@ -346,29 +368,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2716185109215072432, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
   m_PrefabInstance: {fileID: 950467174}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &662605106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662605105}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cbbae2c4ba5dc54484d6102405ac813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Light: {fileID: 0}
-  questionMarkSlider: {fileID: 0}
-  exclamationMarkSlider: {fileID: 0}
-  baseDetectionSpeed: 0.62
-  speedBoostMultiplier: 1.32
-  decaySpeed: 0.5
-  questionMarkIcon: {fileID: 0}
-  exclamationMarkIcon: {fileID: 0}
-  suspicionSound: {fileID: 0}
-  alertSound: {fileID: 0}
-  resetDelay: 2.62
 --- !u!114 &662605107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,23 +396,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7083353704622380438, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
   m_PrefabInstance: {fileID: 950467174}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &662605133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662605105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 655acf12cf3a61243999848dc7d2b6b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  climbSprite: {fileID: 21300000, guid: b4bdc9647d8582143b2172a3a7db9253, type: 3}
-  doorSprite: {fileID: 21300000, guid: 7018505dec062dd46aba3b4e67aa3d4c, type: 3}
-  crateSprite: {fileID: 21300000, guid: 7018505dec062dd46aba3b4e67aa3d4c, type: 3}
-  radioSprite: {fileID: 21300000, guid: 7018505dec062dd46aba3b4e67aa3d4c, type: 3}
-  gasSprite: {fileID: 21300000, guid: 4bee5447261d1ae4da6a64a3e1239519, type: 3}
 --- !u!1 &790295248
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +720,10 @@ PrefabInstance:
       value: Enemy 1 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8308064739778997171, guid: d2b81d7adf76887419a532be34348e78, type: 3}
+      propertyPath: EnemyCollider
+      value: 
+      objectReference: {fileID: 601569551}
+    - target: {fileID: 8308064739778997171, guid: d2b81d7adf76887419a532be34348e78, type: 3}
       propertyPath: detectionLight
       value: 
       objectReference: {fileID: 803834274}
@@ -772,7 +758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6018866
+      value: 1.5977532
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -848,13 +834,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2716185109215072432, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 662605106}
-    - targetCorrespondingSourceObject: {fileID: 2716185109215072432, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 662605107}
-    - targetCorrespondingSourceObject: {fileID: 2716185109215072432, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 662605133}
   m_SourcePrefab: {fileID: 100100000, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
 --- !u!1 &990720693
 GameObject:
@@ -1161,6 +1141,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8308064739778997171, guid: d2b81d7adf76887419a532be34348e78, type: 3}
+      propertyPath: EnemyCollider
+      value: 
+      objectReference: {fileID: 465812757}
     - target: {fileID: 8308064739778997171, guid: d2b81d7adf76887419a532be34348e78, type: 3}
       propertyPath: detectionLight
       value: 

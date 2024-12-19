@@ -26,7 +26,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 929945348904840198}
@@ -536,6 +536,7 @@ GameObject:
   - component: {fileID: 3210385693982490296}
   - component: {fileID: 6211412387588189635}
   - component: {fileID: 8308064739778997171}
+  - component: {fileID: 4492269262700614957}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -554,7 +555,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.538, y: -2.739, z: 0}
   m_LocalScale: {x: 0.79, y: 0.79, z: 0.79}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3534468726705681717}
   - {fileID: 2997332732114518214}
@@ -606,7 +607,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 297a808ba7341f947b3e17c0adbed406, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -695,8 +696,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03738388, y: -0.008596951}
-  m_Size: {x: 1.0118252, y: 2.1618457}
+  m_Offset: {x: -0.20456856, y: -0.008596951}
+  m_Size: {x: 0.5279203, y: 2.1618457}
   m_Direction: 0
 --- !u!114 &6211412387588189635
 MonoBehaviour:
@@ -724,6 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DetectionCollider: {fileID: 2403463796417782731}
+  EnemyCollider: {fileID: 0}
   detectionLight: {fileID: 0}
   questionFillSprite: {fileID: 6430409768805959303}
   questionOutlineSprite: {fileID: 3212684503367849598}
@@ -734,6 +736,19 @@ MonoBehaviour:
   decaySpeed: 0.5
   suspicionSound: {fileID: 0}
   alertSound: {fileID: 0}
+--- !u!114 &4492269262700614957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035846956597949021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0a99b0d4bb7124dabd7c06a2a48e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KillZone: 0
 --- !u!1 &9099164901662868964
 GameObject:
   m_ObjectHideFlags: 0
