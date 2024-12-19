@@ -703,7 +703,7 @@ Transform:
   m_GameObject: {fileID: 47150453}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.10831673, w: 0.9941165}
-  m_LocalPosition: {x: 25.274868, y: -0.8, z: 0}
+  m_LocalPosition: {x: 25.275063, y: -0.8, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -892,7 +892,7 @@ Transform:
   m_GameObject: {fileID: 54457266}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -118.93825, y: -0.45, z: 0}
+  m_LocalPosition: {x: -118.93796, y: -0.45, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1305,6 +1305,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &80134434
 BoxCollider2D:
@@ -1437,7 +1438,7 @@ Transform:
   m_GameObject: {fileID: 151302025}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 49.932312, y: -4.48, z: 0}
+  m_LocalPosition: {x: 49.932606, y: -4.48, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1829,7 +1830,7 @@ Transform:
   m_GameObject: {fileID: 180415391}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.294938, y: -0.45, z: 0}
+  m_LocalPosition: {x: -4.2946453, y: -0.45, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1956,6 +1957,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &203743134
 BoxCollider2D:
@@ -2041,6 +2043,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &205186168
 BoxCollider2D:
@@ -2132,7 +2135,8 @@ Transform:
   m_LocalPosition: {x: 23.8, y: 2.25, z: 0}
   m_LocalScale: {x: 0.11276878, y: 0.05, z: 0.11276881}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 568106604}
   m_Father: {fileID: 768634527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &215869780
@@ -2467,7 +2471,7 @@ Transform:
   m_GameObject: {fileID: 272267466}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.698612, y: -0.11, z: 0}
+  m_LocalPosition: {x: -28.69871, y: -0.11, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2577,6 +2581,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &279854456
 BoxCollider2D:
@@ -3667,7 +3672,7 @@ Transform:
   m_GameObject: {fileID: 409094053}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 150.07932, y: -0.45, z: 0}
+  m_LocalPosition: {x: 150.0796, y: -0.45, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4046,6 +4051,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2115882802376111910, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
+      propertyPath: orthographic size
+      value: 2.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_BiasX
       value: 0
@@ -4064,11 +4073,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8171037
+      value: 1.8157086
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6016777
+      value: 0.6016702
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4140,11 +4149,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8209301893252989308, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.21813536
+      value: -0.21715438
       objectReference: {fileID: 0}
     - target: {fileID: 8209301893252989308, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0016776323
+      value: -0.0016701221
       objectReference: {fileID: 0}
     - target: {fileID: 8209301893252989308, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4221,6 +4230,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &436664151
 BoxCollider2D:
@@ -4782,6 +4792,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &512082228
 BoxCollider2D:
@@ -4897,6 +4908,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &532575667
 BoxCollider2D:
@@ -5200,6 +5212,112 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &568106603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 568106604}
+  - component: {fileID: 568106606}
+  - component: {fileID: 568106605}
+  m_Layer: 0
+  m_Name: FFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &568106604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568106603}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.84753174, w: 0.5307448}
+  m_LocalPosition: {x: -273.8, y: 6.8, z: 1.8514977}
+  m_LocalScale: {x: 5, y: 14.3, z: 146.10048}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 215869779}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 115.888}
+--- !u!212 &568106605
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568106603}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -4
+  m_Sprite: {fileID: 21300000, guid: a003acb76f1043a419f764dfd26e4688, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 15, y: 15}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!95 &568106606
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568106603}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: daba9a45f6aef4d4ba7445e22ec70984, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &578455133
 GameObject:
   m_ObjectHideFlags: 0
@@ -5907,6 +6025,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &634973280
 BoxCollider2D:
@@ -6086,7 +6205,7 @@ Transform:
   m_GameObject: {fileID: 646162801}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.30094, y: -0.4, z: 0}
+  m_LocalPosition: {x: -19.301525, y: -0.4, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6352,7 +6471,7 @@ Transform:
   m_GameObject: {fileID: 663671732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 63.751537, y: 0.19999999, z: 0}
+  m_LocalPosition: {x: 63.75173, y: 0.19999999, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7517,6 +7636,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &775761076
 BoxCollider2D:
@@ -7757,7 +7877,7 @@ Transform:
   m_GameObject: {fileID: 798003301}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -103.64946, y: 0.19999993, z: 0}
+  m_LocalPosition: {x: -103.64926, y: 0.19999993, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8961,6 +9081,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &893511275
 BoxCollider2D:
@@ -9555,7 +9676,7 @@ Transform:
   m_GameObject: {fileID: 1002297930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.300842, y: -0.39999965, z: 0}
+  m_LocalPosition: {x: -19.30133, y: -0.39999965, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10117,7 +10238,7 @@ Transform:
   m_GameObject: {fileID: 1045004746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.300947, y: -0.39999965, z: 0}
+  m_LocalPosition: {x: -19.301533, y: -0.39999965, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -10299,7 +10420,7 @@ Transform:
   m_GameObject: {fileID: 1047762065}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.299784, y: -0.39999965, z: 0}
+  m_LocalPosition: {x: -19.300077, y: -0.39999965, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10598,6 +10719,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1067014170
 BoxCollider2D:
@@ -11130,7 +11252,7 @@ Transform:
   m_GameObject: {fileID: 1127547023}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -111.39165, y: -0.39999965, z: 0}
+  m_LocalPosition: {x: -111.39204, y: -0.39999965, z: 0}
   m_LocalScale: {x: 0.22640535, y: 0.22640535, z: 0.106609374}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11223,6 +11345,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1138306480
 BoxCollider2D:
@@ -11380,7 +11503,7 @@ Transform:
   m_GameObject: {fileID: 1154367984}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.569746, y: 0.19999993, z: 0}
+  m_LocalPosition: {x: -9.5695505, y: 0.19999993, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11660,6 +11783,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1193450294
 BoxCollider2D:
@@ -12233,6 +12357,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!1 &1232303236
 GameObject:
@@ -12345,7 +12470,7 @@ Transform:
   m_GameObject: {fileID: 1249254364}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -66.20024, y: 0.19999999, z: 0}
+  m_LocalPosition: {x: -66.20004, y: 0.19999999, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12664,7 +12789,7 @@ SpriteRenderer:
   m_Size: {x: 7, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1285704221
@@ -13199,6 +13324,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1358945042
 BoxCollider2D:
@@ -13398,6 +13524,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 2
 --- !u!61 &1409613106
 BoxCollider2D:
@@ -13646,7 +13773,7 @@ SpriteRenderer:
   m_Size: {x: 7, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1434933927
@@ -13772,6 +13899,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1435651683
 BoxCollider2D:
@@ -14434,6 +14562,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1497238284
 BoxCollider2D:
@@ -14656,7 +14785,7 @@ Transform:
   m_GameObject: {fileID: 1514316610}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.299784, y: -0.39999965, z: 0}
+  m_LocalPosition: {x: -19.300077, y: -0.39999965, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15033,7 +15162,7 @@ Transform:
   m_GameObject: {fileID: 1571592745}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.299034, y: -0.68999964, z: 0}
+  m_LocalPosition: {x: -19.299131, y: -0.68999964, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15131,7 +15260,7 @@ Transform:
   m_GameObject: {fileID: 1590801191}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -54.8788, y: -1.72, z: 0}
+  m_LocalPosition: {x: -54.878506, y: -1.72, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15252,6 +15381,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1608925319
 BoxCollider2D:
@@ -15740,7 +15870,7 @@ Transform:
   m_GameObject: {fileID: 1661339633}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.300842, y: -0.39999965, z: 0}
+  m_LocalPosition: {x: -19.30133, y: -0.39999965, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -16386,7 +16516,7 @@ Transform:
   m_GameObject: {fileID: 1709176847}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.299784, y: -0.39999965, z: 0}
+  m_LocalPosition: {x: -19.300077, y: -0.39999965, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16931,7 +17061,7 @@ SpriteRenderer:
   m_Size: {x: 24.800001, y: 24.800001}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1735874809
@@ -17218,7 +17348,7 @@ Transform:
   m_GameObject: {fileID: 1763888051}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 88.575516, y: -1.72, z: 0}
+  m_LocalPosition: {x: 88.575806, y: -1.72, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17478,7 +17608,7 @@ SpriteRenderer:
   m_Size: {x: 7, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1779613957
@@ -17934,7 +18064,7 @@ Transform:
   m_GameObject: {fileID: 1864032391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0015071438, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0.0018977688, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18045,6 +18175,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1876594720
 BoxCollider2D:
@@ -18923,7 +19054,7 @@ Transform:
   m_GameObject: {fileID: 1956775363}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 135.31256, y: 0.19999993, z: 0}
+  m_LocalPosition: {x: 135.31276, y: 0.19999993, z: 0}
   m_LocalScale: {x: 0.11276879, y: 0.11276879, z: 0.11276881}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19035,6 +19166,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1969196339
 BoxCollider2D:
@@ -19389,7 +19521,7 @@ SpriteRenderer:
   m_Size: {x: 7, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1999485554
@@ -19749,7 +19881,7 @@ Transform:
   m_GameObject: {fileID: 2031386819}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34.499264, y: -0.68999964, z: 0}
+  m_LocalPosition: {x: -34.49907, y: -0.68999964, z: 0}
   m_LocalScale: {x: 0.2264054, y: 0.2264054, z: 0.106609374}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20023,6 +20155,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &2086497470
 BoxCollider2D:
@@ -20276,6 +20409,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &2115677886
 BoxCollider2D:
@@ -20472,6 +20606,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!224 &14511963158319954
 RectTransform:
@@ -22286,6 +22421,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!1 &2013162431992180234
 GameObject:
@@ -25286,6 +25422,7 @@ MonoBehaviour:
   radioObject: {fileID: 2524879996902135122}
   brokenRadio: {fileID: 21300000, guid: 7d48a302ef8357845a2fc36fe51a1f38, type: 3}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!1 &6536866738957417681
 GameObject:

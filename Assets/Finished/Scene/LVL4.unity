@@ -315,7 +315,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2115882802376111910, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: orthographic size
-      value: 2.8
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 2125071833397974234, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_BiasX
@@ -339,15 +339,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5434898451970168288, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 2.8
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8660355
+      value: 1.398735
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.69999933
+      value: 0.5250001
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.z
@@ -427,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 1600440718}
     - target: {fileID: 7407609264927653451, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: runOrthoSize
-      value: 3
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 7407609264927653451, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: groundCheckPoint
@@ -525,6 +525,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &102283162
 BoxCollider2D:
@@ -1051,6 +1052,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &228889657
 BoxCollider2D:
@@ -1151,6 +1153,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &355198719
 BoxCollider2D:
@@ -1308,6 +1311,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &371299774
 BoxCollider2D:
@@ -1826,6 +1830,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &657672878
 BoxCollider2D:
@@ -2378,6 +2383,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &773566452
 BoxCollider2D:
@@ -2562,6 +2568,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &881683399
 BoxCollider2D:
@@ -2662,6 +2669,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &904410412
 BoxCollider2D:
@@ -3034,6 +3042,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &997629045
 BoxCollider2D:
@@ -3275,6 +3284,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1056970703
 BoxCollider2D:
@@ -3758,6 +3768,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1242559851
 BoxCollider2D:
@@ -3858,6 +3869,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1258549546
 BoxCollider2D:
@@ -3958,6 +3970,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1262625022
 BoxCollider2D:
@@ -4532,6 +4545,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1358209859
 BoxCollider2D:
@@ -4632,6 +4646,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1378360592
 BoxCollider2D:
@@ -4944,6 +4959,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1444419459
 BoxCollider2D:
@@ -5138,6 +5154,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1513003235
 BoxCollider2D:
@@ -5567,6 +5584,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1687253440
 BoxCollider2D:
@@ -6110,6 +6128,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1766413414
 BoxCollider2D:
@@ -6523,6 +6542,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1853368063
 BoxCollider2D:
@@ -6918,6 +6938,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1931813146
 BoxCollider2D:
@@ -7018,6 +7039,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &1937055582
 BoxCollider2D:
@@ -7157,6 +7179,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &2018540292
 BoxCollider2D:
@@ -7257,6 +7280,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &2020583004
 BoxCollider2D:
@@ -7391,6 +7415,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &2063852489
 BoxCollider2D:
@@ -7578,6 +7603,7 @@ MonoBehaviour:
   radioObject: {fileID: 0}
   brokenRadio: {fileID: 0}
   coolDown: 0
+  ZoneShot: {fileID: 0}
   sceneNum: 0
 --- !u!61 &2117326889
 BoxCollider2D:
