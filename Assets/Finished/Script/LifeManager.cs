@@ -82,9 +82,6 @@ public class LifeManager : MonoBehaviour
                 case ZoneTypes.Gas:
                     inGas = true; 
                     break;
-                case ZoneTypes.BarbedReload:
-                    DieReload();
-                    break;
 
             }
         }
