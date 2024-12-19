@@ -64,7 +64,7 @@ public class NewMovement : MonoBehaviour
 
     [NonSerialized] public bool isGround;
 
-    [SerializeField] private bool isInTrench;
+    [SerializeField] private bool isDay;
 
     private void Awake()
     {
@@ -83,9 +83,13 @@ public class NewMovement : MonoBehaviour
 
         isGround = CheckGround();
 
-        if (isInTrench)
+        if (isDay)
         {
-            _animator.SetFloat("Trench", 1);
+            _animator.SetFloat("Day", 1);
+        }
+        else
+        {
+            _animator.SetFloat("Day", 0);
         }
 
         lockMovements();

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -5,7 +6,7 @@ public class DetectionAI : MonoBehaviour
 {
 
     [SerializeField] QuestionZone DetectionCollider;
-
+    [SerializeField] EnemyZone EnemyCollider;
 
     [Header("Light Reference")]
 
@@ -56,6 +57,15 @@ public class DetectionAI : MonoBehaviour
         if (!detectionLight.enabled)
             return;
 
+        if (EnemyCollider.KillZone)
+        {
+
+            TriggerAlert();
+
+
+        }
+
+
         switch (currentPhase)
         {
             case DetectionPhase.Question:
@@ -80,6 +90,8 @@ public class DetectionAI : MonoBehaviour
                     DecayExclamationProgress();
                 }
                 break;
+
+           
 
             case DetectionPhase.Cooldown:
                 DecayQuestionProgress();

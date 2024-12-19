@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
-
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public enum ZoneTypes
@@ -11,14 +11,14 @@ public enum ZoneTypes
     BarbedWire,
     Door,
     SideOfRoom,
+    SceneChangeSideOfRoom,
     Gas,
     Mask,
     Crate,
     Radio,
+    SufferingSoldier,
     Shootings,
-    ConstantShootings,
-    BarbedReload,
-    SceneChangeSideOfRoom
+    ConstantShootings
 }
 
 public class TriggerZone : MonoBehaviour
@@ -95,6 +95,11 @@ public class TriggerZone : MonoBehaviour
                 break;
 
             case ZoneTypes.Radio:
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
+                break;
+
+            case ZoneTypes.SufferingSoldier:
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawWireCube(transform.position + new Vector3(_Boxcollider.offset.x * transform.localScale.x, _Boxcollider.offset.y * transform.localScale.y, 0), _Boxcollider.size * transform.localScale);
                 break;
