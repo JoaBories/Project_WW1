@@ -15,6 +15,6 @@ public class PuzzleDoor : MonoBehaviour
     public void On()
     {
         doorTriggerZone.gameObject.SetActive(true);
-        doorDisplay.GetComponent<Animator>().Play("DoorSliding");
+        GetComponent<Animator>().Play("slide");
     }
 }
