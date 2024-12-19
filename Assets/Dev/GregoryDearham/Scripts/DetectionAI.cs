@@ -57,6 +57,12 @@ public class DetectionAI : MonoBehaviour
         if (!detectionLight.enabled)
             return;
 
+        if (EnemyCollider == null)
+        {
+            Debug.Log("Fucked");
+            return;
+        }
+
         if (EnemyCollider.KillZone)
         {
 
