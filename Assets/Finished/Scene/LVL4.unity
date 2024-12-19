@@ -339,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8666649
+      value: 1.8660355
       objectReference: {fileID: 0}
     - target: {fileID: 5589371620233718054, guid: aac378b6d3501234b87d6f035bd55c42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -1141,7 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -2996,7 +2996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8244385968842653126, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
       propertyPath: type
-      value: 12
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8244385968842653126, guid: 2cec1292b0045bf4e8be067ab530b731, type: 3}
       propertyPath: sceneNum
@@ -3052,7 +3052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -3293,7 +3293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -3776,7 +3776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -3876,7 +3876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -3976,7 +3976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -4962,7 +4962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -5580,7 +5580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -6123,7 +6123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -6536,7 +6536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -7031,7 +7031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -7170,7 +7170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
@@ -7270,7 +7270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84400f6c57d6bdc4ca1d8d9f8b2299fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 11
+  type: 13
   climb_right: 1
   nextDoor: {fileID: 0}
   toRight: 0
